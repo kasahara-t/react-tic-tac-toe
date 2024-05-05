@@ -1,0 +1,10 @@
+.game-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: linear-gradient(to bottom, #1C193F 0%, #280F42 53%, #4D1548 100%);
+  color: #fff;
+}

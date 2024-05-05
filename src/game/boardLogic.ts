@@ -1,20 +1,8 @@
-// Board インターフェース
-export interface Board {
-  readonly size: number;
-  readonly tiles: ReadonlyArray<ReadonlyArray<Tile>>;
-  isOTurn: boolean;
-  gameOver: boolean;
-}
+import type { Board, Game, Tile } from "./types";
 
-// Tile インターフェース
-export interface Tile {
-  readonly x: number;
-  readonly y: number;
-  char: string;
-  lastChangedTurn: number;
-}
-
-// ボードの初期化関数
+/**
+ * ボードを作成する
+ */
 export const initializeBoard = (size: number): Board => {
   const tiles: Tile[][] = Array.from({ length: size }, (_, y) =>
     Array.from(
@@ -32,18 +20,19 @@ export const initializeBoard = (size: number): Board => {
   return {
     size,
     tiles,
-    isOTurn: true,
-    gameOver: false,
   };
 };
 
+/**
+ * ボードの状況を更新する
+ */
 export const updateBoard = (
+  game: Game,
   board: Board,
   x: number,
   y: number,
-  currentTurn: number,
 ): Board => {
-  if (board.gameOver || board.tiles[y][x].char !== "") return board;
+  if (game.gameOver || board.tiles[y][x].char !== "") return board;
 
   const newTiles = board.tiles.map((row, rowIndex) => {
     return row.map((tile, tileIndex) => {
@@ -52,12 +41,12 @@ export const updateBoard = (
 
       // タイルが変更される場合
       if (rowIndex === y && tileIndex === x) {
-        newTile.char = board.isOTurn ? "O" : "X";
-        newTile.lastChangedTurn = currentTurn;
+        newTile.char = game.isOTurn ? "O" : "X";
+        newTile.lastChangedTurn = game.currentTurn;
       }
 
       // 5ターン以上経過しているタイルをリセット
-      if (currentTurn - newTile.lastChangedTurn >= 5) {
+      if (game.currentTurn - newTile.lastChangedTurn >= 5) {
         newTile.char = "";
       }
 
@@ -68,14 +57,14 @@ export const updateBoard = (
   const newBoard = {
     ...board,
     tiles: newTiles,
-    isOTurn: !board.isOTurn,
   };
-  newBoard.gameOver = checkForWin(newBoard);
 
   return newBoard;
 };
 
-// ゲームの終了判定関数
+/**
+ * ゲームが終了したかを判定する
+ */
 export const checkForWin = (board: Board): boolean => {
   // 横の行をチェック
   for (let y = 0; y < board.size; y++) {

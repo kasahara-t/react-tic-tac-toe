@@ -1,0 +1,28 @@
+.board-panel {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 1.5rem;
+  border-radius: 2rem;
+  background-color: rgb(0 0 0 / 30%);
+  box-shadow: 6px 6px 15px 3px rgb(0 0 0 / 15%);
+}
+
+.board-row {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.board-row:not(:last-of-type) {
+  border-bottom: 5px solid rgb(255 255 255 / 10%);
+}
+
+.board-col {
+  width: 20vh;
+  height: 20vh;
+}
+
+.board-col:not(:last-of-type) {
+  border-right: 5px solid rgb(255 255 255 / 10%);
+}
