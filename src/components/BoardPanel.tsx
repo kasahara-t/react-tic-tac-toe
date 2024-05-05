@@ -1,43 +1,30 @@
 import { useAtom } from "jotai";
-import React, { useState } from "react";
 import type { FC } from "react";
-import { checkForWin, initializeBoard, updateBoard } from "../game/boardLogic";
-import type { Board } from "../game/types";
+import { checkForWin, updateTileStatus } from "../game/boardLogic";
 import { gameAtom, useUpdateGame } from "../store/gameAtom";
 import { TilePanel } from "./TilePanel";
 import "./BoardPanel.css";
+import { boardAtom, useUpdateBoard } from "../store/boardAtom";
 
 export const BoardPanel: FC = () => {
   const [game] = useAtom(gameAtom);
   const { updateGame } = useUpdateGame();
-  const [board, setBoard] = useState<Board>(() => initializeBoard(3));
+  const [board] = useAtom(boardAtom);
+  const { updateBoard } = useUpdateBoard();
 
   const handleClick = (x: number, y: number) => () => {
     if (game.gameOver) {
       return;
     }
-    const newBoard = updateBoard(game, board, x, y);
-    setBoard(newBoard);
+    const newBoard = updateTileStatus(game, board, x, y);
+    updateBoard(newBoard);
 
-    const isGameOver = checkForWin(newBoard);
     // ゲームの状態を更新
     updateGame({
       currentTurn: game.currentTurn + 1,
       isOTurn: !game.isOTurn,
-      gameOver: isGameOver,
+      gameOver: checkForWin(newBoard),
     });
-
-    if (isGameOver) {
-      setTimeout(() => {
-        alert(`${game.isOTurn ? "O" : "X"} is win!`);
-        setBoard(initializeBoard(3));
-        updateGame({
-          currentTurn: 0,
-          isOTurn: true,
-          gameOver: false,
-        });
-      }, 100); // レンダリングされた後に表示
-    }
   };
 
   return (

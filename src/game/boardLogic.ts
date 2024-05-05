@@ -26,7 +26,7 @@ export const initializeBoard = (size: number): Board => {
 /**
  * ボードの状況を更新する
  */
-export const updateBoard = (
+export const updateTileStatus = (
   game: Game,
   board: Board,
   x: number,

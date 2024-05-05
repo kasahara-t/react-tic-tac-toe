@@ -1,0 +1,6 @@
+.base-button {
+  aspect-ratio: 1;
+  border-radius: 30px;
+  background-color: rgb(0 0 0 / 30%);
+  box-shadow: 6px 6px 15px 3px rgb(0 0 0 / 15%);
+}
