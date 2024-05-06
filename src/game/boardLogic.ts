@@ -28,6 +28,7 @@ export const initializeBoard = (size: number): Board => {
  */
 export const updateTileStatus = (
   game: Game,
+  isOTurn: boolean,
   board: Board,
   x: number,
   y: number,
@@ -41,7 +42,7 @@ export const updateTileStatus = (
 
       // タイルが変更される場合
       if (rowIndex === y && tileIndex === x) {
-        newTile.char = game.isOTurn ? "O" : "X";
+        newTile.char = isOTurn ? "O" : "X";
         newTile.lastChangedTurn = game.currentTurn;
       }
 

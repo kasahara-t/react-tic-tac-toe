@@ -1,6 +1,5 @@
 export interface Game {
   currentTurn: number;
-  isOTurn: boolean;
   gameOver: boolean;
 }
 
