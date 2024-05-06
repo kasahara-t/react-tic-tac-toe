@@ -1,4 +1,5 @@
-import type { Board, Tile } from "./types";
+import { getTileState } from "./tileLogic";
+import type { Board, Tile, Turn } from "./types";
 
 /**
  * ボードを作成する
@@ -11,8 +12,7 @@ export const initializeBoard = (size: number): Board => {
         ({
           x,
           y,
-          char: "",
-          lastChangedTurn: 0,
+          changeTurns: [],
         }) as Tile,
     ),
   );
@@ -27,32 +27,18 @@ export const initializeBoard = (size: number): Board => {
  * ボードの状況を更新する
  */
 export const updateTileStatus = (
-  currentTurn: number,
-  gameOver: boolean,
-  isOTurn: boolean,
+  currentTurn: Turn,
   board: Board,
-  x: number,
-  y: number,
+  clickedTile: Tile,
 ): Board => {
-  if (gameOver || board.tiles[y][x].char !== "") return board;
+  if (getTileState(currentTurn, board, clickedTile).char !== "") return board;
 
   const newTiles = board.tiles.map((row, rowIndex) => {
-    return row.map((tile, tileIndex) => {
-      // 既存のタイルをコピーし、条件に応じて更新
-      const newTile = { ...tile };
-
-      // タイルが変更される場合
-      if (rowIndex === y && tileIndex === x) {
-        newTile.char = isOTurn ? "O" : "X";
-        newTile.lastChangedTurn = currentTurn;
+    return row.map((tile, colIndex) => {
+      if (rowIndex === clickedTile.y && colIndex === clickedTile.x) {
+        return { ...tile, changeTurns: [...tile.changeTurns, currentTurn] };
       }
-
-      // 5ターン以上経過しているタイルをリセット
-      if (currentTurn - newTile.lastChangedTurn >= 5) {
-        newTile.char = "";
-      }
-
-      return newTile;
+      return tile;
     });
   });
 
@@ -67,12 +53,16 @@ export const updateTileStatus = (
 /**
  * ゲームが終了したかを判定する
  */
-export const checkForWin = (board: Board): boolean => {
+export const checkForWin = (currentTurn: Turn, board: Board): boolean => {
+  const tileStates = board.tiles.map((row) =>
+    row.map((tile) => getTileState(currentTurn, board, tile)),
+  );
+
   // 横の行をチェック
   for (let y = 0; y < board.size; y++) {
     if (
-      board.tiles[y].every(
-        (tile) => tile.char !== "" && tile.char === board.tiles[y][0].char,
+      tileStates[y].every(
+        (tile) => tile.char !== "" && tile.char === tileStates[y][0].char,
       )
     ) {
       return true;
@@ -81,8 +71,8 @@ export const checkForWin = (board: Board): boolean => {
   // 縦の列をチェック
   for (let x = 0; x < board.size; x++) {
     if (
-      board.tiles.every(
-        (row) => row[x].char !== "" && row[x].char === board.tiles[0][x].char,
+      tileStates.every(
+        (row) => row[x].char !== "" && row[x].char === tileStates[0][x].char,
       )
     ) {
       return true;
@@ -90,18 +80,18 @@ export const checkForWin = (board: Board): boolean => {
   }
   // 斜めのチェック
   if (
-    board.tiles.every(
+    tileStates.every(
       (row, idx) =>
-        row[idx].char !== "" && row[idx].char === board.tiles[0][0].char,
+        row[idx].char !== "" && row[idx].char === tileStates[0][0].char,
     )
   ) {
     return true;
   }
   if (
-    board.tiles.every(
+    tileStates.every(
       (row, idx) =>
         row[board.size - 1 - idx].char !== "" &&
-        row[board.size - 1 - idx].char === board.tiles[0][board.size - 1].char,
+        row[board.size - 1 - idx].char === tileStates[0][board.size - 1].char,
     )
   ) {
     return true;

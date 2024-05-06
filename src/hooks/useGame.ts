@@ -5,41 +5,40 @@ import {
   updateTileStatus,
 } from "../game/boardLogic";
 import { isOTurn } from "../game/gameLogic";
-import type { Board } from "../game/types";
+import type { Board, Tile, Turn } from "../game/types";
 
-const currentTurnAtom = atom<number>(0);
-
-const isOTurnAtom = atom((get) => isOTurn(get(currentTurnAtom)));
+const initialTurn: Turn = {
+  turn: 0,
+  isOTurn: isOTurn(0),
+};
+const currentTurnAtom = atom<Turn>(initialTurn);
 
 const BOARD_SIZE = 3;
 
 export const boardAtom = atom<Board>(initializeBoard(BOARD_SIZE));
-const gameOverAtom = atom((get) => checkForWin(get(boardAtom)));
+const gameOverAtom = atom((get) =>
+  checkForWin(get(currentTurnAtom), get(boardAtom)),
+);
 
 export const useGame = () => {
   const [currentTurn, setCurrentTurn] = useAtom(currentTurnAtom);
-  const [isOTurn] = useAtom(isOTurnAtom);
   const [gameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
 
-  const updateGameAndBoard = (x: number, y: number) => {
+  const updateGameAndBoard = (tile: Tile) => {
     if (gameOver) return;
 
-    const newBoard = updateTileStatus(
-      currentTurn,
-      gameOver,
-      isOTurn,
-      board,
-      x,
-      y,
-    );
+    const newBoard = updateTileStatus(currentTurn, board, tile);
     setBoard(newBoard);
 
-    setCurrentTurn(currentTurn + 1);
+    setCurrentTurn({
+      turn: currentTurn.turn + 1,
+      isOTurn: isOTurn(currentTurn.turn + 1),
+    });
   };
 
   const resetGame = () => {
-    setCurrentTurn(0);
+    setCurrentTurn(initialTurn);
     setBoard(initializeBoard(BOARD_SIZE));
   };
 

@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import type { Tile } from "../game/types";
 import "./TilePanel.css";
+import { getTileState } from "../game/tileLogic";
 import { useGame } from "../hooks/useGame";
 import circleImageUrl from "./circle.png";
 import crossImageUrl from "./cross.png";
@@ -9,21 +10,24 @@ export interface TilePanelProps {
   tile: Tile;
 }
 export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
-  const { currentTurn, updateGameAndBoard } = useGame();
+  const { currentTurn, board, updateGameAndBoard } = useGame();
+  const state = getTileState(currentTurn, board, tile);
+
+  console.log(tile, state);
 
   const handleTileClick = () => {
-    updateGameAndBoard(tile.x, tile.y);
+    updateGameAndBoard(tile);
   };
 
   return (
     <div
       className={`tile-panel${
-        currentTurn - tile.lastChangedTurn >= 5 ? " half-opacity-tile" : ""
+        state.remainingPeriod === 1 ? " half-opacity-tile" : ""
       }`}
       onClick={handleTileClick}
     >
-      {tile.char && (
-        <img src={tile.char === "O" ? circleImageUrl : crossImageUrl} />
+      {state.char && (
+        <img src={state.char === "O" ? circleImageUrl : crossImageUrl} />
       )}
     </div>
   );
