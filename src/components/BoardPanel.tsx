@@ -4,7 +4,7 @@ import "./BoardPanel.css";
 import { useGame } from "../hooks/useGame";
 
 export const BoardPanel: FC = () => {
-  const { board, updateGameAndBoard } = useGame();
+  const { board } = useGame();
 
   return (
     <div className="board-panel">

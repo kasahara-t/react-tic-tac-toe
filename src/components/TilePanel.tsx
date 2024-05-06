@@ -9,7 +9,7 @@ export interface TilePanelProps {
   tile: Tile;
 }
 export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
-  const { game, updateGameAndBoard } = useGame();
+  const { currentTurn, updateGameAndBoard } = useGame();
 
   const handleTileClick = () => {
     updateGameAndBoard(tile.x, tile.y);
@@ -18,7 +18,7 @@ export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
   return (
     <div
       className={`tile-panel${
-        game.currentTurn - tile.lastChangedTurn >= 5 ? " half-opacity-tile" : ""
+        currentTurn - tile.lastChangedTurn >= 5 ? " half-opacity-tile" : ""
       }`}
       onClick={handleTileClick}
     >

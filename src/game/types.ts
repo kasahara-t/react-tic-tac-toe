@@ -1,8 +1,3 @@
-export interface Game {
-  currentTurn: number;
-  gameOver: boolean;
-}
-
 export interface Board {
   readonly size: number;
   readonly tiles: ReadonlyArray<ReadonlyArray<Tile>>;

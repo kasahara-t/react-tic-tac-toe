@@ -4,47 +4,49 @@ import {
   initializeBoard,
   updateTileStatus,
 } from "../game/boardLogic";
-import type { Board, Game } from "../game/types";
+import type { Board } from "../game/types";
 
-const initialGameState: Game = {
-  currentTurn: 0,
-  gameOver: false,
-};
-
-const gameAtom = atom<Game>(initialGameState);
+const currentTurnAtom = atom<number>(0);
 
 const isOTurnAtom = atom(
-  (get) => get(gameAtom).currentTurn % 2 === 0, // 偶数ターンの時はtrue
+  (get) => get(currentTurnAtom) % 2 === 0, // 偶数ターンの時はtrue
 );
 
 const BOARD_SIZE = 3;
 
 export const boardAtom = atom<Board>(initializeBoard(BOARD_SIZE));
+const gameOverAtom = atom((get) => checkForWin(get(boardAtom)));
 
 export const useGame = () => {
-  const [game, setGame] = useAtom(gameAtom);
+  const [currentTurn, setCurrentTurn] = useAtom(currentTurnAtom);
   const [isOTurn] = useAtom(isOTurnAtom);
+  const [gameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
 
   const updateGameAndBoard = (x: number, y: number) => {
-    if (game.gameOver) return;
+    if (gameOver) return;
 
-    const newBoard = updateTileStatus(game, isOTurn, board, x, y);
+    const newBoard = updateTileStatus(
+      currentTurn,
+      gameOver,
+      isOTurn,
+      board,
+      x,
+      y,
+    );
     setBoard(newBoard);
 
-    setGame({
-      currentTurn: game.currentTurn + 1,
-      gameOver: checkForWin(newBoard),
-    });
+    setCurrentTurn(currentTurn + 1);
   };
 
   const resetGame = () => {
-    setGame(initialGameState);
+    setCurrentTurn(0);
     setBoard(initializeBoard(BOARD_SIZE));
   };
 
   return {
-    game,
+    currentTurn,
+    gameOver,
     isOTurn,
     board,
     updateGameAndBoard,

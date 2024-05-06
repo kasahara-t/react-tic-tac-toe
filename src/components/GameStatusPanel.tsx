@@ -3,11 +3,11 @@ import "./GameStatusPanel.css";
 import { useGame } from "../hooks/useGame";
 
 export const GameStatusPanel: FC = () => {
-  const { game, isOTurn } = useGame();
+  const { gameOver, isOTurn } = useGame();
 
   return (
     <div className="game-status-panel">
-      {game.gameOver
+      {gameOver
         ? isOTurn
           ? "Xの勝ち"
           : "Oの勝ち"

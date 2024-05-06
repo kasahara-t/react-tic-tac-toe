@@ -1,4 +1,4 @@
-import type { Board, Game, Tile } from "./types";
+import type { Board, Tile } from "./types";
 
 /**
  * ボードを作成する
@@ -27,13 +27,14 @@ export const initializeBoard = (size: number): Board => {
  * ボードの状況を更新する
  */
 export const updateTileStatus = (
-  game: Game,
+  currentTurn: number,
+  gameOver: boolean,
   isOTurn: boolean,
   board: Board,
   x: number,
   y: number,
 ): Board => {
-  if (game.gameOver || board.tiles[y][x].char !== "") return board;
+  if (gameOver || board.tiles[y][x].char !== "") return board;
 
   const newTiles = board.tiles.map((row, rowIndex) => {
     return row.map((tile, tileIndex) => {
@@ -43,11 +44,11 @@ export const updateTileStatus = (
       // タイルが変更される場合
       if (rowIndex === y && tileIndex === x) {
         newTile.char = isOTurn ? "O" : "X";
-        newTile.lastChangedTurn = game.currentTurn;
+        newTile.lastChangedTurn = currentTurn;
       }
 
       // 5ターン以上経過しているタイルをリセット
-      if (game.currentTurn - newTile.lastChangedTurn >= 5) {
+      if (currentTurn - newTile.lastChangedTurn >= 5) {
         newTile.char = "";
       }
 
