@@ -9,12 +9,18 @@ export interface TilePanelProps {
   tile: Tile;
 }
 export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
-  const { game } = useGame();
+  const { game, updateGameAndBoard } = useGame();
+
+  const handleTileClick = () => {
+    updateGameAndBoard(tile.x, tile.y);
+  };
+
   return (
     <div
       className={`tile-panel${
         game.currentTurn - tile.lastChangedTurn >= 5 ? " half-opacity-tile" : ""
       }`}
+      onClick={handleTileClick}
     >
       {tile.char && (
         <img src={tile.char === "O" ? circleImageUrl : crossImageUrl} />
