@@ -1,8 +1,7 @@
 import type { FC } from "react";
 import type { Tile } from "../game/types";
 import "./TilePanel.css";
-import { useAtom } from "jotai";
-import { gameAtom } from "../store/gameAtom";
+import { useGame } from "../hooks/useGame";
 import circleImageUrl from "./circle.png";
 import crossImageUrl from "./cross.png";
 
@@ -10,7 +9,7 @@ export interface TilePanelProps {
   tile: Tile;
 }
 export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
-  const [game] = useAtom(gameAtom);
+  const { game } = useGame();
   return (
     <div
       className={`tile-panel${

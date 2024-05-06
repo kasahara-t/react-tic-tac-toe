@@ -1,10 +1,10 @@
-import { useAtom } from "jotai";
 import type { FC } from "react";
-import { gameAtom } from "../store/gameAtom";
 import "./GameStatusPanel.css";
+import { useGame } from "../hooks/useGame";
 
 export const GameStatusPanel: FC = () => {
-  const [game] = useAtom(gameAtom);
+  const { game } = useGame();
+
   return (
     <div className="game-status-panel">
       {game.gameOver

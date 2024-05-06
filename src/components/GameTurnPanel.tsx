@@ -1,8 +1,7 @@
-import { useAtom } from "jotai";
-import { gameAtom } from "../store/gameAtom";
+import { useGame } from "../hooks/useGame";
 import "./GameTurnPanel.css";
 
 export const GameTurnPanel = () => {
-  const [game] = useAtom(gameAtom);
+  const { game } = useGame();
   return <div className="game-turn-panel">{game.currentTurn + 1}ターン目</div>;
 };
