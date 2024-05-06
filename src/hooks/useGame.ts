@@ -4,13 +4,12 @@ import {
   initializeBoard,
   updateTileStatus,
 } from "../game/boardLogic";
+import { isOTurn } from "../game/gameLogic";
 import type { Board } from "../game/types";
 
 const currentTurnAtom = atom<number>(0);
 
-const isOTurnAtom = atom(
-  (get) => get(currentTurnAtom) % 2 === 0, // 偶数ターンの時はtrue
-);
+const isOTurnAtom = atom((get) => isOTurn(get(currentTurnAtom)));
 
 const BOARD_SIZE = 3;
 
