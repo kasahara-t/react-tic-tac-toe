@@ -1,12 +1,15 @@
+import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
 import { BoardPanel } from "./BoardPanel";
 import { GameStatusPanel } from "./GameStatusPanel";
 import { GameTurnPanel } from "./GameTurnPanel";
 import { LogPanel } from "./LogPanel";
+import { RestartButton } from "./RestartButton";
 import { ToolBar } from "./ToolBar";
 
 export const GamePanel: FC = () => {
+  const { gameOver } = useGame();
   return (
     <div
       className={cn(
@@ -29,7 +32,7 @@ export const GamePanel: FC = () => {
         <ToolBar />
       </div>
       <div className={cn("flex flex-col justify-center")}>
-        <GameTurnPanel />
+        {gameOver ? <RestartButton /> : <GameTurnPanel />}
       </div>
     </div>
   );

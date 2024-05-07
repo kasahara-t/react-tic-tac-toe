@@ -24,8 +24,8 @@ const gameOverAtom = atom((get) =>
   checkForWin(get(currentTurnAtom), get(boardAtom)),
 );
 
-const gameLogAtom = atom<string[]>([]);
-const winsCountAtom = atom<{ O: number; X: number }>({ O: 0, X: 0 });
+const gameLogAtom = atomWithReset<string[]>([]);
+const winsCountAtom = atomWithReset<{ O: number; X: number }>({ O: 0, X: 0 });
 
 export const useGame = () => {
   const [currentTurn, setCurrentTurn] = useAtom(currentTurnAtom);
@@ -37,6 +37,8 @@ export const useGame = () => {
 
   const resetCurrentTurn = useResetAtom(currentTurnAtom);
   const resetBoard = useResetAtom(boardAtom);
+  const resetGameLogs = useResetAtom(gameLogAtom);
+  const resetWinsCount = useResetAtom(winsCountAtom);
 
   useEffect(() => {
     if (prevGameOver.current !== gameOver && gameOver) {
@@ -70,9 +72,16 @@ export const useGame = () => {
     });
   };
 
+  const restartGame = () => {
+    resetCurrentTurn();
+    resetBoard();
+  };
+
   const resetGame = () => {
     resetCurrentTurn();
     resetBoard();
+    resetGameLogs();
+    resetWinsCount();
   };
 
   return {
@@ -81,6 +90,7 @@ export const useGame = () => {
     board,
     gameLogs,
     updateGameAndBoard,
+    restartGame,
     resetGame,
   };
 };
