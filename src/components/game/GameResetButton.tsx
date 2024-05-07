@@ -1,5 +1,5 @@
 import resetButtonImageUrl from "@/components/assets/reset.png";
-import { BaseButton } from "@/components/ui/BaseButton";
+import { ImageButton } from "@/components/ui/ImageButton";
 import { useGame } from "@/hooks/useGame";
 import type { FC } from "react";
 
@@ -11,6 +11,10 @@ export const GameResetButton: FC = () => {
   };
 
   return (
-    <BaseButton imgPath={resetButtonImageUrl} onClick={handleButtonClick} />
+    <ImageButton
+      imgPath={resetButtonImageUrl}
+      imgAlt="Game Reset Button"
+      onClick={handleButtonClick}
+    />
   );
 };

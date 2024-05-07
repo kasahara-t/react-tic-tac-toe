@@ -1,10 +1,16 @@
 import helpImgUrl from "@/components/assets/help.png";
-import { BaseButton } from "@/components/ui/BaseButton";
+import { ImageButton } from "@/components/ui/ImageButton";
 import type { FC } from "react";
 
 export const HelpButton: FC = () => {
   const handleButtonClick = () => {
     alert("help is not implement!");
   };
-  return <BaseButton imgPath={helpImgUrl} onClick={handleButtonClick} />;
+  return (
+    <ImageButton
+      imgPath={helpImgUrl}
+      imgAlt="Help Button"
+      onClick={handleButtonClick}
+    />
+  );
 };
