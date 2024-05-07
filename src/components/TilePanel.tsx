@@ -28,7 +28,9 @@ export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
       onClick={handleTileClick}
     >
       {state.char && (
-        <img src={state.char === "O" ? circleImageUrl : crossImageUrl} />
+        <img src={state.char === "O" ? circleImageUrl : crossImageUrl} className={cn(
+          "w-4/5 h-4/5 object-cover"
+        )}/>
       )}
     </div>
   );

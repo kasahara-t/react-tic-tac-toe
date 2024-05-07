@@ -14,7 +14,7 @@ export const BaseButton: FC<BaseButtonProps> = ({ imgPath, onClick }) => {
       "bg-black bg-opacity-30",
       "shadow-custom"
     )} onClick={onClick}>
-      <img src={imgPath} className={cn("h-full w-full object-cover")} />
+      <img src={imgPath} className={cn("w-4/5 h-4/5 object-cover")} />
     </button>
   );
 };
