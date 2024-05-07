@@ -1,10 +1,10 @@
+import circleImageUrl from "@/components/assets/circle.png";
+import crossImageUrl from "@/components/assets/cross.png";
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
+import { getTileState } from "@/logics/tileLogic";
+import type { Tile } from "@/logics/types";
 import type { FC } from "react";
-import { getTileState } from "../game/tileLogic";
-import type { Tile } from "../game/types";
-import circleImageUrl from "./circle.png";
-import crossImageUrl from "./cross.png";
 
 export interface TilePanelProps {
   tile: Tile;

@@ -4,9 +4,9 @@ import {
   checkForWin,
   initializeBoard,
   updateTileStatus,
-} from "../game/boardLogic";
-import { isOTurn } from "../game/gameLogic";
-import type { Board, Tile, Turn } from "../game/types";
+} from "../logics/boardLogic";
+import { isOTurn } from "../logics/gameLogic";
+import type { Board, Tile, Turn } from "../logics/types";
 
 const initialTurn: Turn = {
   turn: 0,

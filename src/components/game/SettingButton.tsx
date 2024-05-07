@@ -1,6 +1,6 @@
+import settingImageUrl from "@/components/assets/setting.png";
+import { BaseButton } from "@/components/ui/BaseButton";
 import type { FC } from "react";
-import { BaseButton } from "./BaseButton";
-import settingImageUrl from "./setting.png";
 
 export const SettingButton: FC = () => {
   const handleButtonClick = () => {

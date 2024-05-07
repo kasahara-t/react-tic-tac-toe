@@ -1,7 +1,7 @@
+import resetButtonImageUrl from "@/components/assets/reset.png";
+import { BaseButton } from "@/components/ui/BaseButton";
 import { useGame } from "@/hooks/useGame";
 import type { FC } from "react";
-import { BaseButton } from "./BaseButton";
-import resetButtonImageUrl from "./reset.png";
 
 export const GameResetButton: FC = () => {
   const { resetGame } = useGame();

@@ -1,6 +1,6 @@
+import helpImgUrl from "@/components/assets/help.png";
+import { BaseButton } from "@/components/ui/BaseButton";
 import type { FC } from "react";
-import { BaseButton } from "./BaseButton";
-import helpImgUrl from "./help.png";
 
 export const HelpButton: FC = () => {
   const handleButtonClick = () => {

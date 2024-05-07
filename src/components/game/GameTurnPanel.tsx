@@ -1,5 +1,5 @@
 import { useGame } from "@/hooks/useGame";
-import { cn } from "@/lib/utils"; // 確実にcn関数が正しくインポートされていることを確認
+import { cn } from "@/lib/utils";
 
 export const GameTurnPanel = () => {
   const { currentTurn } = useGame();

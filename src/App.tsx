@@ -1,4 +1,4 @@
-import { GamePanel } from "./components/GamePanel";
+import { GamePanel } from "@/components/game/GamePanel";
 import "./global.css";
 
 function App() {
