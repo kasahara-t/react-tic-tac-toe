@@ -17,7 +17,7 @@ export const BoardPanel: FC = () => {
       {board.tiles.map((row, i) => (
         <div
           key={i}
-          className={cn("flex h-[33.3%]", {
+          className={cn("flex", `h-1/${board.size}`, {
             "border-b-4 border-white border-opacity-10":
               i < board.tiles.length - 1,
           })}
@@ -25,7 +25,7 @@ export const BoardPanel: FC = () => {
           {row.map((tile, j) => (
             <div
               key={j}
-              className={cn("w-[33.3%] h-full", {
+              className={cn("h-full", `w-1/${board.size}`, {
                 "border-r-4 border-white border-opacity-10": j < row.length - 1,
               })}
             >

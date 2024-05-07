@@ -3,8 +3,10 @@ export interface Turn {
   readonly isOTurn: boolean;
 }
 
+export type BoardSize = 3 | 6 | 9;
+
 export interface Board {
-  readonly size: number;
+  readonly size: BoardSize;
   readonly tiles: ReadonlyArray<ReadonlyArray<Tile>>;
 }
 

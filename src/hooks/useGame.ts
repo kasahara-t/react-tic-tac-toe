@@ -1,4 +1,5 @@
 import { atom, useAtom } from "jotai";
+import { atomWithDefault, atomWithReset, useResetAtom } from "jotai/utils";
 import { useEffect, useRef } from "react";
 import {
   checkForWin,
@@ -6,23 +7,24 @@ import {
   updateTileStatus,
 } from "../logics/boardLogic";
 import { isOTurn } from "../logics/gameLogic";
-import type { Board, Tile, Turn } from "../logics/types";
+import type { Board, BoardSize, Tile, Turn } from "../logics/types";
 
 const initialTurn: Turn = {
   turn: 0,
   isOTurn: isOTurn(0),
 };
-const currentTurnAtom = atom<Turn>(initialTurn);
+const currentTurnAtom = atomWithReset<Turn>(initialTurn);
 
-const BOARD_SIZE = 3;
+const boardSizeAtom = atom<BoardSize>(3);
 
-const boardAtom = atom<Board>(initializeBoard(BOARD_SIZE));
+const boardAtom = atomWithDefault<Board>((get) =>
+  initializeBoard(get(boardSizeAtom)),
+);
 const gameOverAtom = atom((get) =>
   checkForWin(get(currentTurnAtom), get(boardAtom)),
 );
 
 const gameLogAtom = atom<string[]>([]);
-// 勝利数を記録するアトム
 const winsCountAtom = atom<{ O: number; X: number }>({ O: 0, X: 0 });
 
 export const useGame = () => {
@@ -33,8 +35,10 @@ export const useGame = () => {
   const [winsCount, setWinsCount] = useAtom(winsCountAtom);
   const prevGameOver = useRef(gameOver);
 
+  const resetCurrentTurn = useResetAtom(currentTurnAtom);
+  const resetBoard = useResetAtom(boardAtom);
+
   useEffect(() => {
-    // ゲームオーバー状態の変化を検出
     if (prevGameOver.current !== gameOver && gameOver) {
       const winner = !currentTurn.isOTurn ? "O" : "X";
       const newWinsCount = { ...winsCount, [winner]: winsCount[winner] + 1 };
@@ -44,7 +48,7 @@ export const useGame = () => {
       ]);
       setWinsCount(newWinsCount);
     }
-    prevGameOver.current = gameOver; // 現在の状態を保存
+    prevGameOver.current = gameOver;
   }, [
     gameOver,
     currentTurn.isOTurn,
@@ -67,8 +71,8 @@ export const useGame = () => {
   };
 
   const resetGame = () => {
-    setCurrentTurn(initialTurn);
-    setBoard(initializeBoard(BOARD_SIZE));
+    resetCurrentTurn();
+    resetBoard();
   };
 
   return {
