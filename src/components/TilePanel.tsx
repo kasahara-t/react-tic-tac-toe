@@ -1,8 +1,8 @@
+import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
 import { getTileState } from "../game/tileLogic";
 import type { Tile } from "../game/types";
-import { useGame } from "../hooks/useGame";
 import circleImageUrl from "./circle.png";
 import crossImageUrl from "./cross.png";
 

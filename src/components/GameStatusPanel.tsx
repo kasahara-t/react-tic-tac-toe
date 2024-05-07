@@ -1,6 +1,6 @@
+import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
-import { useGame } from "../hooks/useGame";
 
 export const GameStatusPanel: FC = () => {
   const { gameOver, currentTurn } = useGame();

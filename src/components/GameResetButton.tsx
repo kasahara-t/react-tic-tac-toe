@@ -1,5 +1,5 @@
+import { useGame } from "@/hooks/useGame";
 import type { FC } from "react";
-import { useGame } from "../hooks/useGame";
 import { BaseButton } from "./BaseButton";
 import resetButtonImageUrl from "./reset.png";
 

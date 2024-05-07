@@ -1,6 +1,6 @@
+import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
-import { useGame } from "../hooks/useGame";
 import { TilePanel } from "./TilePanel";
 
 export const BoardPanel: FC = () => {
