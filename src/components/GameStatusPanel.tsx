@@ -1,17 +1,17 @@
 import type { FC } from "react";
-import "./GameStatusPanel.css";
 import { useGame } from "../hooks/useGame";
+import { cn } from "@/lib/utils";
 
 export const GameStatusPanel: FC = () => {
-  const { gameOver, isOTurn } = useGame();
+  const { gameOver, currentTurn } = useGame();
 
   return (
-    <div className="game-status-panel">
+    <div className={cn("text-5xl")}>
       {gameOver
-        ? isOTurn
+        ? currentTurn.isOTurn
           ? "Xの勝ち"
           : "Oの勝ち"
-        : isOTurn
+        : currentTurn.isOTurn
           ? "Oのターン"
           : "Xのターン"}
     </div>

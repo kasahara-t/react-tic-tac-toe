@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import "./BaseButton.css";
+import { cn } from "@/lib/utils";
 
 export interface BaseButtonProps {
   imgPath: string;
@@ -7,8 +7,14 @@ export interface BaseButtonProps {
 }
 export const BaseButton: FC<BaseButtonProps> = ({ imgPath, onClick }) => {
   return (
-    <button type="button" className="base-button" onClick={onClick}>
-      <img src={imgPath} />
+    <button type="button" className={cn(
+      "flex items-center justify-center",
+      "aspect-square",
+      "rounded-3xl",
+      "bg-black bg-opacity-30",
+      "shadow-custom"
+    )} onClick={onClick}>
+      <img src={imgPath} className={cn("h-full w-full object-cover")} />
     </button>
   );
 };

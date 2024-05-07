@@ -45,7 +45,6 @@ export const useGame = () => {
   return {
     currentTurn,
     gameOver,
-    isOTurn,
     board,
     updateGameAndBoard,
     resetGame,

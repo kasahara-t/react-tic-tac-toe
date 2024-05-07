@@ -1,5 +1,6 @@
 {
   "name": "react-tic-tac-toc",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",

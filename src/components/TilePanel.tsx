@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import type { Tile } from "../game/types";
-import "./TilePanel.css";
 import { getTileState } from "../game/tileLogic";
 import { useGame } from "../hooks/useGame";
 import circleImageUrl from "./circle.png";
 import crossImageUrl from "./cross.png";
+import { cn } from "@/lib/utils";
 
 export interface TilePanelProps {
   tile: Tile;
@@ -21,9 +21,10 @@ export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
 
   return (
     <div
-      className={`tile-panel${
-        state.remainingPeriod === 1 ? " half-opacity-tile" : ""
-      }`}
+      className={cn(
+        "w-full h-full flex justify-center items-center text-6xl",
+        { "opacity-50": state.remainingPeriod === 1 }
+      )}
       onClick={handleTileClick}
     >
       {state.char && (
