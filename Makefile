@@ -9,4 +9,4 @@ install-tools:
 		asdf install $$lang $$version; \
 		asdf local $$lang $$version; \
 	done < .tool-versions; \
-	bun install
+	bun install --frozen-lockfile
