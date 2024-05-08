@@ -1,23 +1,22 @@
 import { useHelp } from "@/common/hooks/useHelp";
 import { cn } from "@/lib/utils";
-import type { FC } from "react";
+import type { FC, HtmlHTMLAttributes } from "react";
 
-export interface HelpOverlayProps {
-  children: React.ReactNode;
-  helpText: string | React.ReactNode;
-  className?: string;
+export interface HelpOverlayProps extends HtmlHTMLAttributes<HTMLDivElement> {
+  helpText?: string | React.ReactNode;
   borderRadius?: string;
 }
 export const HelpOverlay: FC<HelpOverlayProps> = ({
   children,
-  helpText,
   className,
+  helpText,
   borderRadius = "rounded-3xl",
+  ...props
 }) => {
   const { helpMode } = useHelp();
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative", className)} {...props}>
       {children}
       {helpMode && (
         <div
