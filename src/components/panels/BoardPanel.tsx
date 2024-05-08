@@ -3,6 +3,7 @@ import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
+import { NeonText } from "../ui/NeonText";
 
 export const BoardPanel: FC = () => {
   const { board } = useGame();
@@ -18,6 +19,17 @@ export const BoardPanel: FC = () => {
         gridTemplateColumns: `repeat(${board.size}, 1fr)`,
         gridTemplateRows: `repeat(${board.size}, 1fr)`,
       }}
+      helpText={
+        <NeonText>
+          相手より先にタテ・ヨコ・ナナメいずれかのラインを先に揃えたら勝利です。
+          <br />
+          <br />
+          一度取ったマスの表示ターンは5ターンです。
+          <br />
+          <br />
+          表示ターンに気をつけて、相手より先に ラインを完成させましょう！
+        </NeonText>
+      }
     >
       {board.tiles.map((tile) => (
         <div

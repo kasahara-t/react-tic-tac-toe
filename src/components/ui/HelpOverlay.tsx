@@ -20,9 +20,14 @@ export const HelpOverlay: FC<HelpOverlayProps> = ({
       {children}
       {helpMode && (
         <div
-          className={`absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10 ${borderRadius}`}
+          className={cn(
+            "absolute inset-0 bg-black bg-opacity-70",
+            "flex items-center justify-center z-10 p-4",
+            "text-center",
+            borderRadius,
+          )}
         >
-          <p className="text-white text-xl text-center p-2.5">{helpText}</p>
+          {helpText}
         </div>
       )}
     </div>

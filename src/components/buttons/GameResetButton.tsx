@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/Tooltip";
 import { useGame } from "@/game/hooks/useGame";
 import type { FC } from "react";
+import HelpOverlay from "../ui/HelpOverlay";
+import { NeonText } from "../ui/NeonText";
 
 export const GameResetButton: FC = () => {
   const { resetGame } = useGame();
@@ -20,11 +22,23 @@ export const GameResetButton: FC = () => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <ImageButton
-            imgPath={resetButtonImageUrl}
-            imgAlt="Game Reset Button"
-            onClick={handleButtonClick}
-          />
+          <HelpOverlay
+            helpText={
+              <NeonText>
+                ゲームを
+                <br />
+                リセット
+                <br />
+                できます。
+              </NeonText>
+            }
+          >
+            <ImageButton
+              imgPath={resetButtonImageUrl}
+              imgAlt="Game Reset Button"
+              onClick={handleButtonClick}
+            />
+          </HelpOverlay>
         </TooltipTrigger>
         <TooltipContent>
           <p>Game Reset</p>

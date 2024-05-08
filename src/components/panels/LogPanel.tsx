@@ -8,7 +8,23 @@ export const LogPanel: FC = () => {
   const { results } = useGame();
 
   return (
-    <Panel className={cn("w-72 h-full rounded-3xl px-4 py-2")}>
+    <Panel
+      className={cn("w-72 h-full rounded-3xl px-4 py-2")}
+      helpText={
+        <NeonText>
+          勝利回数などの
+          <br />
+          システムチャットが表示
+          <br />
+          されます。
+          <br />
+          <br />
+          ゲームをリセットすると
+          <br />
+          ログもリセットされます。
+        </NeonText>
+      }
+    >
       <NeonText asChild>
         <h3 className={cn("text-3xl flex my-6 justify-center items-center")}>
           Log
