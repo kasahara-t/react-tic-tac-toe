@@ -30,7 +30,12 @@ export const GameScene: FC = () => {
         <div className={cn("col-[1] row-[2]")}>
           <LogPanel />
         </div>
-        <div className={cn("col-[2] row-[2]")}>
+        <div
+          className={cn("col-[2] row-[2]")}
+          style={{
+            height: "50vh",
+          }}
+        >
           <BoardPanel />
         </div>
         <div className={cn("col-[3] row-[2]")}>
