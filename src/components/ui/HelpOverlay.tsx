@@ -1,3 +1,4 @@
+import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/lib/utils";
 import { type FC, useState } from "react";
 
@@ -13,12 +14,12 @@ export const HelpOverlay: FC<HelpOverlayProps> = ({
   className,
   borderRadius = "rounded-3xl",
 }) => {
-  const [showHelp] = useState(false);
+  const { helpMode } = useGame();
 
   return (
-    <div className={cn("relative", className, showHelp ? "help-active" : "")}>
+    <div className={cn("relative", className)}>
       {children}
-      {showHelp && (
+      {helpMode && (
         <div
           className={`absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10 ${borderRadius}`}
         >

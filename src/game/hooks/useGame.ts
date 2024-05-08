@@ -5,6 +5,7 @@ import {
   currentTurnAtom,
   gameOverAtom,
   gameResultsAtom,
+  helpModeAtom,
 } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
@@ -15,6 +16,7 @@ export const useGame = () => {
   const [gameOver, setGameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
   const [results, setResults] = useAtom(gameResultsAtom);
+  const [helpMode, setHelpMode] = useAtom(helpModeAtom);
 
   const resetCurrentTurn = useResetAtom(currentTurnAtom);
   const resetBoard = useResetAtom(boardAtom);
@@ -40,6 +42,10 @@ export const useGame = () => {
     }
   };
 
+  const toggleHelpMode = () => {
+    setHelpMode(!helpMode);
+  };
+
   const restartGame = () => {
     resetCurrentTurn();
     resetBoard();
@@ -58,6 +64,8 @@ export const useGame = () => {
     gameOver,
     board,
     results,
+    helpMode,
+    toggleHelpMode,
     updateGameAndBoard,
     restartGame,
     resetGame,

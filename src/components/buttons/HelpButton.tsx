@@ -5,13 +5,16 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
+import { useGame } from "@/game/hooks/useGame";
 import { Tooltip } from "@radix-ui/react-tooltip";
 import type { FC } from "react";
 
 export const HelpButton: FC = () => {
+  const { toggleHelpMode } = useGame();
   const handleButtonClick = () => {
-    alert("help is not implement!");
+    toggleHelpMode();
   };
+
   return (
     <TooltipProvider>
       <Tooltip>
