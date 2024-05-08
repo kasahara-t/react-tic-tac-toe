@@ -1,21 +1,19 @@
 import { getTileState } from "./tileLogic";
-import type { Board, Tile, Turn } from "./types";
+import type { Board, BoardSize, Tile, Turn } from "./types";
 
 /**
  * ボードを作成する
  */
-export const initializeBoard = (size: number): Board => {
-  const tiles: Tile[][] = Array.from({ length: size }, (_, y) =>
-    Array.from(
-      { length: size },
-      (_, x) =>
-        ({
-          x,
-          y,
-          changeTurns: [],
-        }) as Tile,
-    ),
-  );
+export const initializeBoard = (size: BoardSize): Board => {
+  const tiles: Tile[] = Array.from({ length: size * size }, (_, index) => {
+    const x = index % size;
+    const y = Math.floor(index / size);
+    return {
+      x,
+      y,
+      changeTurns: [],
+    };
+  });
 
   return {
     size,
@@ -33,13 +31,15 @@ export const updateTileStatus = (
 ): Board => {
   if (getTileState(currentTurn, board, clickedTile).char !== "") return board;
 
-  const newTiles = board.tiles.map((row, rowIndex) => {
-    return row.map((tile, colIndex) => {
-      if (rowIndex === clickedTile.y && colIndex === clickedTile.x) {
-        return { ...tile, changeTurns: [...tile.changeTurns, currentTurn] };
-      }
-      return tile;
-    });
+  const newTiles = board.tiles.map((tile) => {
+    if (tile.x === clickedTile.x && tile.y === clickedTile.y) {
+      // クリックされたタイルを更新
+      return {
+        ...tile,
+        changeTurns: [...tile.changeTurns, currentTurn],
+      };
+    }
+    return tile;
   });
 
   const newBoard = {
@@ -54,47 +54,59 @@ export const updateTileStatus = (
  * ゲームが終了したかを判定する
  */
 export const checkForWin = (currentTurn: Turn, board: Board): boolean => {
-  const tileStates = board.tiles.map((row) =>
-    row.map((tile) => getTileState(currentTurn, board, tile)),
-  );
+  // 各タイルに対して、位置情報と状態をオブジェクトとしてマッピング
+  const tileStates = board.tiles.map((tile) => ({
+    tile: tile,
+    state: getTileState(currentTurn, board, tile),
+  }));
 
   // 横の行をチェック
   for (let y = 0; y < board.size; y++) {
+    const row = tileStates.filter(({ tile }) => tile.y === y);
     if (
-      tileStates[y].every(
-        (tile) => tile.char !== "" && tile.char === tileStates[y][0].char,
+      row.every(
+        ({ state }) => state.char !== "" && state.char === row[0].state.char,
       )
     ) {
       return true;
     }
   }
+
   // 縦の列をチェック
   for (let x = 0; x < board.size; x++) {
+    const column = tileStates.filter(({ tile }) => tile.x === x);
     if (
-      tileStates.every(
-        (row) => row[x].char !== "" && row[x].char === tileStates[0][x].char,
+      column.every(
+        ({ state }) => state.char !== "" && state.char === column[0].state.char,
       )
     ) {
       return true;
     }
   }
-  // 斜めのチェック
+
+  // 斜めのチェック (左上から右下)
+  const diagonal1 = tileStates.filter(({ tile }) => tile.x === tile.y);
   if (
-    tileStates.every(
-      (row, idx) =>
-        row[idx].char !== "" && row[idx].char === tileStates[0][0].char,
+    diagonal1.every(
+      ({ state }) =>
+        state.char !== "" && state.char === diagonal1[0].state.char,
     )
   ) {
     return true;
   }
+
+  // 斜めのチェック (右上から左下)
+  const diagonal2 = tileStates.filter(
+    ({ tile }) => tile.x === board.size - 1 - tile.y,
+  );
   if (
-    tileStates.every(
-      (row, idx) =>
-        row[board.size - 1 - idx].char !== "" &&
-        row[board.size - 1 - idx].char === tileStates[0][board.size - 1].char,
+    diagonal2.every(
+      ({ state }) =>
+        state.char !== "" && state.char === diagonal2[0].state.char,
     )
   ) {
     return true;
   }
+
   return false;
 };

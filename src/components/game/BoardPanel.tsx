@@ -19,9 +19,9 @@ export const BoardPanel: FC = () => {
         gridTemplateRows: `repeat(${board.size}, 1fr)`,
       }}
     >
-      {board.tiles.flat().map((tile) => (
+      {board.tiles.map((tile) => (
         <div
-          key={`${tile.x}-${tile.y}`} // タイルのx座標とy座標を組み合わせてキーを生成
+          key={`${tile.x}-${tile.y}`}
           className={cn(
             "flex justify-center items-center",
             `col-[${tile.x + 1}] row-[${tile.y + 1}]`,

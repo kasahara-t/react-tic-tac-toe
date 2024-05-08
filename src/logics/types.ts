@@ -7,7 +7,7 @@ export type BoardSize = 3 | 6 | 9;
 
 export interface Board {
   readonly size: BoardSize;
-  readonly tiles: ReadonlyArray<ReadonlyArray<Tile>>;
+  readonly tiles: ReadonlyArray<Tile>;
 }
 
 export interface Tile {

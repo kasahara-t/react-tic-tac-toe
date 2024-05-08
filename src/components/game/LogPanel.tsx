@@ -13,7 +13,7 @@ export const LogPanel: FC = () => {
       </h3>
       {gameLogs.map((log, i) => (
         <p
-          key={i}
+          key={log}
           className={cn("py-2", {
             "border-t-2 border-white border-opacity-10": i > 0,
           })}

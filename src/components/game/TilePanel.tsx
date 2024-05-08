@@ -18,7 +18,7 @@ export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
   };
 
   return (
-    <div
+    <button
       className={cn("size-full flex justify-center items-center text-6xl", {
         "opacity-50": state.remainingPeriod === 1,
       })}
@@ -31,6 +31,6 @@ export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
           className={cn("w-4/5 h-4/5 object-cover")}
         />
       )}
-    </div>
+    </button>
   );
 };
