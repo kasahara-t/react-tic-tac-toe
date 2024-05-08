@@ -1,6 +1,6 @@
-import { useGame } from "@/game/hooks/useGame";
+import { useHelp } from "@/common/hooks/useHelp";
 import { cn } from "@/lib/utils";
-import { type FC, useState } from "react";
+import type { FC } from "react";
 
 export interface HelpOverlayProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export const HelpOverlay: FC<HelpOverlayProps> = ({
   className,
   borderRadius = "rounded-3xl",
 }) => {
-  const { helpMode } = useGame();
+  const { helpMode } = useHelp();
 
   return (
     <div className={cn("relative", className)}>
