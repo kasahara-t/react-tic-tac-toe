@@ -1,4 +1,6 @@
-import type { Board, Tile, TileState, Turn } from "./types";
+import type { Board } from "@/game/types/board";
+import type { Tile, TileState } from "@/game/types/tile";
+import type { Turn } from "@/game/types/turn";
 
 export const getTileState = (
   currentTurn: Turn,

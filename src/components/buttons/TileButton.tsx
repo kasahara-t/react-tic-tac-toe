@@ -1,9 +1,9 @@
 import circleImageUrl from "@/assets/circle.png";
 import crossImageUrl from "@/assets/cross.png";
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "@/game/hooks/useGame";
+import { getTileState } from "@/game/logics/tileLogic";
+import type { Tile } from "@/game/types/tile";
 import { cn } from "@/lib/utils";
-import { getTileState } from "@/logics/tileLogic";
-import type { Tile } from "@/logics/types";
 import type { FC } from "react";
 
 export interface TileButtonProps {

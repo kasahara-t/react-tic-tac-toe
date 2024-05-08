@@ -4,7 +4,7 @@ import { BoardPanel } from "@/components/panels/BoardPanel";
 import { LogPanel } from "@/components/panels/LogPanel";
 import { GameStatusText } from "@/components/texts/GameStatusText";
 import { GameTurnText } from "@/components/texts/GameTurnText";
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
 

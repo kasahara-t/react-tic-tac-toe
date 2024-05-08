@@ -1,6 +1,6 @@
 import { TileButton } from "@/components/buttons/TileButton";
 import { Panel } from "@/components/ui/Panel";
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
 

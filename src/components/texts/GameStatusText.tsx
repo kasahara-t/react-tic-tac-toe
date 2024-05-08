@@ -1,4 +1,4 @@
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
 

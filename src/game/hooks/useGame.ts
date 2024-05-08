@@ -1,13 +1,15 @@
-import { atom, useAtom } from "jotai";
-import { atomWithDefault, atomWithReset, useResetAtom } from "jotai/utils";
-import { useEffect, useRef } from "react";
 import {
   checkForWin,
   initializeBoard,
   updateTileStatus,
-} from "../logics/boardLogic";
-import { isOTurn } from "../logics/gameLogic";
-import type { Board, BoardSize, Tile, Turn } from "../logics/types";
+} from "@/game/logics/boardLogic";
+import { isOTurn } from "@/game/logics/gameLogic";
+import type { Board, BoardSize } from "@/game/types/board";
+import type { Tile } from "@/game/types/tile";
+import type { Turn } from "@/game/types/turn";
+import { atom, useAtom } from "jotai";
+import { atomWithDefault, atomWithReset, useResetAtom } from "jotai/utils";
+import { useEffect, useRef } from "react";
 
 const initialTurn: Turn = {
   turn: 0,

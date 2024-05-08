@@ -1,5 +1,7 @@
+import type { Board, BoardSize } from "@/game/types/board";
+import type { Tile } from "@/game/types/tile";
+import type { Turn } from "@/game/types/turn";
 import { getTileState } from "./tileLogic";
-import type { Board, BoardSize, Tile, Turn } from "./types";
 
 /**
  * ボードを作成する

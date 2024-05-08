@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "@/game/hooks/useGame";
 import type { FC } from "react";
 
 export const GameResetButton: FC = () => {

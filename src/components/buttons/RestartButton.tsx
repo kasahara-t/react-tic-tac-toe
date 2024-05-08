@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "@/game/hooks/useGame";
 import type { FC } from "react";
 
 export const RestartButton: FC = () => {
