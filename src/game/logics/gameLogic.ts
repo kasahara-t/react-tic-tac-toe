@@ -5,15 +5,9 @@ export const updateGameResults = (
   winner: Player,
   results: GameResult[],
 ): GameResult[] => {
-  const lastResult = results.find((result) => result.winner === winner);
-  if (lastResult) {
-    // 前回の勝利回数に基づいて更新
-    return results.map((result) =>
-      result.winner === winner
-        ? { ...result, winCount: result.winCount + 1 }
-        : result,
-    );
-  }
-  // 新しい勝利者の追加
-  return [...results, { winner, winCount: 1 }];
+  const winCount = results.reduce(
+    (pre, cre) => (cre.winner === winner ? Math.max(pre, cre.winCount) : pre),
+    0,
+  );
+  return [...results, { winner, winCount: winCount + 1 }];
 };

@@ -1,3 +1,4 @@
+import { NeonText } from "@/components/ui/NeonText";
 import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
@@ -5,8 +6,8 @@ import type { FC } from "react";
 export const GameTurnText: FC = () => {
   const { currentTurn } = useGame();
   return (
-    <div className={cn("text-5xl text-center")}>
+    <NeonText className={cn("text-5xl text-center")}>
       {currentTurn.turn + 1}ターン目
-    </div>
+    </NeonText>
   );
 };
