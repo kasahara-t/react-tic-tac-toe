@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/Tooltip";
 import { useGame } from "@/game/hooks/useGame";
 import type { FC } from "react";
-import HelpOverlay from "../ui/HelpOverlay";
+import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
 
 export const GameResetButton: FC = () => {

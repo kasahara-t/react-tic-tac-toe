@@ -7,7 +7,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
 import type { FC } from "react";
-import HelpOverlay from "../ui/HelpOverlay";
+import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
 
 export const SettingButton: FC = () => {
