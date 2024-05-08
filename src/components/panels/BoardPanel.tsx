@@ -1,8 +1,8 @@
+import { TileButton } from "@/components/buttons/TileButton";
+import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
-import { Panel } from "../ui/Panel";
-import { TilePanel } from "./TilePanel";
 
 export const BoardPanel: FC = () => {
   const { board } = useGame();
@@ -31,7 +31,7 @@ export const BoardPanel: FC = () => {
             },
           )}
         >
-          <TilePanel tile={tile} />
+          <TileButton tile={tile} />
         </div>
       ))}
     </Panel>

@@ -1,29 +1,29 @@
-import settingImageUrl from "@/components/assets/setting.png";
+import helpImgUrl from "@/assets/help.png";
 import { ImageButton } from "@/components/ui/ImageButton";
-import type { FC } from "react";
 import {
-  Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/Tooltip";
+} from "@/components/ui/Tooltip";
+import { Tooltip } from "@radix-ui/react-tooltip";
+import type { FC } from "react";
 
-export const SettingButton: FC = () => {
+export const HelpButton: FC = () => {
   const handleButtonClick = () => {
-    alert("setting is not implement!");
+    alert("help is not implement!");
   };
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
           <ImageButton
-            imgPath={settingImageUrl}
-            imgAlt="Setting Button"
+            imgPath={helpImgUrl}
+            imgAlt="Help Button"
             onClick={handleButtonClick}
           />
         </TooltipTrigger>
         <TooltipContent>
-          <p>Setting</p>
+          <p>Help</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

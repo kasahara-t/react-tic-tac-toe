@@ -1,7 +1,7 @@
+import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
-import { Panel } from "../ui/Panel";
 
 export const LogPanel: FC = () => {
   const { gameLogs } = useGame();

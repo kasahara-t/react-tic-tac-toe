@@ -1,14 +1,14 @@
+import { RestartButton } from "@/components/buttons/RestartButton";
+import { ToolBar } from "@/components/buttons/ToolBar";
+import { BoardPanel } from "@/components/panels/BoardPanel";
+import { LogPanel } from "@/components/panels/LogPanel";
+import { GameStatusText } from "@/components/texts/GameStatusText";
+import { GameTurnText } from "@/components/texts/GameTurnText";
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
-import { BoardPanel } from "./BoardPanel";
-import { GameStatusPanel } from "./GameStatusPanel";
-import { GameTurnPanel } from "./GameTurnPanel";
-import { LogPanel } from "./LogPanel";
-import { RestartButton } from "./RestartButton";
-import { ToolBar } from "./ToolBar";
 
-export const GamePanel: FC = () => {
+export const GameScene: FC = () => {
   const { gameOver } = useGame();
   return (
     <div
@@ -25,7 +25,7 @@ export const GamePanel: FC = () => {
         )}
       >
         <div className={cn("col-[2] row-[1]")}>
-          <GameStatusPanel />
+          <GameStatusText />
         </div>
         <div className={cn("col-[1] row-[2]")}>
           <LogPanel />
@@ -37,7 +37,7 @@ export const GamePanel: FC = () => {
           <ToolBar />
         </div>
         <div className={cn("col-[2] row-[3]")}>
-          {gameOver ? <RestartButton /> : <GameTurnPanel />}
+          {gameOver ? <RestartButton /> : <GameTurnText />}
         </div>
       </div>
     </div>

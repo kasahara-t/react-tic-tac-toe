@@ -2,7 +2,7 @@ import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
 
-export const GameStatusPanel: FC = () => {
+export const GameStatusText: FC = () => {
   const { gameOver, currentTurn } = useGame();
 
   return (

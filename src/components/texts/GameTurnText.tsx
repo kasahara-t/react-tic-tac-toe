@@ -1,7 +1,8 @@
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
+import type { FC } from "react";
 
-export const GameTurnPanel = () => {
+export const GameTurnText: FC = () => {
   const { currentTurn } = useGame();
   return (
     <div className={cn("text-5xl text-center")}>

@@ -1,4 +1,4 @@
-import resetButtonImageUrl from "@/components/assets/reset.png";
+import resetButtonImageUrl from "@/assets/reset.png";
 import { ImageButton } from "@/components/ui/ImageButton";
 import {
   Tooltip,

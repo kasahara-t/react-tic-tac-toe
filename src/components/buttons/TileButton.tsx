@@ -1,15 +1,15 @@
-import circleImageUrl from "@/components/assets/circle.png";
-import crossImageUrl from "@/components/assets/cross.png";
+import circleImageUrl from "@/assets/circle.png";
+import crossImageUrl from "@/assets/cross.png";
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import { getTileState } from "@/logics/tileLogic";
 import type { Tile } from "@/logics/types";
 import type { FC } from "react";
 
-export interface TilePanelProps {
+export interface TileButtonProps {
   tile: Tile;
 }
-export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
+export const TileButton: FC<TileButtonProps> = ({ tile }) => {
   const { currentTurn, board, updateGameAndBoard } = useGame();
   const state = getTileState(currentTurn, board, tile);
 
@@ -19,6 +19,7 @@ export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
 
   return (
     <button
+      type="button"
       className={cn("size-full flex justify-center items-center text-6xl", {
         "opacity-50": state.remainingPeriod === 1,
       })}
