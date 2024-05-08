@@ -8,12 +8,8 @@ export const GameStatusText: FC = () => {
   return (
     <div className={cn("text-5xl text-center")}>
       {gameOver
-        ? currentTurn.isOTurn
-          ? "Xの勝ち"
-          : "Oの勝ち"
-        : currentTurn.isOTurn
-          ? "Oのターン"
-          : "Xのターン"}
+        ? `${currentTurn.player}の勝利`
+        : `${currentTurn.player}のターン`}
     </div>
   );
 };

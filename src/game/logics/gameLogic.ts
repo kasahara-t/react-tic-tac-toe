@@ -1,11 +1,8 @@
+import type { Player } from "@/game/types/player";
 import type { GameResult } from "@/game/types/result";
 
-export const isOTurn = (currentTurn: number): boolean => {
-  return currentTurn % 2 === 0;
-};
-
 export const updateGameResults = (
-  winner: "O" | "X",
+  winner: Player,
   results: GameResult[],
 ): GameResult[] => {
   const lastResult = results.find((result) => result.winner === winner);

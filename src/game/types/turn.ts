@@ -1,4 +1,6 @@
+import type { Player } from "./player";
+
 export interface Turn {
   readonly turn: number;
-  readonly isOTurn: boolean;
+  readonly player: Player;
 }

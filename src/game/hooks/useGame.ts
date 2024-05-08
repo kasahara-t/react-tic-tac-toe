@@ -1,5 +1,5 @@
 import { checkForWin, updateTileStatus } from "@/game/logics/boardLogic";
-import { isOTurn, updateGameResults } from "@/game/logics/gameLogic";
+import { updateGameResults } from "@/game/logics/gameLogic";
 import {
   boardAtom,
   currentTurnAtom,
@@ -30,13 +30,12 @@ export const useGame = () => {
     const isGameOver = checkForWin(currentTurn, newBoard);
     if (isGameOver) {
       setGameOver(true);
-      const winner = currentTurn.isOTurn ? "O" : "X";
-      const newResults = updateGameResults(winner, results);
+      const newResults = updateGameResults(currentTurn.player, results);
       setResults(newResults);
     } else {
       setCurrentTurn({
         turn: currentTurn.turn + 1,
-        isOTurn: isOTurn(currentTurn.turn + 1),
+        player: currentTurn.player === "Player1" ? "Player2" : "Player1",
       });
     }
   };

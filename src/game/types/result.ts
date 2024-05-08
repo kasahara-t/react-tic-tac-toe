@@ -1,4 +1,6 @@
+import type { Player } from "./player";
+
 export interface GameResult {
-  winner: "O" | "X";
+  winner: Player;
   winCount: number;
 }

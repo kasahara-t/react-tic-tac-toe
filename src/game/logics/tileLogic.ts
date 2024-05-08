@@ -20,7 +20,7 @@ export const getTileState = (
   }
 
   return {
-    char: validTurnHistory.isOTurn ? "O" : "X",
+    char: validTurnHistory.player === "Player1" ? "O" : "X",
     remainingPeriod: term - (currentTurn.turn - validTurnHistory.turn),
   };
 };

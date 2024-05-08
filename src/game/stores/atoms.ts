@@ -1,5 +1,4 @@
 import { initializeBoard } from "@/game/logics/boardLogic";
-import { isOTurn } from "@/game/logics/gameLogic";
 import type { Board, BoardSize } from "@/game/types/board";
 import type { GameResult } from "@/game/types/result";
 import type { Turn } from "@/game/types/turn";
@@ -8,7 +7,7 @@ import { atomWithDefault, atomWithReset } from "jotai/utils";
 
 const initialTurn: Turn = {
   turn: 0,
-  isOTurn: isOTurn(0),
+  player: "Player1",
 };
 export const currentTurnAtom = atomWithReset<Turn>(initialTurn);
 
