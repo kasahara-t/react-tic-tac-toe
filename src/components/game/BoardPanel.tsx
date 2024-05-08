@@ -1,18 +1,18 @@
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
+import { Panel } from "../ui/Panel";
 import { TilePanel } from "./TilePanel";
 
 export const BoardPanel: FC = () => {
   const { board } = useGame();
 
   return (
-    <div
+    <Panel
       className={cn(
         "grid h-full aspect-square",
         `grid-cols-${board.size} grid-rows-${board.size}`, // not working???
-        "p-6 rounded-3xl bg-black bg-opacity-30",
-        "shadow-custom",
+        "p-6",
       )}
       style={{
         gridTemplateColumns: `repeat(${board.size}, 1fr)`,
@@ -34,6 +34,6 @@ export const BoardPanel: FC = () => {
           <TilePanel tile={tile} />
         </div>
       ))}
-    </div>
+    </Panel>
   );
 };

@@ -1,17 +1,13 @@
 import { useGame } from "@/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
+import { Panel } from "../ui/Panel";
 
 export const LogPanel: FC = () => {
   const { gameLogs } = useGame();
 
   return (
-    <div
-      className={cn(
-        "w-72 h-full rounded-3xl px-4 py-2",
-        "bg-black bg-opacity-30 shadow-custom",
-      )}
-    >
+    <Panel className={cn("w-72 h-full rounded-3xl px-4 py-2")}>
       <h3 className={cn("text-3xl flex my-6 justify-center items-center")}>
         Log
       </h3>
@@ -25,6 +21,6 @@ export const LogPanel: FC = () => {
           {log}
         </p>
       ))}
-    </div>
+    </Panel>
   );
 };
