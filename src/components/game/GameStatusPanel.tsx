@@ -6,7 +6,7 @@ export const GameStatusPanel: FC = () => {
   const { gameOver, currentTurn } = useGame();
 
   return (
-    <div className={cn("text-5xl")}>
+    <div className={cn("text-5xl text-center")}>
       {gameOver
         ? currentTurn.isOTurn
           ? "Xの勝ち"

@@ -13,10 +13,11 @@ module.exports = {
     },
     extend: {
       boxShadow: {
-        'custom': '6px 6px 15px 3px rgba(0,0,0,0.15)',
+        custom: "6px 6px 15px 3px rgba(0,0,0,0.15)",
       },
       backgroundImage: {
-        'dark-gradient': 'linear-gradient(to bottom, #1C193F 0%, #280F42 53%, #4D1548 100%)'
+        "dark-gradient":
+          "linear-gradient(to bottom, #1C193F 0%, #280F42 53%, #4D1548 100%)",
       },
       colors: {
         border: "hsl(var(--border))",

@@ -19,7 +19,7 @@ export const TilePanel: FC<TilePanelProps> = ({ tile }) => {
 
   return (
     <div
-      className={cn("w-full h-full flex justify-center items-center text-6xl", {
+      className={cn("size-full flex justify-center items-center text-6xl", {
         "opacity-50": state.remainingPeriod === 1,
       })}
       onClick={handleTileClick}
