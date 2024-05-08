@@ -7,7 +7,10 @@ import { SettingButton } from "./SettingButton";
 export const ToolBar: FC = () => {
   return (
     <ul
-      className={cn("w-72 h-full flex flex-col justify-between items-center")}
+      className={cn(
+        "w-72 h-full",
+        "flex flex-col justify-between items-center gap-8",
+      )}
     >
       <li>
         <GameResetButton />
