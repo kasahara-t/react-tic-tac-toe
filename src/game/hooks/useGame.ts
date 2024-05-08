@@ -1,11 +1,10 @@
 import { checkForWin, updateTileStatus } from "@/game/logics/boardLogic";
-import { isOTurn } from "@/game/logics/gameLogic";
+import { isOTurn, updateGameResults } from "@/game/logics/gameLogic";
 import {
   boardAtom,
   currentTurnAtom,
-  gameLogAtom,
   gameOverAtom,
-  winsCountAtom,
+  gameResultsAtom,
 } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
@@ -15,14 +14,12 @@ export const useGame = () => {
   const [currentTurn, setCurrentTurn] = useAtom(currentTurnAtom);
   const [gameOver, setGameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
-  const [gameLogs, setGameLogs] = useAtom(gameLogAtom);
-  const [winsCount, setWinsCount] = useAtom(winsCountAtom);
+  const [results, setResults] = useAtom(gameResultsAtom);
 
   const resetCurrentTurn = useResetAtom(currentTurnAtom);
   const resetBoard = useResetAtom(boardAtom);
-  const resetGameLogs = useResetAtom(gameLogAtom);
-  const resetWinsCount = useResetAtom(winsCountAtom);
   const resetGameOver = useResetAtom(gameOverAtom);
+  const resetResults = useResetAtom(gameResultsAtom);
 
   const updateGameAndBoard = (tile: Tile) => {
     if (gameOver) return;
@@ -33,12 +30,9 @@ export const useGame = () => {
     const isGameOver = checkForWin(currentTurn, newBoard);
     if (isGameOver) {
       setGameOver(true);
-      setGameLogs([...gameLogs, `${currentTurn.isOTurn ? "O" : "X"}の勝ち`]);
-      setWinsCount({
-        ...winsCount,
-        [currentTurn.isOTurn ? "O" : "X"]:
-          winsCount[currentTurn.isOTurn ? "O" : "X"] + 1,
-      });
+      const winner = currentTurn.isOTurn ? "O" : "X";
+      const newResults = updateGameResults(winner, results);
+      setResults(newResults);
     } else {
       setCurrentTurn({
         turn: currentTurn.turn + 1,
@@ -56,16 +50,15 @@ export const useGame = () => {
   const resetGame = () => {
     resetCurrentTurn();
     resetBoard();
-    resetGameLogs();
-    resetWinsCount();
     resetGameOver();
+    resetResults();
   };
 
   return {
     currentTurn,
     gameOver,
     board,
-    gameLogs,
+    results,
     updateGameAndBoard,
     restartGame,
     resetGame,

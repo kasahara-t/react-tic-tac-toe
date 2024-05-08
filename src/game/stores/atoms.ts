@@ -1,6 +1,7 @@
-import { checkForWin, initializeBoard } from "@/game/logics/boardLogic";
+import { initializeBoard } from "@/game/logics/boardLogic";
 import { isOTurn } from "@/game/logics/gameLogic";
 import type { Board, BoardSize } from "@/game/types/board";
+import type { GameResult } from "@/game/types/result";
 import type { Turn } from "@/game/types/turn";
 import { atom } from "jotai";
 import { atomWithDefault, atomWithReset } from "jotai/utils";
@@ -18,8 +19,4 @@ export const boardAtom = atomWithDefault<Board>((get) =>
 );
 export const gameOverAtom = atomWithReset<boolean>(false);
 
-export const gameLogAtom = atomWithReset<string[]>([]);
-export const winsCountAtom = atomWithReset<{ O: number; X: number }>({
-  O: 0,
-  X: 0,
-});
+export const gameResultsAtom = atomWithReset<GameResult[]>([]);
