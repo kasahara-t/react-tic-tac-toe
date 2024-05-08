@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import type { FC } from "react";
 import { GameResetButton } from "./GameResetButton";
 import { HelpButton } from "./HelpButton";
-import { SettingButton } from "./SettingButton";
+// import { SettingButton } from "./SettingButton";
 
 export const ToolBar: FC = () => {
   return (
@@ -15,9 +15,9 @@ export const ToolBar: FC = () => {
       <li>
         <GameResetButton />
       </li>
-      <li>
+      {/* <li>
         <SettingButton />
-      </li>
+      </li> */}
       <li>
         <HelpButton />
       </li>
