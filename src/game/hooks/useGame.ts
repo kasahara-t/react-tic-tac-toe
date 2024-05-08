@@ -1,66 +1,28 @@
-import {
-  checkForWin,
-  initializeBoard,
-  updateTileStatus,
-} from "@/game/logics/boardLogic";
+import { checkForWin, updateTileStatus } from "@/game/logics/boardLogic";
 import { isOTurn } from "@/game/logics/gameLogic";
-import type { Board, BoardSize } from "@/game/types/board";
+import {
+  boardAtom,
+  currentTurnAtom,
+  gameLogAtom,
+  gameOverAtom,
+  winsCountAtom,
+} from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
-import type { Turn } from "@/game/types/turn";
-import { atom, useAtom } from "jotai";
-import { atomWithDefault, atomWithReset, useResetAtom } from "jotai/utils";
-import { useEffect, useRef } from "react";
-
-const initialTurn: Turn = {
-  turn: 0,
-  isOTurn: isOTurn(0),
-};
-const currentTurnAtom = atomWithReset<Turn>(initialTurn);
-
-const boardSizeAtom = atom<BoardSize>(3);
-
-const boardAtom = atomWithDefault<Board>((get) =>
-  initializeBoard(get(boardSizeAtom)),
-);
-const gameOverAtom = atom((get) =>
-  checkForWin(get(currentTurnAtom), get(boardAtom)),
-);
-
-const gameLogAtom = atomWithReset<string[]>([]);
-const winsCountAtom = atomWithReset<{ O: number; X: number }>({ O: 0, X: 0 });
+import { useAtom } from "jotai";
+import { useResetAtom } from "jotai/utils";
 
 export const useGame = () => {
   const [currentTurn, setCurrentTurn] = useAtom(currentTurnAtom);
-  const [gameOver] = useAtom(gameOverAtom);
+  const [gameOver, setGameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
   const [gameLogs, setGameLogs] = useAtom(gameLogAtom);
   const [winsCount, setWinsCount] = useAtom(winsCountAtom);
-  const prevGameOver = useRef(gameOver);
 
   const resetCurrentTurn = useResetAtom(currentTurnAtom);
   const resetBoard = useResetAtom(boardAtom);
   const resetGameLogs = useResetAtom(gameLogAtom);
   const resetWinsCount = useResetAtom(winsCountAtom);
-
-  useEffect(() => {
-    if (prevGameOver.current !== gameOver && gameOver) {
-      const winner = !currentTurn.isOTurn ? "O" : "X";
-      const newWinsCount = { ...winsCount, [winner]: winsCount[winner] + 1 };
-      setGameLogs([
-        ...gameLogs,
-        `${winner}が${newWinsCount[winner]}回目の勝利`,
-      ]);
-      setWinsCount(newWinsCount);
-    }
-    prevGameOver.current = gameOver;
-  }, [
-    gameOver,
-    currentTurn.isOTurn,
-    gameLogs,
-    setGameLogs,
-    setWinsCount,
-    winsCount,
-  ]);
+  const resetGameOver = useResetAtom(gameOverAtom);
 
   const updateGameAndBoard = (tile: Tile) => {
     if (gameOver) return;
@@ -68,15 +30,27 @@ export const useGame = () => {
     const newBoard = updateTileStatus(currentTurn, board, tile);
     setBoard(newBoard);
 
-    setCurrentTurn({
-      turn: currentTurn.turn + 1,
-      isOTurn: isOTurn(currentTurn.turn + 1),
-    });
+    const isGameOver = checkForWin(currentTurn, newBoard);
+    if (isGameOver) {
+      setGameOver(true);
+      setGameLogs([...gameLogs, `${currentTurn.isOTurn ? "O" : "X"}の勝ち`]);
+      setWinsCount({
+        ...winsCount,
+        [currentTurn.isOTurn ? "O" : "X"]:
+          winsCount[currentTurn.isOTurn ? "O" : "X"] + 1,
+      });
+    } else {
+      setCurrentTurn({
+        turn: currentTurn.turn + 1,
+        isOTurn: isOTurn(currentTurn.turn + 1),
+      });
+    }
   };
 
   const restartGame = () => {
     resetCurrentTurn();
     resetBoard();
+    resetGameOver();
   };
 
   const resetGame = () => {
@@ -84,6 +58,7 @@ export const useGame = () => {
     resetBoard();
     resetGameLogs();
     resetWinsCount();
+    resetGameOver();
   };
 
   return {
