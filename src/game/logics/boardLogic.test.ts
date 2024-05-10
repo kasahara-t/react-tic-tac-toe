@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import type { BoardSize } from "../types/board";
 import { initializeBoard } from "./boardLogic";
 
-describe("initializeBoard", () => {
+describe(initializeBoard.name, () => {
   const boardSizes: [BoardSize, number][] = [
     [3, 9],
     [6, 36],
