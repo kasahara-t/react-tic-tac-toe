@@ -1,4 +1,4 @@
-import { useHelp } from "@/common/hooks/useHelp";
+import { useHelp } from "@/game/hooks/useHelp";
 import { cn } from "@/lib/utils";
 import { type FC, type HtmlHTMLAttributes, forwardRef } from "react";
 
