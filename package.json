@@ -22,8 +22,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.2",
+    "@types/bun": "^1.1.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@types/web": "^0.0.143",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
