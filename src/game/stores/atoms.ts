@@ -19,3 +19,5 @@ export const boardAtom = atomWithDefault<Board>((get) =>
 export const gameOverAtom = atomWithReset<boolean>(false);
 
 export const gameResultsAtom = atomWithReset<GameResult[]>([]);
+
+export const helpModeAtom = atom<boolean>(false);
