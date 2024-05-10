@@ -7,17 +7,12 @@ import { GameTurnText } from "@/components/texts/GameTurnText";
 import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/lib/utils";
 import type { FC } from "react";
+import { AppBackground } from "../ui/AppBackground";
 
 export const GameScene: FC = () => {
   const { gameOver } = useGame();
   return (
-    <div
-      className={cn(
-        "overflow-hidden absolute inset-0",
-        "flex flex-col justify-center items-center",
-        "text-white bg-dark-gradient",
-      )}
-    >
+    <AppBackground>
       <div
         className={cn(
           "grid grid-cols-[1fr_auto_1fr] grid-rows-[1fr_auto_1fr]",
@@ -45,6 +40,6 @@ export const GameScene: FC = () => {
           {gameOver ? <RestartButton /> : <GameTurnText />}
         </div>
       </div>
-    </div>
+    </AppBackground>
   );
 };
