@@ -1,9 +1,8 @@
-import { GameScene } from "@/components/scenes/GameScene";
 import "./global.css";
-import { ModeSelectScene } from "./components/scenes/ModeSelectScene";
+import { SceneSwitcher } from "./components/scenes/SceneSwitcher";
 
 function App() {
-  return <ModeSelectScene />;
+  return <SceneSwitcher />;
 }
 
 export default App;
