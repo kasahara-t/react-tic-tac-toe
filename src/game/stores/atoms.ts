@@ -21,3 +21,5 @@ export const gameOverAtom = atomWithReset<boolean>(false);
 export const gameResultsAtom = atomWithReset<GameResult[]>([]);
 
 export const helpModeAtom = atom<boolean>(false);
+
+export const sceneAtom = atom<"mode-select" | "game">("mode-select");
