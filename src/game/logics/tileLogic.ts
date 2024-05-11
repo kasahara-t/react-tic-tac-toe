@@ -1,4 +1,4 @@
-import type { Board, BoardSize } from "@/game/types/board";
+import type { BoardSize } from "@/game/types/board";
 import type { Tile, TileState } from "@/game/types/tile";
 import type { Turn } from "@/game/types/turn";
 
