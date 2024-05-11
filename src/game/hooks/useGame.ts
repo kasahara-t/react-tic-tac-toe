@@ -9,7 +9,6 @@ import {
 } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
-import { useResetAtom } from "jotai/utils";
 import { useEffect } from "react";
 import type { Turn } from "../types/turn";
 
@@ -19,11 +18,6 @@ export const useGame = () => {
   const [board, setBoard] = useAtom(boardAtom);
   const [results, setResults] = useAtom(gameResultsAtom);
   const [players] = useAtom(playersState);
-
-  const resetCurrentTurn = useResetAtom(currentTurnAtom);
-  const resetBoard = useResetAtom(boardAtom);
-  const resetGameOver = useResetAtom(gameOverAtom);
-  const resetResults = useResetAtom(gameResultsAtom);
 
   useEffect(() => {
     if (players[currentTurn.player]?.isCPU ?? false) {
@@ -55,26 +49,11 @@ export const useGame = () => {
     }
   };
 
-  const restartGame = () => {
-    resetCurrentTurn();
-    resetBoard();
-    resetGameOver();
-  };
-
-  const resetGame = () => {
-    resetCurrentTurn();
-    resetBoard();
-    resetGameOver();
-    resetResults();
-  };
-
   return {
     currentTurn,
     gameOver,
     board,
     results,
     updateGameAndBoard,
-    restartGame,
-    resetGame,
   };
 };

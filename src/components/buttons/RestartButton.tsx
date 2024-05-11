@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/Button";
-import { useGame } from "@/game/hooks/useGame";
+import { useResetGame } from "@/game/hooks/useResetGame";
 import type { FC } from "react";
 import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
 
 export const RestartButton: FC = () => {
-  const { restartGame } = useGame();
+  const { restartGame } = useResetGame();
 
   const handleButtonClick = () => {
     restartGame();

@@ -27,7 +27,7 @@ export const sceneAtom = atom<"mode-select" | "game">("mode-select");
 
 type PlayersState = Record<PlayerId, Player | null>;
 
-export const playersState = atom<PlayersState>({
+export const playersState = atomWithReset<PlayersState>({
   Player1: null,
   Player2: null,
 });
