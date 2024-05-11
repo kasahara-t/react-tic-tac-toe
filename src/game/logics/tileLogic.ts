@@ -4,24 +4,24 @@ import type { Turn } from "@/game/types/turn";
 
 export const getTileState = (
   currentTurn: Turn,
-  board: Board,
+  boardSize: BoardSize,
   tile: Tile,
 ): TileState => {
-  const term = getRemainingTurns(board.size);
+  const term = getRemainingTurns(boardSize);
   const validTurnHistory = tile.changeTurns.findLast(
     (t) => currentTurn.turn - t.turn < term,
   );
 
   if (!validTurnHistory) {
     return {
-      char: "",
-      remainingPeriod: 0,
+      symbol: "",
+      turnsLeft: 0,
     };
   }
 
   return {
-    char: validTurnHistory.player === "Player1" ? "O" : "X",
-    remainingPeriod: term - (currentTurn.turn - validTurnHistory.turn),
+    symbol: validTurnHistory.player === "Player1" ? "O" : "X",
+    turnsLeft: term - (currentTurn.turn - validTurnHistory.turn),
   };
 };
 

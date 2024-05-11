@@ -31,7 +31,8 @@ export const updateTileStatus = (
   board: Board,
   clickedTile: Tile,
 ): Board => {
-  if (getTileState(currentTurn, board, clickedTile).char !== "") return board;
+  if (getTileState(currentTurn, board.size, clickedTile).symbol !== "")
+    return board;
 
   const newTiles = board.tiles.map((tile) => {
     if (tile.x === clickedTile.x && tile.y === clickedTile.y) {
@@ -59,7 +60,7 @@ export const checkForWin = (currentTurn: Turn, board: Board): boolean => {
   // 各タイルに対して、位置情報と状態をオブジェクトとしてマッピング
   const tileStates = board.tiles.map((tile) => ({
     tile: tile,
-    state: getTileState(currentTurn, board, tile),
+    state: getTileState(currentTurn, board.size, tile),
   }));
 
   // 横の行をチェック
@@ -67,7 +68,8 @@ export const checkForWin = (currentTurn: Turn, board: Board): boolean => {
     const row = tileStates.filter(({ tile }) => tile.y === y);
     if (
       row.every(
-        ({ state }) => state.char !== "" && state.char === row[0].state.char,
+        ({ state }) =>
+          state.symbol !== "" && state.symbol === row[0].state.symbol,
       )
     ) {
       return true;
@@ -79,7 +81,8 @@ export const checkForWin = (currentTurn: Turn, board: Board): boolean => {
     const column = tileStates.filter(({ tile }) => tile.x === x);
     if (
       column.every(
-        ({ state }) => state.char !== "" && state.char === column[0].state.char,
+        ({ state }) =>
+          state.symbol !== "" && state.symbol === column[0].state.symbol,
       )
     ) {
       return true;
@@ -91,7 +94,7 @@ export const checkForWin = (currentTurn: Turn, board: Board): boolean => {
   if (
     diagonal1.every(
       ({ state }) =>
-        state.char !== "" && state.char === diagonal1[0].state.char,
+        state.symbol !== "" && state.symbol === diagonal1[0].state.symbol,
     )
   ) {
     return true;
@@ -104,7 +107,7 @@ export const checkForWin = (currentTurn: Turn, board: Board): boolean => {
   if (
     diagonal2.every(
       ({ state }) =>
-        state.char !== "" && state.char === diagonal2[0].state.char,
+        state.symbol !== "" && state.symbol === diagonal2[0].state.symbol,
     )
   ) {
     return true;

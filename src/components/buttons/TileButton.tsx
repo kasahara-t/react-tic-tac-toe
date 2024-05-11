@@ -15,7 +15,7 @@ export const TileButton: FC<TileButtonProps> = ({ tile }) => {
   const { currentTurn, board, updateGameAndBoard } = useGame();
   const [players] = useAtom(playersState);
 
-  const state = getTileState(currentTurn, board, tile);
+  const state = getTileState(currentTurn, board.size, tile);
 
   const handleTileClick = () => {
     if (players[currentTurn.player]?.isCPU ?? false) return;
@@ -26,13 +26,13 @@ export const TileButton: FC<TileButtonProps> = ({ tile }) => {
     <button
       type="button"
       className={cn("size-full flex justify-center items-center text-6xl", {
-        "opacity-50": state.remainingPeriod === 1,
+        "opacity-50": state.turnsLeft === 1,
       })}
       onClick={handleTileClick}
     >
-      {state.char && (
+      {state.symbol && (
         <img
-          src={state.char === "O" ? circleImageUrl : crossImageUrl}
+          src={state.symbol === "O" ? circleImageUrl : crossImageUrl}
           alt="Tile"
           className={cn("w-4/5 h-4/5 object-cover")}
         />

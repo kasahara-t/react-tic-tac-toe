@@ -1,5 +1,6 @@
 import type { PlayerId } from "@/game/types/player";
 import type { GameResult } from "@/game/types/result";
+import { getRandomElement } from "@/lib/utils";
 import type { Board } from "../types/board";
 import type { Tile } from "../types/tile";
 import type { Turn } from "../types/turn";
@@ -20,39 +21,49 @@ export const updateGameResults = (
 export const findBestMove = (currentTurn: Turn, board: Board): Tile => {
   const tileStates = board.tiles.map((tile) => ({
     tile,
-    state: getTileState(currentTurn, board, tile),
+    state: getTileState(currentTurn, board.size, tile),
   }));
 
   // 勝つ手を探す
-  for (const { tile, state } of tileStates) {
-    if (state.char === "") {
+  const winTiles = tileStates.filter(({ tile, state }) => {
+    if (state.symbol === "") {
       const newBoard = updateTileStatus(currentTurn, board, tile);
       if (checkForWin(currentTurn, newBoard)) {
-        return tile;
+        return true;
       }
     }
+    return false;
+  });
+  const winChoice = getRandomElement(winTiles);
+  if (winChoice) {
+    return winChoice.tile;
   }
 
   // ブロックする手を探す
-  for (const { tile, state } of tileStates) {
+  const blockTiles = tileStates.filter(({ tile, state }) => {
     const nextTurn: Turn = {
       turn: currentTurn.turn + 1,
       player: currentTurn.player === "Player1" ? "Player2" : "Player1",
     };
-    if (state.char === "") {
+    if (state.symbol === "") {
       const newBoard = updateTileStatus(nextTurn, board, tile);
       if (checkForWin(currentTurn, newBoard)) {
-        return tile;
+        return true;
       }
     }
+    return false;
+  });
+  const blockChoice = getRandomElement(blockTiles);
+  if (blockChoice) {
+    return blockChoice.tile;
   }
 
   // 中央を取る
-  const centerTile = tileStates.filter(
-    ({ tile, state }) => tile.x === 1 && tile.y === 1 && state.char === "",
+  const centerTile = tileStates.find(
+    ({ tile, state }) => tile.x === 1 && tile.y === 1 && state.symbol === "",
   );
-  if (centerTile.length > 0) {
-    return centerTile[0].tile;
+  if (centerTile) {
+    return centerTile.tile;
   }
 
   // 角を取る
@@ -60,13 +71,19 @@ export const findBestMove = (currentTurn: Turn, board: Board): Tile => {
     ({ tile, state }) =>
       (tile.x === 0 || tile.x === 2) &&
       (tile.y === 0 || tile.y === 2) &&
-      state.char === "",
+      state.symbol === "",
   );
-  for (const corner of corners) {
-    return corner.tile;
+  const cornerChoice = getRandomElement(corners);
+  if (cornerChoice) {
+    return cornerChoice.tile;
   }
 
   // ランダムな手
-  const emptyIndices = tileStates.filter(({ state }) => state.char === "");
-  return emptyIndices[Math.floor(Math.random() * emptyIndices.length)].tile;
+  const emptyTiles = tileStates.filter(({ state }) => state.symbol === "");
+  const randomChoice = getRandomElement(emptyTiles);
+  if (randomChoice) {
+    return randomChoice.tile;
+  }
+
+  throw new Error("No valid move found");
 };
