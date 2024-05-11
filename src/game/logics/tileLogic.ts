@@ -7,10 +7,7 @@ export const getTileState = (
   board: Board,
   tile: Tile,
 ): TileState => {
-  const terms: Record<BoardSize, number> = {
-    3: 7,
-  };
-  const term = terms[board.size];
+  const term = getRemainingTurns(board.size);
   const validTurnHistory = tile.changeTurns.findLast(
     (t) => currentTurn.turn - t.turn < term,
   );
@@ -26,4 +23,11 @@ export const getTileState = (
     char: validTurnHistory.player === "Player1" ? "O" : "X",
     remainingPeriod: term - (currentTurn.turn - validTurnHistory.turn),
   };
+};
+
+export const getRemainingTurns = (boardSize: BoardSize) => {
+  const remainingTurns: Record<BoardSize, number> = {
+    3: 7, // 画面上に自分のタイルが最大4つ存在する
+  };
+  return remainingTurns[boardSize] ?? 0;
 };
