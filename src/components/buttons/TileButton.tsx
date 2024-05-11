@@ -2,8 +2,10 @@ import circleImageUrl from "@/assets/circle.png";
 import crossImageUrl from "@/assets/cross.png";
 import { useGame } from "@/game/hooks/useGame";
 import { getTileState } from "@/game/logics/tileLogic";
+import { playersState } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { cn } from "@/lib/utils";
+import { useAtom } from "jotai";
 import type { FC } from "react";
 
 export interface TileButtonProps {
@@ -11,9 +13,12 @@ export interface TileButtonProps {
 }
 export const TileButton: FC<TileButtonProps> = ({ tile }) => {
   const { currentTurn, board, updateGameAndBoard } = useGame();
+  const [players] = useAtom(playersState);
+
   const state = getTileState(currentTurn, board, tile);
 
   const handleTileClick = () => {
+    if (players[currentTurn.player]?.isCPU ?? false) return;
     updateGameAndBoard(tile);
   };
 

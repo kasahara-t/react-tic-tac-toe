@@ -28,8 +28,10 @@ export const useGame = () => {
   useEffect(() => {
     if (players[currentTurn.player]?.isCPU ?? false) {
       // CPUの場合
-      const tile = findBestMove(currentTurn, board);
-      updateGameAndBoard(tile);
+      setTimeout(() => {
+        const tile = findBestMove(currentTurn, board);
+        updateGameAndBoard(tile);
+      }, 500);
     }
   }, [currentTurn, players, board]);
 
