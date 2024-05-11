@@ -1,11 +1,14 @@
 import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/game/hooks/useGame";
+import { playersState } from "@/game/stores/atoms";
 import { cn } from "@/lib/utils";
+import { useAtom } from "jotai";
 import type { FC } from "react";
 import { NeonText } from "../ui/NeonText";
 
 export const LogPanel: FC = () => {
   const { results } = useGame();
+  const [players] = useAtom(playersState);
 
   return (
     <Panel
@@ -37,7 +40,9 @@ export const LogPanel: FC = () => {
             "border-t-2 border-white border-opacity-10": i > 0,
           })}
         >
-          {`${result.winner}が${result.winCount}回目の勝利`}
+          {`${players[result.winner]?.name ?? ""}が${
+            result.winCount
+          }回目の勝利`}
         </NeonText>
       ))}
     </Panel>

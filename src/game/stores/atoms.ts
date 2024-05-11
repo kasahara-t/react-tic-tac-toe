@@ -4,6 +4,7 @@ import type { GameResult } from "@/game/types/result";
 import type { Turn } from "@/game/types/turn";
 import { atom } from "jotai";
 import { atomWithDefault, atomWithReset } from "jotai/utils";
+import type { Player, PlayerId } from "../types/player";
 
 const initialTurn: Turn = {
   turn: 0,
@@ -23,3 +24,10 @@ export const gameResultsAtom = atomWithReset<GameResult[]>([]);
 export const helpModeAtom = atom<boolean>(false);
 
 export const sceneAtom = atom<"mode-select" | "game">("mode-select");
+
+type PlayersState = Record<PlayerId, Player | null>;
+
+export const playersState = atom<PlayersState>({
+  Player1: null,
+  Player2: null,
+});
