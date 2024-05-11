@@ -7,15 +7,18 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
 import { useResetGame } from "@/game/hooks/useResetGame";
+import { useScene } from "@/game/hooks/useScene";
 import type { FC } from "react";
 import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
 
 export const GameResetButton: FC = () => {
   const { resetGame } = useResetGame();
+  const { goToModeSelect } = useScene();
 
   const handleButtonClick = () => {
     resetGame();
+    goToModeSelect();
   };
 
   return (
