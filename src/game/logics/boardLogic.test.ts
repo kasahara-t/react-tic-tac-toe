@@ -3,10 +3,7 @@ import type { BoardSize } from "../types/board";
 import { initializeBoard } from "./boardLogic";
 
 describe(initializeBoard.name, () => {
-  const boardSizes: [BoardSize, number][] = [
-    [3, 9],
-    [6, 36],
-  ];
+  const boardSizes: [BoardSize, number][] = [[3, 9]];
   test.each(boardSizes)(
     "サイズが%pで初期化されたボードには%p個のタイルが生成される",
     (size, expected) => {

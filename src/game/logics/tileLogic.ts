@@ -1,4 +1,4 @@
-import type { Board } from "@/game/types/board";
+import type { Board, BoardSize } from "@/game/types/board";
 import type { Tile, TileState } from "@/game/types/tile";
 import type { Turn } from "@/game/types/turn";
 
@@ -7,7 +7,10 @@ export const getTileState = (
   board: Board,
   tile: Tile,
 ): TileState => {
-  const term = board.size * 2;
+  const terms: Record<BoardSize, number> = {
+    3: 7,
+  };
+  const term = terms[board.size];
   const validTurnHistory = tile.changeTurns.findLast(
     (t) => currentTurn.turn - t.turn < term,
   );
