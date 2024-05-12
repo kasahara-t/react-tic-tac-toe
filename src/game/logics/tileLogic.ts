@@ -32,4 +32,5 @@ export const getRemainingTurns = (boardSize: BoardSize) => {
   return remainingTurns[boardSize] ?? 0;
 };
 
-export const canClickTile = (state: TileState) => state.symbol === "";
+export const canClickTile = (state: TileState) =>
+  state.symbol === "" && state.turnsLeft === 0;

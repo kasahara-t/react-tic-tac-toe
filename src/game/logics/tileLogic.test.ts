@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import type { BoardSize } from "../types/board";
-import type { TileSymbol } from "../types/tile";
+import type { TileState } from "../types/tile";
 import { canClickTile, getRemainingTurns } from "./tileLogic";
 
 describe(getRemainingTurns.name, () => {
@@ -14,15 +14,32 @@ describe(getRemainingTurns.name, () => {
 });
 
 describe(canClickTile.name, () => {
-  const testCases: [TileSymbol, boolean][] = [
-    ["", true],
-    ["O", false],
-    ["X", false],
+  const testCases: [string, boolean, TileState][] = [
+    [
+      "タイルのシンボルが空文字で残存ターン数が0",
+      true,
+      { symbol: "", turnsLeft: 0 },
+    ],
+    [
+      "タイルのシンボルは空文字だが残存ターン数が0以外",
+      false,
+      { symbol: "", turnsLeft: 1 },
+    ],
+    [
+      "タイルのシンボルが空文字以外で残存ターン数が0",
+      false,
+      { symbol: "O", turnsLeft: 0 },
+    ],
+    [
+      "タイルのシンボルが空文字以外で残存ターン数が0以外",
+      false,
+      { symbol: "O", turnsLeft: 1 },
+    ],
   ];
   test.each(testCases)(
-    "シンボルが%p の場合、クリック可能かどうかは%p",
-    (symbol, expected) => {
-      expect(canClickTile({ symbol, turnsLeft: 0 })).toBe(expected);
+    "%sの場合、クリック可能かどうかは%p",
+    (_label, expected, state) => {
+      expect(canClickTile(state)).toBe(expected);
     },
   );
 });
