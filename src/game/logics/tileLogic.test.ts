@@ -4,7 +4,7 @@ import type { TileState } from "../types/tile";
 import { canClickTile, getRemainingTurns } from "./tileLogic";
 
 describe(getRemainingTurns.name, () => {
-  const testCases: [BoardSize, number][] = [[3, 7]];
+  const testCases: [BoardSize, number][] = [[3, 6]];
   test.each(testCases)(
     "サイズが%p の場合、タイルは%p ターン残る",
     (size, expected) => {

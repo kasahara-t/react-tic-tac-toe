@@ -27,7 +27,7 @@ export const getTileState = (
 
 export const getRemainingTurns = (boardSize: BoardSize) => {
   const remainingTurns: Record<BoardSize, number> = {
-    3: 7, // 画面上に自分のタイルが最大4つ存在する
+    3: 6, // 画面上に自分のタイルが最大4つ存在する
   };
   return remainingTurns[boardSize] ?? 0;
 };
