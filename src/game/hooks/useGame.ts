@@ -13,7 +13,7 @@ import {
 } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { incrementTurn } from "../logics/turnLogic";
 
 export const useGame = () => {
@@ -23,15 +23,26 @@ export const useGame = () => {
   const [results, setResults] = useAtom(gameResultsAtom);
   const [players] = useAtom(playersStateAtom);
 
+  const hasCPUMoved = useRef(false);
+
   useEffect(() => {
-    if (players[currentTurn.player]?.isCPU ?? false) {
-      // CPUの場合
+    if (gameOver || hasCPUMoved.current) {
+      return;
+    }
+
+    if (players[currentTurn.player]?.isCPU) {
+      hasCPUMoved.current = true;
       setTimeout(() => {
         const tile = findBestMove(currentTurn, board);
         updateGameAndBoard(tile);
       }, 500);
     }
-  }, [currentTurn, players, board]);
+
+    // ターンが変わるたびにフラグをリセット
+    return () => {
+      hasCPUMoved.current = false;
+    };
+  }, [currentTurn, gameOver, board, players]);
 
   const updateGameAndBoard = (tile: Tile) => {
     if (gameOver) return;
