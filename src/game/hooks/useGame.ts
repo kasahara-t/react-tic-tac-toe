@@ -35,6 +35,7 @@ export const useGame = () => {
       setTimeout(() => {
         const tile = findBestMove(currentTurn, board);
         updateGameAndBoard(tile);
+        hasCPUMoved.current = false;
       }, 500);
     } else {
       return () => {
