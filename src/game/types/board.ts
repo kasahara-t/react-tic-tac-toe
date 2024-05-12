@@ -1,6 +1,6 @@
 import type { Tile } from "./tile";
 
-export type BoardSize = 3 | 6;
+export type BoardSize = 3;
 
 export interface Board {
   readonly size: BoardSize;

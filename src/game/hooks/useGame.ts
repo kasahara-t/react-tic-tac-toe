@@ -1,25 +1,48 @@
-import { checkForWin, updateTileStatus } from "@/game/logics/boardLogic";
-import { updateGameResults } from "@/game/logics/gameLogic";
+import { updateTileStatus } from "@/game/logics/boardLogic";
+import {
+  checkWin,
+  findBestMove,
+  updateGameResults,
+} from "@/game/logics/gameLogic";
 import {
   boardAtom,
   currentTurnAtom,
   gameOverAtom,
   gameResultsAtom,
+  playersStateAtom,
 } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
-import { useResetAtom } from "jotai/utils";
+import { useEffect, useRef } from "react";
+import { incrementTurn } from "../logics/turnLogic";
 
 export const useGame = () => {
   const [currentTurn, setCurrentTurn] = useAtom(currentTurnAtom);
   const [gameOver, setGameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
   const [results, setResults] = useAtom(gameResultsAtom);
+  const [players] = useAtom(playersStateAtom);
 
-  const resetCurrentTurn = useResetAtom(currentTurnAtom);
-  const resetBoard = useResetAtom(boardAtom);
-  const resetGameOver = useResetAtom(gameOverAtom);
-  const resetResults = useResetAtom(gameResultsAtom);
+  const hasCPUMoved = useRef(false);
+
+  useEffect(() => {
+    if (gameOver || hasCPUMoved.current) {
+      return;
+    }
+
+    if (players[currentTurn.player]?.isCPU) {
+      hasCPUMoved.current = true;
+      setTimeout(() => {
+        const tile = findBestMove(currentTurn, board);
+        updateGameAndBoard(tile);
+      }, 500);
+    }
+
+    // ターンが変わるたびにフラグをリセット
+    return () => {
+      hasCPUMoved.current = false;
+    };
+  }, [currentTurn, gameOver, board, players]);
 
   const updateGameAndBoard = (tile: Tile) => {
     if (gameOver) return;
@@ -27,30 +50,15 @@ export const useGame = () => {
     const newBoard = updateTileStatus(currentTurn, board, tile);
     setBoard(newBoard);
 
-    const isGameOver = checkForWin(currentTurn, newBoard);
+    const isGameOver = checkWin(currentTurn, newBoard);
     if (isGameOver) {
       setGameOver(true);
       const newResults = updateGameResults(currentTurn.player, results);
       setResults(newResults);
     } else {
-      setCurrentTurn({
-        turn: currentTurn.turn + 1,
-        player: currentTurn.player === "Player1" ? "Player2" : "Player1",
-      });
+      const nextTurn = incrementTurn(currentTurn);
+      setCurrentTurn(nextTurn);
     }
-  };
-
-  const restartGame = () => {
-    resetCurrentTurn();
-    resetBoard();
-    resetGameOver();
-  };
-
-  const resetGame = () => {
-    resetCurrentTurn();
-    resetBoard();
-    resetGameOver();
-    resetResults();
   };
 
   return {
@@ -59,7 +67,5 @@ export const useGame = () => {
     board,
     results,
     updateGameAndBoard,
-    restartGame,
-    resetGame,
   };
 };

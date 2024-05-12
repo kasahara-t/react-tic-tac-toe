@@ -6,16 +6,19 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
-import { useGame } from "@/game/hooks/useGame";
+import { useResetGame } from "@/game/hooks/useResetGame";
+import { useScene } from "@/game/hooks/useScene";
 import type { FC } from "react";
 import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
 
 export const GameResetButton: FC = () => {
-  const { resetGame } = useGame();
+  const { resetGame } = useResetGame();
+  const { goToModeSelect } = useScene();
 
   const handleButtonClick = () => {
     resetGame();
+    goToModeSelect();
   };
 
   return (
@@ -25,11 +28,9 @@ export const GameResetButton: FC = () => {
           <HelpOverlay
             helpText={
               <NeonText>
-                ゲームを
+                モード選択画面
                 <br />
-                リセット
-                <br />
-                できます。
+                に戻ります。
               </NeonText>
             }
           >

@@ -1,6 +1,6 @@
 import type { Turn } from "./turn";
 
-export type TileType = "" | "O" | "X";
+export type TileSymbol = "" | "O" | "X";
 
 export interface Tile {
   readonly x: number;
@@ -9,6 +9,6 @@ export interface Tile {
 }
 
 export interface TileState {
-  readonly char: TileType;
-  readonly remainingPeriod: number;
+  readonly symbol: TileSymbol;
+  readonly turnsLeft: number;
 }
