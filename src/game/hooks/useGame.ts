@@ -36,12 +36,12 @@ export const useGame = () => {
         const tile = findBestMove(currentTurn, board);
         updateGameAndBoard(tile);
       }, 500);
+    } else {
+      // ターンが変わるたびにフラグをリセット
+      return () => {
+        hasCPUMoved.current = false;
+      };
     }
-
-    // ターンが変わるたびにフラグをリセット
-    return () => {
-      hasCPUMoved.current = false;
-    };
   }, [currentTurn, gameOver, board, players]);
 
   const updateGameAndBoard = (tile: Tile) => {
