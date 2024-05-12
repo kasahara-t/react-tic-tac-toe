@@ -1,5 +1,9 @@
-import { checkForWin, updateTileStatus } from "@/game/logics/boardLogic";
-import { findBestMove, updateGameResults } from "@/game/logics/gameLogic";
+import { updateTileStatus } from "@/game/logics/boardLogic";
+import {
+  checkWin,
+  findBestMove,
+  updateGameResults,
+} from "@/game/logics/gameLogic";
 import {
   boardAtom,
   currentTurnAtom,
@@ -10,7 +14,7 @@ import {
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import type { Turn } from "../types/turn";
+import { incrementTurn } from "../logics/turnLogic";
 
 export const useGame = () => {
   const [currentTurn, setCurrentTurn] = useAtom(currentTurnAtom);
@@ -35,16 +39,13 @@ export const useGame = () => {
     const newBoard = updateTileStatus(currentTurn, board, tile);
     setBoard(newBoard);
 
-    const isGameOver = checkForWin(currentTurn, newBoard);
+    const isGameOver = checkWin(currentTurn, newBoard);
     if (isGameOver) {
       setGameOver(true);
       const newResults = updateGameResults(currentTurn.player, results);
       setResults(newResults);
     } else {
-      const nextTurn: Turn = {
-        turn: currentTurn.turn + 1,
-        player: currentTurn.player === "Player1" ? "Player2" : "Player1",
-      };
+      const nextTurn = incrementTurn(currentTurn);
       setCurrentTurn(nextTurn);
     }
   };
