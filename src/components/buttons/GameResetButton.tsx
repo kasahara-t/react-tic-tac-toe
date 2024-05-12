@@ -28,11 +28,9 @@ export const GameResetButton: FC = () => {
           <HelpOverlay
             helpText={
               <NeonText>
-                ゲームを
+                モード選択画面
                 <br />
-                リセット
-                <br />
-                できます。
+                に戻ります。
               </NeonText>
             }
           >

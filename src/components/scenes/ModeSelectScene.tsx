@@ -12,9 +12,17 @@ export const ModeSelectScene: FC = () => {
 
   const handleModeChange = (mode: "single" | "multi") => () => {
     if (mode === "single") {
+      const isPlayerOneCPU = Math.random() < 0.5;
+
       setPlayers({
-        Player1: { name: "Human", isCPU: false },
-        Player2: { name: "Computer", isCPU: true },
+        Player1: {
+          name: isPlayerOneCPU ? "CPU" : "Human",
+          isCPU: isPlayerOneCPU,
+        },
+        Player2: {
+          name: !isPlayerOneCPU ? "CPU" : "Human",
+          isCPU: !isPlayerOneCPU,
+        },
       });
     } else {
       setPlayers({
