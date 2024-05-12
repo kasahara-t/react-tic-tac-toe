@@ -37,7 +37,6 @@ export const useGame = () => {
         updateGameAndBoard(tile);
       }, 500);
     } else {
-      // ターンが変わるたびにフラグをリセット
       return () => {
         hasCPUMoved.current = false;
       };

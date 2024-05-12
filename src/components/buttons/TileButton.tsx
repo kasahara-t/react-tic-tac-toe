@@ -37,7 +37,10 @@ export const TileButton: FC<TileButtonProps> = ({ tile }) => {
         <img
           src={state.symbol === "O" ? circleImageUrl : crossImageUrl}
           alt="Tile"
-          className={cn("w-4/5 h-4/5 object-cover")}
+          className={cn(
+            "w-4/5 h-4/5 object-cover",
+            "animate-jump animate-once animate-duration-300 animate-ease-in",
+          )}
         />
       )}
     </button>
