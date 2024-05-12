@@ -3,7 +3,7 @@ import {
   currentTurnAtom,
   gameOverAtom,
   gameResultsAtom,
-  playersState,
+  playersStateAtom,
 } from "@/game/stores/atoms";
 import { useResetAtom } from "jotai/utils";
 
@@ -12,7 +12,7 @@ export const useResetGame = () => {
   const resetBoard = useResetAtom(boardAtom);
   const resetGameOver = useResetAtom(gameOverAtom);
   const resetResults = useResetAtom(gameResultsAtom);
-  const resetPlayers = useResetAtom(playersState);
+  const resetPlayers = useResetAtom(playersStateAtom);
 
   const restartGame = () => {
     resetCurrentTurn();

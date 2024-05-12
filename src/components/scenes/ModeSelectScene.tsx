@@ -1,5 +1,5 @@
 import { useScene } from "@/game/hooks/useScene";
-import { playersState } from "@/game/stores/atoms";
+import { playersStateAtom } from "@/game/stores/atoms";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import type { FC } from "react";
@@ -8,7 +8,7 @@ import { Button } from "../ui/Button";
 
 export const ModeSelectScene: FC = () => {
   const { goToGame } = useScene();
-  const [, setPlayers] = useAtom(playersState);
+  const [, setPlayers] = useAtom(playersStateAtom);
 
   const handleModeChange = (mode: "single" | "multi") => () => {
     if (mode === "single") {

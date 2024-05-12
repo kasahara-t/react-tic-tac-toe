@@ -9,7 +9,7 @@ import {
   currentTurnAtom,
   gameOverAtom,
   gameResultsAtom,
-  playersState,
+  playersStateAtom,
 } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
@@ -21,7 +21,7 @@ export const useGame = () => {
   const [gameOver, setGameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
   const [results, setResults] = useAtom(gameResultsAtom);
-  const [players] = useAtom(playersState);
+  const [players] = useAtom(playersStateAtom);
 
   useEffect(() => {
     if (players[currentTurn.player]?.isCPU ?? false) {

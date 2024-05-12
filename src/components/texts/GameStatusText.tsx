@@ -1,13 +1,13 @@
 import { NeonText } from "@/components/ui/NeonText";
 import { useGame } from "@/game/hooks/useGame";
-import { playersState } from "@/game/stores/atoms";
+import { playersStateAtom } from "@/game/stores/atoms";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import type { FC } from "react";
 
 export const GameStatusText: FC = () => {
   const { gameOver, currentTurn } = useGame();
-  const [players] = useAtom(playersState);
+  const [players] = useAtom(playersStateAtom);
 
   const currentPlayerName = players[currentTurn.player]?.name ?? "";
 

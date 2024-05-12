@@ -1,6 +1,6 @@
 import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/game/hooks/useGame";
-import { playersState } from "@/game/stores/atoms";
+import { playersStateAtom } from "@/game/stores/atoms";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import type { FC } from "react";
@@ -8,7 +8,7 @@ import { NeonText } from "../ui/NeonText";
 
 export const LogPanel: FC = () => {
   const { results } = useGame();
-  const [players] = useAtom(playersState);
+  const [players] = useAtom(playersStateAtom);
 
   return (
     <Panel
