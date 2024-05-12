@@ -30,8 +30,8 @@ export const useGame = () => {
       return;
     }
 
+    hasCPUMoved.current = true;
     if (players[currentTurn.player]?.isCPU) {
-      hasCPUMoved.current = true;
       setTimeout(() => {
         const tile = findBestMove(currentTurn, board);
         updateGameAndBoard(tile);
