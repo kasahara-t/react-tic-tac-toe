@@ -1,6 +1,6 @@
 import type { PlayerId } from "./player";
 
 export interface GameResult {
-  winner: PlayerId;
-  winCount: number;
+  readonly winner: PlayerId;
+  readonly winCount: number;
 }

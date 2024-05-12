@@ -1,6 +1,6 @@
 export type PlayerId = "Player1" | "Player2";
 
 export interface Player {
-  name: string;
-  isCPU: boolean;
+  readonly name: string;
+  readonly isCPU: boolean;
 }
