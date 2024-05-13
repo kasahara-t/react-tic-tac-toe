@@ -1,5 +1,10 @@
 ROOT_DIR := $(shell git rev-parse --show-toplevel)
 
+# デフォルトターゲット
+.PHONY: dev
+dev: install-dependencies
+	bun run dev
+
 .PHONY: install-tools
 install-tools:
 	@while read line; do \
@@ -8,5 +13,9 @@ install-tools:
 		asdf plugin add $$lang || true; \
 		asdf install $$lang $$version; \
 		asdf local $$lang $$version; \
-	done < .tool-versions; \
-	bun install --frozen-lockfile
+	done < .tool-versions
+	
+.PHONY: install-dependencies
+install-dependencies: install-tools
+	bun install --frozen-lockfile; \
+	lefthook install
