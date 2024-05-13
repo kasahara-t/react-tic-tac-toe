@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "check": "biome check --apply ./src"
+    "check": "biome check --apply ./src",
+    "extract": "i18next-scanner --config i18next-scanner.config.cjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
@@ -33,6 +34,8 @@
     "@types/web": "^0.0.143",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.19",
+    "i18next-scanner": "^4.4.0",
+    "i18next-scanner-typescript": "^1.2.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "vite": "^5.2.0",
