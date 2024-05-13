@@ -1,8 +1,8 @@
 import "./global.css";
 import { SceneSwitcher } from "./components/scenes/SceneSwitcher";
+import "@/lib/i18n/config";
+import type { FC } from "react";
 
-function App() {
+export const App: FC = () => {
   return <SceneSwitcher />;
-}
-
-export default App;
+};
