@@ -37,5 +37,9 @@
   "WinnerIs": "{{playerName}} wins",
   "TurnOf": "Turn of {{playerName}}",
   "TurnNumber": "Turn {{turn}}",
-  "SelectGameMode": "Select mode"
+  "SelectGameMode": "Select mode",
+  "CPUName": "Computer",
+  "HumanName": "You",
+  "Player1Name": "Player 1",
+  "Player2Name": "Player 2"
 }

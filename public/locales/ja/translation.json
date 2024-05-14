@@ -37,5 +37,9 @@
   "WinnerIs": "{{playerName}}の勝利",
   "TurnOf": "{{playerName}}のターン",
   "TurnNumber": "{{turn}}ターン目",
-  "SelectGameMode": "モードを選択"
+  "SelectGameMode": "モードを選択",
+  "CPUName": "CPU",
+  "HumanName": "あなた",
+  "Player1Name": "プレイヤー1",
+  "Player2Name": "プレイヤー2"
 }
