@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+import { ToggleLangButton } from "../buttons/ToggleLangButton";
 import { AppBackground } from "../ui/AppBackground";
 import { Button } from "../ui/Button";
 
@@ -46,6 +47,7 @@ export const ModeSelectScene: FC = () => {
           <Button variant="panel" onClick={handleModeChange("multi")}>
             {t("MultiPlay")}
           </Button>
+          <ToggleLangButton />
         </div>
       </div>
     </AppBackground>
