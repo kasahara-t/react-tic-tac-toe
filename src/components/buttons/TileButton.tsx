@@ -1,19 +1,20 @@
 import circleImageUrl from "@/assets/circle.png";
 import crossImageUrl from "@/assets/cross.png";
 import { useGame } from "@/game/hooks/useGame";
+import { useUpdateGame } from "@/game/hooks/useUpdateGame";
 import { canClickTile, getTileState } from "@/game/logics/tileLogic";
-import { playersStateAtom } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { cn } from "@/lib/utils";
-import { useAtom } from "jotai";
 import type { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface TileButtonProps {
   tile: Tile;
 }
 export const TileButton: FC<TileButtonProps> = ({ tile }) => {
-  const { currentTurn, board, gameOver, updateGameAndBoard } = useGame();
-  const [players] = useAtom(playersStateAtom);
+  const { currentTurn, board, gameOver, players } = useGame();
+  const { updateGameAndBoard } = useUpdateGame();
+  const { t } = useTranslation();
 
   const state = getTileState(currentTurn, board.size, tile);
   const canClick =
@@ -36,7 +37,7 @@ export const TileButton: FC<TileButtonProps> = ({ tile }) => {
       {state.symbol && (
         <img
           src={state.symbol === "O" ? circleImageUrl : crossImageUrl}
-          alt="Tile"
+          alt={t("TileButton.Alt", { x: tile.x, y: tile.y })}
           className={cn(
             "w-4/5 h-4/5 object-cover",
             "animate-jump animate-once animate-duration-300 animate-ease-in",

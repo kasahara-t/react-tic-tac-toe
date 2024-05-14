@@ -9,12 +9,14 @@ import {
 import { useResetGame } from "@/game/hooks/useResetGame";
 import { useScene } from "@/game/hooks/useScene";
 import type { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
 
 export const GameResetButton: FC = () => {
   const { resetGame } = useResetGame();
   const { goToModeSelect } = useScene();
+  const { t } = useTranslation();
 
   const handleButtonClick = () => {
     resetGame();
@@ -26,23 +28,17 @@ export const GameResetButton: FC = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <HelpOverlay
-            helpText={
-              <NeonText>
-                モード選択画面
-                <br />
-                に戻ります。
-              </NeonText>
-            }
+            helpText={<NeonText>{t("GameResetButton.Help")}</NeonText>}
           >
             <ImageButton
               imgPath={resetButtonImageUrl}
-              imgAlt="Game Reset Button"
+              imgAlt={t("GameResetButton.Alt")}
               onClick={handleButtonClick}
             />
           </HelpOverlay>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Game Reset</p>
+          <p>{t("GameResetButton.Tooltip")}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
