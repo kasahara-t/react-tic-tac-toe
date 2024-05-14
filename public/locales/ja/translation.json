@@ -1,4 +1,37 @@
 {
   "SinglePlay": "一人プレイ",
-  "MultiPlay": "二人プレイ"
+  "MultiPlay": "二人プレイ",
+  "GameResetButton": {
+    "Help": "モード選択画面\nに戻ります。",
+    "Alt": "モード選択画面に戻る",
+    "Tooltip": "モード選択画面に戻る"
+  },
+  "HelpButton": {
+    "Alt": "ヘルプを表示する",
+    "Tooltip": "ヘルプを表示する"
+  },
+  "RestartButton": {
+    "Help": "クリックするとゲームが開始します",
+    "Button": "クリックで開始"
+  },
+  "SettingButton": {
+    "Help": "ゲームの設定を\n変更できます。",
+    "Alt": "設定を変更する",
+    "Tooltip": "設定を変更する"
+  },
+  "TileButton": {
+    "Alt": "X座標が{{x}}、Y座標が{{y}}のタイル"
+  },
+  "BoardPanel": {
+    "Help": "相手より先にタテ・ヨコ・ナナメいずれかのラインを先に揃えたら勝利です。\n\n一度取ったマスの表示ターンは5ターンです。\n\n表示ターンに気をつけて、相手より先に ラインを完成させましょう"
+  },
+  "LogPanel": {
+    "Help": "勝利回数などの\nシステムチャットが表示\nされます。\n\nゲームをリセットすると\nログもリセットされます",
+    "Title": "対戦履歴"
+  },
+  "ResultLog": "{{winner}}が{{count}}回目の勝利",
+  "WinnerIs": "{{playerName}}の勝利",
+  "TurnOf": "{{playerName}}のターン",
+  "TurnNumber": "{{turn}}ターン目",
+  "SelectGameMode": "モードを選択"
 }

@@ -8,12 +8,14 @@ import {
 import { useHelp } from "@/game/hooks/useHelp";
 import { Tooltip } from "@radix-ui/react-tooltip";
 import type { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 export const HelpButton: FC = () => {
   const { toggleHelpMode } = useHelp();
   const handleButtonClick = () => {
     toggleHelpMode();
   };
+  const { t } = useTranslation();
 
   return (
     <TooltipProvider>
@@ -21,12 +23,12 @@ export const HelpButton: FC = () => {
         <TooltipTrigger asChild>
           <ImageButton
             imgPath={helpImgUrl}
-            imgAlt="Help Button"
+            imgAlt={t("HelpButton.Alt")}
             onClick={handleButtonClick}
           />
         </TooltipTrigger>
         <TooltipContent>
-          <p>Help</p>
+          <p>{t("HelpButton.Tooltip")}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

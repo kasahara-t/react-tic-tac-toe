@@ -38,7 +38,7 @@ export const ModeSelectScene: FC = () => {
   return (
     <AppBackground>
       <div className={cn("flex flex-col gap-4")}>
-        <h1 className={cn("text-4xl")}>Select a mode</h1>
+        <h1 className={cn("text-4xl")}>{t("SelectGameMode")}</h1>
         <div className={cn("flex flex-col gap-2")}>
           <Button variant="panel" onClick={handleModeChange("single")}>
             {t("SinglePlay")}

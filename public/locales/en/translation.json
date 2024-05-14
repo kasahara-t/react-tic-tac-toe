@@ -1,4 +1,37 @@
 {
-  "SinglePlay": "",
-  "MultiPlay": ""
+  "SinglePlay": "Single Play",
+  "MultiPlay": "Multi Play",
+  "GameResetButton": {
+    "Help": "Return to mode selection screen.",
+    "Alt": "Return to mode selection screen",
+    "Tooltip": "Return to mode selection screen"
+  },
+  "HelpButton": {
+    "Alt": "Show help",
+    "Tooltip": "Show help"
+  },
+  "RestartButton": {
+    "Help": "Click to start the game",
+    "Button": "Click to start"
+  },
+  "SettingButton": {
+    "Help": "You can change the game settings.",
+    "Alt": "Change settings",
+    "Tooltip": "Change settings"
+  },
+  "TileButton": {
+    "Alt": "Tile with X coordinate {{x}} and Y coordinate {{y}}"
+  },
+  "BoardPanel": {
+    "Help": "The first to complete a line vertically, horizontally, or diagonally wins.\n\nThe display turn for a tile once taken is 5 turns.\n\nPay attention to the display turn and complete the line before your opponent."
+  },
+  "LogPanel": {
+    "Help": "System chats such as the number of victories will be displayed.\n\nThe log will be reset when the game is reset.",
+    "Title": "Match History"
+  },
+  "ResultLog": "{{winner}} wins for the {{count}}th time",
+  "WinnerIs": "{{playerName}} wins",
+  "TurnOf": "Turn of {{playerName}}",
+  "TurnNumber": "Turn {{turn}}",
+  "SelectGameMode": "Select mode"
 }
