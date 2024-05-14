@@ -1,15 +1,13 @@
 import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/game/hooks/useGame";
-import { playersStateAtom } from "@/game/stores/atoms";
 import { cn } from "@/lib/utils";
-import { useAtom } from "jotai";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+import { ResultLogText } from "../texts/ResultLogText";
 import { NeonText } from "../ui/NeonText";
 
 export const LogPanel: FC = () => {
   const { results } = useGame();
-  const [players] = useAtom(playersStateAtom);
   const { t } = useTranslation();
 
   return (
@@ -23,17 +21,14 @@ export const LogPanel: FC = () => {
         </h3>
       </NeonText>
       {results.map((result, i) => (
-        <NeonText
+        <div
           key={`${result.winner}-${result.winCount}`}
           className={cn("py-2", {
             "border-t-2 border-white border-opacity-10": i > 0,
           })}
         >
-          {t("ResultLog", {
-            winner: players[result.winner]?.name ?? "",
-            count: result.winCount,
-          })}
-        </NeonText>
+          <ResultLogText result={result} />
+        </div>
       ))}
     </Panel>
   );
