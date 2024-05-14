@@ -1,6 +1,10 @@
 {
-  "SinglePlay": "Single Play",
-  "MultiPlay": "Multi Play",
+  "SinglePlayButton": {
+    "Button": "Single Play"
+  },
+  "MultiPlayButton": {
+    "Button": "Multi Play"
+  },
   "GameResetButton": {
     "Help": "Return to mode selection screen.",
     "Alt": "Return to mode selection screen",

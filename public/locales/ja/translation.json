@@ -1,6 +1,10 @@
 {
-  "SinglePlay": "一人プレイ",
-  "MultiPlay": "二人プレイ",
+  "SinglePlayButton": {
+    "Button": "一人プレイ"
+  },
+  "MultiPlayButton": {
+    "Button": "二人プレイ"
+  },
   "GameResetButton": {
     "Help": "モード選択画面\nに戻ります。",
     "Alt": "モード選択画面に戻る",
