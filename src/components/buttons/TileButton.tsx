@@ -13,7 +13,7 @@ export interface TileButtonProps {
 }
 export const TileButton: FC<TileButtonProps> = ({ tile }) => {
   const { currentTurn, board, gameOver, players } = useGame();
-  const { updateGameAndBoard } = useUpdateGame();
+  const { updateBoardByPlayer } = useUpdateGame();
   const { t } = useTranslation();
 
   const state = getTileState(currentTurn, board.size, tile);
@@ -22,7 +22,7 @@ export const TileButton: FC<TileButtonProps> = ({ tile }) => {
 
   const handleTileClick = () => {
     if (!canClick) return;
-    updateGameAndBoard(tile);
+    updateBoardByPlayer(tile);
   };
 
   return (

@@ -9,11 +9,9 @@ import {
   currentTurnAtom,
   gameOverAtom,
   gameResultsAtom,
-  playersStateAtom,
 } from "@/game/stores/atoms";
 import type { Tile } from "@/game/types/tile";
 import { useAtom } from "jotai";
-import { useEffect, useRef } from "react";
 import { incrementTurn } from "../logics/turnLogic";
 
 export const useUpdateGame = () => {
@@ -21,32 +19,8 @@ export const useUpdateGame = () => {
   const [gameOver, setGameOver] = useAtom(gameOverAtom);
   const [board, setBoard] = useAtom(boardAtom);
   const [results, setResults] = useAtom(gameResultsAtom);
-  const [players] = useAtom(playersStateAtom);
 
-  const hasCPUMoved = useRef(false);
-
-  useEffect(() => {
-    if (gameOver || hasCPUMoved.current) {
-      return;
-    }
-
-    hasCPUMoved.current = true;
-    if (players[currentTurn.player]?.isCPU) {
-      setTimeout(() => {
-        const tile = findBestMove(currentTurn, board);
-        updateGameAndBoard(tile);
-        hasCPUMoved.current = false;
-      }, 500);
-    } else {
-      return () => {
-        hasCPUMoved.current = false;
-      };
-    }
-  }, [currentTurn, gameOver, board, players]);
-
-  const updateGameAndBoard = (tile: Tile) => {
-    if (gameOver) return;
-
+  const updateBoard = (tile: Tile) => {
     const newBoard = updateTileStatus(currentTurn, board, tile);
     setBoard(newBoard);
 
@@ -61,7 +35,19 @@ export const useUpdateGame = () => {
     }
   };
 
+  const updateBoardByCPU = () => {
+    if (gameOver) return;
+    const tile = findBestMove(currentTurn, board);
+    updateBoard(tile);
+  };
+
+  const updateBoardByPlayer = (tile: Tile) => {
+    if (gameOver) return;
+    updateBoard(tile);
+  };
+
   return {
-    updateGameAndBoard,
+    updateBoardByPlayer,
+    updateBoardByCPU,
   };
 };
