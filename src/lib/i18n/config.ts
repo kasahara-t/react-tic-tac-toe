@@ -14,7 +14,7 @@ i18n
       caches: ["localStorage", "cookie"],
     },
     backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json", // ロケールファイルのパス
+      loadPath: "./locales/{{lng}}/{{ns}}.json", // ロケールファイルのパス
     },
   });
 
