@@ -8,7 +8,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "ja", // デフォルトの言語を設定
+    fallbackLng: "en", // デフォルトの言語を設定
     detection: {
       order: ["queryString", "cookie", "localStorage", "navigator", "htmlTag"],
       caches: ["localStorage", "cookie"],
