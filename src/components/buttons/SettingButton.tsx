@@ -6,10 +6,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
+import { preloadImages } from "@/lib/utils";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
+
+preloadImages(settingImageUrl);
 
 export const SettingButton: FC = () => {
   const { t } = useTranslation();

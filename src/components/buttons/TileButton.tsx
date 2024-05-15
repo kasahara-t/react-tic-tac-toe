@@ -4,9 +4,11 @@ import { useGame } from "@/game/hooks/useGame";
 import { useUpdateGame } from "@/game/hooks/useUpdateGame";
 import { canClickTile, getTileState } from "@/game/logics/tileLogic";
 import type { Tile } from "@/game/types/tile";
-import { cn } from "@/lib/utils";
+import { cn, preloadImages } from "@/lib/utils";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+
+preloadImages(circleImageUrl, crossImageUrl);
 
 export interface TileButtonProps {
   tile: Tile;

@@ -8,10 +8,13 @@ import {
 } from "@/components/ui/Tooltip";
 import { useResetGame } from "@/game/hooks/useResetGame";
 import { useScene } from "@/game/hooks/useScene";
+import { preloadImages } from "@/lib/utils";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { HelpOverlay } from "../ui/HelpOverlay";
 import { NeonText } from "../ui/NeonText";
+
+preloadImages(resetButtonImageUrl);
 
 export const GameResetButton: FC = () => {
   const { resetGame } = useResetGame();

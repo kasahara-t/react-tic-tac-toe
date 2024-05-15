@@ -7,3 +7,10 @@ export const getRandomElement = <T>(items: T[]): T | undefined => {
   const index = Math.floor(Math.random() * items.length);
   return items[index];
 };
+
+export const preloadImages = (...images: string[]) => {
+  for (const src of images) {
+    const img = new Image();
+    img.src = src;
+  }
+};
