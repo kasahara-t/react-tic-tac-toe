@@ -7,5 +7,10 @@ Modern React-based Tic-Tac-Toe SPA using Bun and Vite
 
 ## Setup
 ```bash
-make install-dependencies
+make setup
+```
+
+## Run
+```bash
+make dev
 ```
