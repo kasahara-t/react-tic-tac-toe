@@ -10,14 +10,14 @@ pre-commit:
           biome check --apply --write $files
           git add $files
         fi
-      working_directory: packages/app
+      root: packages/app/
 
 pre-push:
   parallel: true
   commands:
     build:
       run: bun run build
-      working_directory: packages/app
+      root: packages/app/
     test:
       run: bun test
-      working_directory: packages/app
+      root: packages/app/
