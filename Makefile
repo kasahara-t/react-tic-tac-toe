@@ -1,8 +1,10 @@
 ROOT_DIR := $(shell git rev-parse --show-toplevel)
+APP_DIR := $(ROOT_DIR)/packages/app
 
 # デフォルトターゲット
 .PHONY: dev
-dev: install-dependencies
+dev: install
+	cd $(APP_DIR); \
 	bun run dev
 
 .PHONY: install-tools
@@ -16,6 +18,26 @@ install-tools:
 	done < .tool-versions
 	
 .PHONY: install-dependencies
-install-dependencies: install-tools
-	bun install --frozen-lockfile; \
+install-lefthook: install-tools
 	lefthook install
+	
+.PHONY: install-packages
+install-packages: install-tools
+	cd $(APP_DIR); \
+	bun install --frozen-lockfile
+	
+.PHONY: install
+install: install-lefthook install-packages
+	@echo "Install completed."
+	
+$(APP_DIR)/.env:
+	cp $(APP_DIR)/.env.template $(APP_DIR)/.env
+
+.PHONY: setup
+setup: install $(APP_DIR)/.env
+	@echo "Setup completed."
+	
+.PHONY: clean
+clean:
+	rm -rf $(APP_DIR)/node_modules
+	rm -rf $(APP_DIR)/.env
