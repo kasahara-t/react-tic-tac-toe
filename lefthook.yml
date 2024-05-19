@@ -16,8 +16,7 @@ pre-push:
   parallel: true
   commands:
     build:
-      run: bun run build
-      root: packages/app/
+      run: make build
     test:
       run: bun test
       root: packages/app/

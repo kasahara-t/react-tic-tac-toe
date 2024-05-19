@@ -5,6 +5,14 @@ APP_DIR := $(ROOT_DIR)/packages/app
 .PHONY: dev
 dev: install
 	bun run --filter './packages/app' dev
+	
+.PHONY: build
+build: install
+	bun run --filter './packages/app' build
+	
+.PHONY: test
+test: install
+	bun test
 
 .PHONY: install-tools
 install-tools:

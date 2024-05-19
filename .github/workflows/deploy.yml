@@ -38,7 +38,7 @@ jobs:
         run: bun test
 
       - name: Build
-        run: bun run build
+        run: bun run --filter './packages/app' build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
