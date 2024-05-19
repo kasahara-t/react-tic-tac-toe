@@ -1,6 +1,7 @@
 {
   "name": "@react-tic-tac-toe/base",
   "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
     "@tsconfig/bun": "^1.0.5",
     "@types/bun": "latest",
     "@types/web": "^0.0.145"

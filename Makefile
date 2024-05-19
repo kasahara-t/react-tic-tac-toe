@@ -14,6 +14,10 @@ build: install
 test: install
 	bun test
 
+.PHONY: format
+format: install
+	bun run --filter './packages/app' check
+
 .PHONY: install-tools
 install-tools:
 	@while read line; do \
@@ -30,7 +34,7 @@ install-lefthook: install-tools
 	
 .PHONY: install-packages
 install-packages: install-tools
-	bun install --frozen-lockfile
+	bun install
 	
 .PHONY: install
 install: install-lefthook install-packages

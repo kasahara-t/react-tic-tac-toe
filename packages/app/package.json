@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@react-tic-tac-toe/base": "workspace:*",
-    "@biomejs/biome": "1.7.2",
     "@types/node": "^20.12.11",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
