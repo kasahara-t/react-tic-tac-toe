@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "check": "biome check --apply ./src",
+    "lint": "biome lint --apply ./src",
+    "format": "biome check --apply ./src",
     "extract": "i18next-scanner --config i18next-scanner.config.cjs"
   },
   "dependencies": {

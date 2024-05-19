@@ -36,6 +36,9 @@ jobs:
 
       - name: Run Tests
         run: bun test
+          
+      - name: Run Lint
+        run: bun run --filter './packages/app' lint
 
       - name: Build
         run: bun run --filter './packages/app' build

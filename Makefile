@@ -13,10 +13,14 @@ build: install
 .PHONY: test
 test: install
 	bun test
+	
+.PHONY: lint
+lint: install
+	bun run --filter './packages/app' lint
 
 .PHONY: format
 format: install
-	bun run --filter './packages/app' check
+	bun run --filter './packages/app' format
 
 .PHONY: install-tools
 install-tools:
