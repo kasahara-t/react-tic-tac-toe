@@ -37,5 +37,6 @@ setup: install $(APP_DIR)/.env
 	
 .PHONY: clean
 clean:
+	rm -rf $(ROOT_DIR)/node_modules
 	rm -rf $(APP_DIR)/node_modules
 	rm -rf $(APP_DIR)/.env
