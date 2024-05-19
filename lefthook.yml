@@ -18,5 +18,4 @@ pre-push:
     build:
       run: make build
     test:
-      run: bun test
-      root: packages/app/
+      run: make test
