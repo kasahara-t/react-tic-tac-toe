@@ -55,4 +55,5 @@ setup: install $(APP_DIR)/.env
 clean:
 	rm -rf $(ROOT_DIR)/node_modules
 	rm -rf $(APP_DIR)/node_modules
+	rm -rf $(APP_DIR)/dist
 	rm -rf $(APP_DIR)/.env
