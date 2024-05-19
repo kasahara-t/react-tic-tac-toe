@@ -1,3 +1,4 @@
+
 pre-commit:
   parallel: true
   commands:
@@ -6,14 +7,15 @@ pre-commit:
       run: |
         files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|jsx|tsx)$')
         if [ -n "$files" ]; then
-          biome check --apply --write $files
+          biome check --apply --write --staged
           git add $files
         fi
+      root: packages/app/
 
 pre-push:
   parallel: true
   commands:
     build:
-      run: bun run build
+      run: make build
     test:
-      run: bun test
+      run: make test

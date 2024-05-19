@@ -1,0 +1,46 @@
+{
+  "name": "@react-tic-tac-toe/app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "biome lint --apply ./src",
+    "format": "biome check --apply ./src",
+    "extract": "i18next-scanner --config i18next-scanner.config.cjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@t3-oss/env-core": "^0.10.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "firebase": "^10.12.0",
+    "i18next": "^23.11.4",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.5.1",
+    "jotai": "^2.8.0",
+    "lucide-react": "^0.378.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.1.1",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-animated": "^1.0.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@react-tic-tac-toe/base": "workspace:*",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.19",
+    "i18next-scanner": "^4.4.0",
+    "i18next-scanner-typescript": "^1.2.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.0",
+    "vite-tsconfig-paths": "^4.3.2"
+  }
+}

@@ -36,14 +36,17 @@ jobs:
 
       - name: Run Tests
         run: bun test
+          
+      - name: Run Lint
+        run: bun run --filter './packages/app' lint
 
       - name: Build
-        run: bun run build
+        run: bun run --filter './packages/app' build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: packages/app/dist
   
   deploy:
     needs: build

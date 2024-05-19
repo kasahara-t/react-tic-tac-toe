@@ -1,0 +1,16 @@
+{
+  "extends": "@react-tic-tac-toe/base/tsconfig.json",
+ 
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
