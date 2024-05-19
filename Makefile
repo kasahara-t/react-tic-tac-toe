@@ -4,8 +4,7 @@ APP_DIR := $(ROOT_DIR)/packages/app
 # デフォルトターゲット
 .PHONY: dev
 dev: install
-	cd $(APP_DIR); \
-	bun run dev
+	bun run --filter './packages/app' dev
 
 .PHONY: install-tools
 install-tools:
@@ -23,7 +22,6 @@ install-lefthook: install-tools
 	
 .PHONY: install-packages
 install-packages: install-tools
-	cd $(APP_DIR); \
 	bun install --frozen-lockfile
 	
 .PHONY: install

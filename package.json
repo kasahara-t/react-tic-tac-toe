@@ -1,0 +1,5 @@
+{
+  "name": "react-tic-tac-toe",
+  "private": true,
+  "workspaces": ["packages/*"]
+}
