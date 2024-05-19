@@ -1,0 +1,11 @@
+{
+  "name": "@react-tic-tac-toe/base",
+  "devDependencies": {
+    "@tsconfig/bun": "^1.0.5",
+    "@types/bun": "latest",
+    "@types/web": "^0.0.145"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

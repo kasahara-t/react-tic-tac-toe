@@ -1,17 +1,8 @@
 {
-  "extends": "@tsconfig/bun/tsconfig.json",
+  "extends": "@react-tic-tac-toe/base/tsconfig.json",
  
   "compilerOptions": {
-    "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "types": ["web", "bun-types"],
-
-    /* Bundler mode */
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-
-    /* Paths */
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -21,6 +12,5 @@
   },
 
   "include": ["src"],
-
   "references": [{ "path": "./tsconfig.node.json" }]
 }
