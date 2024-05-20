@@ -10,7 +10,6 @@ pre-commit:
           biome check --apply --write --staged
           git add $files
         fi
-      root: packages/app/
 
 pre-push:
   parallel: true
