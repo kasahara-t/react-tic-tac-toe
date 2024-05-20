@@ -1,6 +1,6 @@
 import "./global.css";
 import { SceneSwitcher } from "./components/scenes/SceneSwitcher";
-import "@/lib/i18n/config";
+import "@/shared/i18n/config";
 import i18next from "i18next";
 import type { FC } from "react";
 
