@@ -1,7 +1,7 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
-export const env = createEnv({
+export const clientEnv = createEnv({
   clientPrefix: "VITE_", // クライアント側で使う環境変数のプレフィックス
   client: {
     VITE_FIREBASE_API_KEY: z.string().min(1),
