@@ -1,5 +1,5 @@
 import { useHelp } from "@/game/hooks/useHelp";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils/helpers";
 import { type FC, type HtmlHTMLAttributes, forwardRef } from "react";
 
 export interface HelpOverlayProps extends HtmlHTMLAttributes<HTMLDivElement> {

@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
-import { preloadImages } from "@/lib/utils";
+import { preloadImages } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { HelpOverlay } from "../ui/HelpOverlay";

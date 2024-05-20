@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils/helpers";
 import { Slot } from "@radix-ui/react-slot";
 import { type HtmlHTMLAttributes, forwardRef } from "react";
 

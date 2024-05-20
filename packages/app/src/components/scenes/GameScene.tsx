@@ -5,7 +5,7 @@ import { LogPanel } from "@/components/panels/LogPanel";
 import { GameStatusText } from "@/components/texts/GameStatusText";
 import { GameTurnText } from "@/components/texts/GameTurnText";
 import { useGame } from "@/game/hooks/useGame";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { AppBackground } from "../ui/AppBackground";
 

@@ -2,7 +2,7 @@ import { TileButton } from "@/components/buttons/TileButton";
 import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/game/hooks/useGame";
 import { useUpdateGame } from "@/game/hooks/useUpdateGame";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils/helpers";
 import { type FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { NeonText } from "../ui/NeonText";

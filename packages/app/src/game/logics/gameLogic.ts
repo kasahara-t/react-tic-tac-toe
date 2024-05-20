@@ -1,6 +1,6 @@
 import type { PlayerId } from "@/game/types/player";
 import type { GameResult } from "@/game/types/result";
-import { getRandomElement } from "@/lib/utils";
+import { getRandomElement } from "@/shared/utils/helpers";
 import type { Board } from "../types/board";
 import type { Tile } from "../types/tile";
 import type { Turn } from "../types/turn";

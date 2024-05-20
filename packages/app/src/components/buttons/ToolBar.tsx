@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { GameResetButton } from "./GameResetButton";
 import { HelpButton } from "./HelpButton";

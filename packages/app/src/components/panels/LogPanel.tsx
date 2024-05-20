@@ -1,6 +1,6 @@
 import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/game/hooks/useGame";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { ResultLogText } from "../texts/ResultLogText";
