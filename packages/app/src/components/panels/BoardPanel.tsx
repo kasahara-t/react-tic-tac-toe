@@ -1,11 +1,11 @@
 import { TileButton } from "@/components/buttons/TileButton";
-import { Panel } from "@/components/ui/Panel";
 import { useGame } from "@/game/hooks/useGame";
 import { useUpdateGame } from "@/game/hooks/useUpdateGame";
+import { Panel } from "@/shared/ui/Panel";
 import { cn } from "@/shared/utils/helpers";
 import { type FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { NeonText } from "../ui/NeonText";
+import { NeonText } from "../../shared/ui/NeonText";
 
 export const BoardPanel: FC = () => {
   const { board, currentTurn, players } = useGame();

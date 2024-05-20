@@ -7,7 +7,7 @@ import { GameTurnText } from "@/components/texts/GameTurnText";
 import { useGame } from "@/game/hooks/useGame";
 import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
-import { AppBackground } from "../ui/AppBackground";
+import { AppBackground } from "../../shared/ui/AppBackground";
 
 export const GameScene: FC = () => {
   const { gameOver } = useGame();

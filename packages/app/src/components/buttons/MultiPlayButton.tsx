@@ -4,7 +4,7 @@ import { analytics } from "@/shared/libs/firebase";
 import { logEvent } from "firebase/analytics";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "../ui/Button";
+import { Button } from "../../shared/ui/Button";
 
 export const MultiPlayButton: FC = () => {
   const { goToGame } = useScene();

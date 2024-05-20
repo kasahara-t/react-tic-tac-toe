@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "../ui/Button";
+import { Button } from "../../shared/ui/Button";
 
 export const ToggleLangButton: FC = () => {
   const { i18n } = useTranslation();
