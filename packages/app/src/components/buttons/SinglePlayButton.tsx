@@ -1,6 +1,6 @@
 import { useScene } from "@/game/hooks/useScene";
 import { useUpdatePlayers } from "@/game/hooks/useUpdatePlayers";
-import { analytics } from "@/shared/firebase/config";
+import { analytics } from "@/shared/libs/firebase/config";
 import { logEvent } from "firebase/analytics";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
