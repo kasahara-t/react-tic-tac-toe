@@ -1,5 +1,7 @@
 import settingImageUrl from "@/assets/setting.png";
+import { HelpOverlay } from "@/shared/ui/HelpOverlay";
 import { ImageButton } from "@/shared/ui/ImageButton";
+import { NeonText } from "@/shared/ui/NeonText";
 import {
   Tooltip,
   TooltipContent,
@@ -9,8 +11,6 @@ import {
 import { preloadImages } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { HelpOverlay } from "../../shared/ui/HelpOverlay";
-import { NeonText } from "../../shared/ui/NeonText";
 
 preloadImages(settingImageUrl);
 

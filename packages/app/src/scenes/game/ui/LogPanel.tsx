@@ -1,10 +1,10 @@
 import { useGame } from "@/game/hooks/useGame";
+import { NeonText } from "@/shared/ui/NeonText";
 import { Panel } from "@/shared/ui/Panel";
 import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { NeonText } from "../../shared/ui/NeonText";
-import { ResultLogText } from "../texts/ResultLogText";
+import { ResultLogText } from "./ResultLogText";
 
 export const LogPanel: FC = () => {
   const { results } = useGame();

@@ -1,13 +1,13 @@
-import { RestartButton } from "@/components/buttons/RestartButton";
-import { ToolBar } from "@/components/buttons/ToolBar";
-import { BoardPanel } from "@/components/panels/BoardPanel";
-import { LogPanel } from "@/components/panels/LogPanel";
-import { GameStatusText } from "@/components/texts/GameStatusText";
-import { GameTurnText } from "@/components/texts/GameTurnText";
 import { useGame } from "@/game/hooks/useGame";
 import { AppBackground } from "@/shared/ui/AppBackground";
 import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
+import { BoardPanel } from "./BoardPanel";
+import { GameStatusText } from "./GameStatusText";
+import { GameTurnText } from "./GameTurnText";
+import { LogPanel } from "./LogPanel";
+import { RestartButton } from "./RestartButton";
+import { ToolBar } from "./ToolBar";
 
 export const GameScene: FC = () => {
   const { gameOver } = useGame();

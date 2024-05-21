@@ -1,10 +1,10 @@
-import { MultiPlayButton } from "@/components/buttons/MultiPlayButton";
-import { SinglePlayButton } from "@/components/buttons/SinglePlayButton";
-import { ToggleLangButton } from "@/components/buttons/ToggleLangButton";
 import { AppBackground } from "@/shared/ui/AppBackground";
 import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+import { MultiPlayButton } from "./MultiPlayButton";
+import { SinglePlayButton } from "./SinglePlayButton";
+import { ToggleLangButton } from "./ToggleLangButton";
 
 export const ModeSelectScene: FC = () => {
   const { t } = useTranslation();

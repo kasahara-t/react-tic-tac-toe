@@ -1,9 +1,9 @@
 import { useResetGame } from "@/game/hooks/useResetGame";
 import { Button } from "@/shared/ui/Button";
+import { HelpOverlay } from "@/shared/ui/HelpOverlay";
+import { NeonText } from "@/shared/ui/NeonText";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { HelpOverlay } from "../../shared/ui/HelpOverlay";
-import { NeonText } from "../../shared/ui/NeonText";
 
 export const RestartButton: FC = () => {
   const { restartGame } = useResetGame();

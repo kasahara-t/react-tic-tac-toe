@@ -1,6 +1,6 @@
 import { useScene } from "@/game/hooks/useScene";
-import { GameScene } from "@/scenes/GameScene";
-import { ModeSelectScene } from "@/scenes/ModeSelectScene";
+import { GameScene } from "@/scenes/game/ui/GameScene";
+import { ModeSelectScene } from "@/scenes/mode-select/ui/ModeSelectScene";
 import type { FC } from "react";
 
 export const SceneSwitcher: FC = () => {
