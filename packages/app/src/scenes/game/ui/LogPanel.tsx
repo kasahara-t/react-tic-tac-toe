@@ -4,7 +4,7 @@ import { Panel } from "@/shared/ui/Panel";
 import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { ResultLogText } from "./ResultLogText";
+import { ResultLog } from "./ResultLog";
 
 export const LogPanel: FC = () => {
   const { results } = useGame();
@@ -27,7 +27,7 @@ export const LogPanel: FC = () => {
             "border-t-2 border-white border-opacity-10": i > 0,
           })}
         >
-          <ResultLogText result={result} />
+          <ResultLog result={result} />
         </div>
       ))}
     </Panel>

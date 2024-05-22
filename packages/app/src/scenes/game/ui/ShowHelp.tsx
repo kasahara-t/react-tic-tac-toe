@@ -13,12 +13,13 @@ import { useTranslation } from "react-i18next";
 
 preloadImages(helpImgUrl);
 
-export const HelpButton: FC = () => {
+export const ShowHelp: FC = () => {
   const { toggleHelpMode } = useHelp();
-  const handleButtonClick = () => {
+  const { t } = useTranslation();
+
+  const handleClick = () => {
     toggleHelpMode();
   };
-  const { t } = useTranslation();
 
   return (
     <TooltipProvider>
@@ -27,7 +28,7 @@ export const HelpButton: FC = () => {
           <ImageButton
             imgPath={helpImgUrl}
             imgAlt={t("HelpButton.Alt")}
-            onClick={handleButtonClick}
+            onClick={handleClick}
           />
         </TooltipTrigger>
         <TooltipContent>

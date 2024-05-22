@@ -6,12 +6,12 @@ import { logEvent } from "firebase/analytics";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 
-export const SinglePlayButton: FC = () => {
+export const SinglePlay: FC = () => {
   const { goToGame } = useScene();
   const { t } = useTranslation();
   const { setSinglePlayer } = useUpdatePlayers();
 
-  const handleButtonClick = () => {
+  const handleClick = () => {
     const isPlayerOneCPU = Math.random() < 0.5;
     setSinglePlayer(isPlayerOneCPU);
     goToGame();
@@ -19,7 +19,7 @@ export const SinglePlayButton: FC = () => {
   };
 
   return (
-    <Button variant="panel" onClick={handleButtonClick}>
+    <Button variant="panel" onClick={handleClick}>
       {t("SinglePlayButton.Button")}
     </Button>
   );

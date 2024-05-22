@@ -13,7 +13,7 @@ preloadImages(circleImageUrl, crossImageUrl);
 export interface TileButtonProps {
   tile: Tile;
 }
-export const TileButton: FC<TileButtonProps> = ({ tile }) => {
+export const BoardCell: FC<TileButtonProps> = ({ tile }) => {
   const { currentTurn, board, gameOver, players } = useGame();
   const { updateBoardByPlayer } = useUpdateGame();
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ export const TileButton: FC<TileButtonProps> = ({ tile }) => {
   const canClick =
     canClickTile(state) && !players[currentTurn.player]?.isCPU && !gameOver;
 
-  const handleTileClick = () => {
+  const handleClick = () => {
     if (!canClick) return;
     updateBoardByPlayer(tile);
   };
@@ -34,7 +34,7 @@ export const TileButton: FC<TileButtonProps> = ({ tile }) => {
         "opacity-50": state.turnsLeft === 1,
         "cursor-default": !canClick,
       })}
-      onClick={handleTileClick}
+      onClick={handleClick}
     >
       {state.symbol && (
         <img

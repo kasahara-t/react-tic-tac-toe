@@ -2,15 +2,15 @@ import { Button } from "@/shared/ui/Button";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 
-export const ToggleLangButton: FC = () => {
+export const ToggleLang: FC = () => {
   const { i18n } = useTranslation();
 
-  const handleButtonClick = () => {
+  const handleClick = () => {
     i18n.changeLanguage(i18n.language === "en" ? "ja" : "en");
   };
 
   return (
-    <Button variant="panel" onClick={handleButtonClick}>
+    <Button variant="panel" onClick={handleClick}>
       {i18n.language === "en" ? "日本語" : "English"}
     </Button>
   );

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 export interface ResultLogTextProps {
   result: GameResult;
 }
-export const ResultLogText: FC<ResultLogTextProps> = ({ result }) => {
+export const ResultLog: FC<ResultLogTextProps> = ({ result }) => {
   const { players } = useGame();
   const { t } = useTranslation();
 

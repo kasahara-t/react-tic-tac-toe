@@ -16,12 +16,12 @@ import { useTranslation } from "react-i18next";
 
 preloadImages(resetButtonImageUrl);
 
-export const GameResetButton: FC = () => {
+export const ResetGame: FC = () => {
   const { resetGame } = useResetGame();
   const { goToModeSelect } = useScene();
   const { t } = useTranslation();
 
-  const handleButtonClick = () => {
+  const handleClick = () => {
     resetGame();
     goToModeSelect();
   };
@@ -36,7 +36,7 @@ export const GameResetButton: FC = () => {
             <ImageButton
               imgPath={resetButtonImageUrl}
               imgAlt={t("GameResetButton.Alt")}
-              onClick={handleButtonClick}
+              onClick={handleClick}
             />
           </HelpOverlay>
         </TooltipTrigger>

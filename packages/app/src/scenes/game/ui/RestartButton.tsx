@@ -5,18 +5,18 @@ import { NeonText } from "@/shared/ui/NeonText";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 
-export const RestartButton: FC = () => {
+export const RestartGame: FC = () => {
   const { restartGame } = useResetGame();
   const { t } = useTranslation();
 
-  const handleButtonClick = () => {
+  const handleClick = () => {
     restartGame();
   };
 
   return (
     <HelpOverlay helpText={<NeonText>{t("RestartButton.Help")}</NeonText>}>
       <NeonText asChild>
-        <Button variant="panel" size="full" onClick={handleButtonClick}>
+        <Button variant="panel" size="full" onClick={handleClick}>
           {t("RestartButton.Button")}
         </Button>
       </NeonText>

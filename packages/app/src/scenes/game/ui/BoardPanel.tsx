@@ -5,7 +5,7 @@ import { Panel } from "@/shared/ui/Panel";
 import { cn } from "@/shared/utils/helpers";
 import { type FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { TileButton } from "./TileButton";
+import { BoardCell } from "./BoradCell";
 
 export const BoardPanel: FC = () => {
   const { board, currentTurn, players } = useGame();
@@ -45,7 +45,7 @@ export const BoardPanel: FC = () => {
             },
           )}
         >
-          <TileButton tile={tile} />
+          <BoardCell tile={tile} />
         </div>
       ))}
     </Panel>

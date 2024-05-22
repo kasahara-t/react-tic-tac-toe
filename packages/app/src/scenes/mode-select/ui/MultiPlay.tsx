@@ -6,19 +6,19 @@ import { logEvent } from "firebase/analytics";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 
-export const MultiPlayButton: FC = () => {
+export const MultiPlay: FC = () => {
   const { goToGame } = useScene();
   const { setMultiPlayer } = useUpdatePlayers();
   const { t } = useTranslation();
 
-  const handleButtonClick = () => {
+  const handleClick = () => {
     setMultiPlayer();
     goToGame();
     logEvent(analytics, "multi_play_button_click");
   };
 
   return (
-    <Button variant="panel" onClick={handleButtonClick}>
+    <Button variant="panel" onClick={handleClick}>
       {t("MultiPlayButton.Button")}
     </Button>
   );

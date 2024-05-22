@@ -3,10 +3,10 @@ import { AppBackground } from "@/shared/ui/AppBackground";
 import { cn } from "@/shared/utils/helpers";
 import type { FC } from "react";
 import { BoardPanel } from "./BoardPanel";
-import { GameStatusText } from "./GameStatusText";
-import { GameTurnText } from "./GameTurnText";
+import { CurrentTurn } from "./CurrentTurn";
+import { GameStatus } from "./GameStatus";
 import { LogPanel } from "./LogPanel";
-import { RestartButton } from "./RestartButton";
+import { RestartGame } from "./RestartButton";
 import { ToolBar } from "./ToolBar";
 
 export const GameScene: FC = () => {
@@ -20,7 +20,7 @@ export const GameScene: FC = () => {
         )}
       >
         <div className={cn("col-[2] row-[1]")}>
-          <GameStatusText />
+          <GameStatus />
         </div>
         <div className={cn("col-[1] row-[2]")}>
           <LogPanel />
@@ -37,7 +37,7 @@ export const GameScene: FC = () => {
           <ToolBar />
         </div>
         <div className={cn("col-[2] row-[3]")}>
-          {gameOver ? <RestartButton /> : <GameTurnText />}
+          {gameOver ? <RestartGame /> : <CurrentTurn />}
         </div>
       </div>
     </AppBackground>
