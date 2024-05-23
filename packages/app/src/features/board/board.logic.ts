@@ -1,5 +1,5 @@
 import type { Cell } from "@/entities/cell/cell.model";
-import { BOARD_SIZE, type Board } from "./board.model";
+import { BOARD_SIZE, type Board, type BoardCell } from "./board.model";
 
 /**
  * ボードを初期化する
@@ -18,12 +18,15 @@ export const initializeBoard = (): Board => {
   );
 
   return {
-    cells: cells.map((cell) => ({
-      cell,
-      state: {
-        symbol: "empty",
-        remainingTime: 0,
-      },
-    })),
+    cells: cells.map(
+      (cell) =>
+        ({
+          cell,
+          state: {
+            symbol: "empty",
+            remainingTime: 0,
+          },
+        }) as BoardCell,
+    ),
   };
 };
