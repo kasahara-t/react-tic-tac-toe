@@ -24,8 +24,6 @@ export const gameResultsAtom = atomWithReset<GameResult[]>([]);
 
 export const helpModeAtom = atom<boolean>(false);
 
-export const sceneAtom = atom<"mode-select" | "game">("mode-select");
-
 type PlayersState = Record<PlayerId, Player | null>;
 export const playersStateAtom = atomWithReset<PlayersState>({
   Player1: null,

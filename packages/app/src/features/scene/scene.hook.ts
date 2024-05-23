@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { sceneAtom } from "../stores/atoms";
+import { sceneAtom } from "./scene.store";
 
 export const useScene = () => {
   const [scene, setScene] = useAtom(sceneAtom);

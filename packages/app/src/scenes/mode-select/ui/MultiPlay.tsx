@@ -1,4 +1,4 @@
-import { useScene } from "@/game/hooks/useScene";
+import { useScene } from "@/features/scene/scene.hook";
 import { useUpdatePlayers } from "@/game/hooks/useUpdatePlayers";
 import { analytics } from "@/shared/libs/firebase";
 import { Button } from "@/shared/ui/Button";
