@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { helpModeAtom } from "../stores/atoms";
+import { helpModeAtom } from "./help.store";
 
 export const useHelp = () => {
   const [helpMode, setHelpMode] = useAtom(helpModeAtom);

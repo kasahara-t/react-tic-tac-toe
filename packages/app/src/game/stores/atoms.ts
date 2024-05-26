@@ -22,8 +22,6 @@ export const gameOverAtom = atomWithReset<boolean>(false);
 
 export const gameResultsAtom = atomWithReset<GameResult[]>([]);
 
-export const helpModeAtom = atom<boolean>(false);
-
 type PlayersState = Record<PlayerId, Player | null>;
 export const playersStateAtom = atomWithReset<PlayersState>({
   Player1: null,

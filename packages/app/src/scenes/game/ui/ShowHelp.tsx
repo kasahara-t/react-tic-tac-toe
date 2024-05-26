@@ -1,5 +1,5 @@
 import helpImgUrl from "@/assets/help.png";
-import { useHelp } from "@/game/hooks/useHelp";
+import { useHelp } from "@/features/help/help.hook";
 import { ImageButton } from "@/shared/ui/ImageButton";
 import {
   TooltipContent,
