@@ -1,5 +1,5 @@
 import { initializeBoard } from "../board/board.logic";
-import type { CPUPlayer, HumanPlayer } from "../player/player.model";
+import { createCPUPlayer, createHumanPlayer } from "../player/player.logic";
 import type { Game, GameMode, GameState } from "./game.model";
 
 export const initializeGame = (mode: GameMode): Game => {
@@ -15,24 +15,16 @@ export const initializeGame = (mode: GameMode): Game => {
       return {
         history: [initialGameState],
         players: {
-          circle: {
-            name: "Player",
-          } as HumanPlayer,
-          cross: {
-            name: "Computer",
-          } as CPUPlayer,
+          circle: createHumanPlayer("You"),
+          cross: createCPUPlayer(),
         },
       } as Game;
     case "multi":
       return {
         history: [initialGameState],
         players: {
-          circle: {
-            name: "Player 1",
-          } as HumanPlayer,
-          cross: {
-            name: "Player 2",
-          } as HumanPlayer,
+          circle: createHumanPlayer("Player 1"),
+          cross: createHumanPlayer("Player 2"),
         },
       } as Game;
   }
