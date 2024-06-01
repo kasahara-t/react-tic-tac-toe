@@ -1,4 +1,4 @@
-import { useScene } from "@/features/scene/scene.hook";
+import { useScene } from "@/features/scene";
 import { useUpdatePlayers } from "@/game/hooks/useUpdatePlayers";
 import { analytics } from "@/shared/libs";
 import { Button } from "@/shared/ui";

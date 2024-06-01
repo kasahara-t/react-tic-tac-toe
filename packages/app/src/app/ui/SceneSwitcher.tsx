@@ -1,4 +1,4 @@
-import { useScene } from "@/features/scene/scene.hook";
+import { useScene } from "@/features/scene";
 import { GameScene } from "@/scenes/game/ui/GameScene";
 import { ModeSelectScene } from "@/scenes/mode-select/ui/ModeSelectScene";
 import type { FC } from "react";
