@@ -1,7 +1,6 @@
-import { updateBoard } from "@/entities/board/board.logic";
 import type { Cell } from "@/entities/cell/cell.model";
 import { useAtom } from "jotai";
-import { incrementTurn, initializeGame } from "../game.logic";
+import { getBestMove, initializeGame, updateGame } from "../game.logic";
 import type { GameMode } from "../game.model";
 import { gameAtom } from "../game.store";
 
@@ -17,40 +16,43 @@ export const useUpdateGame = () => {
       if (!prevGame) {
         return prevGame;
       }
+      const firstState = prevGame.history.at(0);
+      if (!firstState) {
+        return prevGame;
+      }
 
       return {
         ...prevGame,
-        history: [prevGame.history.at(0)],
+        history: [firstState],
       };
     });
   };
 
-  const updateGame = (selectedCell: Cell) => {
+  const updateByPlayer = (selectedCell: Cell) => {
     setGame((prevGame) => {
       if (!prevGame) {
         return prevGame;
       }
 
-      const lastGameState = prevGame.history.at(-1);
-      const newGameState = incrementTurn(
-        lastGameState,
-        updateBoard(
-          lastGameState.currentBoard,
-          selectedCell,
-          lastGameState.currentPlayer,
-        ),
-      );
+      updateGame(prevGame, selectedCell);
+    });
+  };
 
-      return {
-        ...prevGame,
-        history: [...prevGame.history, newGameState],
-      };
+  const updateByCPU = () => {
+    setGame((prevGame) => {
+      if (!prevGame) {
+        return prevGame;
+      }
+
+      const bestMove = getBestMove(prevGame);
+      updateGame(prevGame, bestMove);
     });
   };
 
   return {
     startGame,
     restartGame,
-    updateGame,
+    updateByPlayer,
+    updateByCPU,
   };
 };
