@@ -1,6 +1,5 @@
-import type { Cell } from "@/entities/cell/cell.model";
+import { type Cell, getNextCellState } from "@/entities/cell";
 import type { PlayerId } from "@/features/game/game.model";
-import { getNextCellState } from "../cell/cell.logic";
 import { BOARD_SIZE, type Board, type BoardCell } from "./board.model";
 
 export const initializeBoard = (): Board => {

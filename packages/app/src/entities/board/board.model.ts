@@ -1,4 +1,4 @@
-import type { Cell, CellState } from "@/entities/cell/cell.model";
+import type { Cell, CellState } from "@/entities/cell";
 
 export const BOARD_SIZE = 3;
 

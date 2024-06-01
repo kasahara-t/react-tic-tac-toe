@@ -1,11 +1,15 @@
-import type { Cell, CellSymbol } from "@/entities/cell/cell.model";
-import { getRandomElement } from "@/shared/utils/helpers";
-import { initializeBoard, updateBoard } from "../../entities/board/board.logic";
-import type { Board, BoardCell } from "../../entities/board/board.model";
 import {
+  BOARD_SIZE,
+  type Board,
+  type BoardCell,
+  type Cell,
+  type CellSymbol,
   createCPUPlayer,
   createHumanPlayer,
-} from "../../entities/player/player.logic";
+  initializeBoard,
+  updateBoard,
+} from "@/entities";
+import { getRandomElement } from "@/shared/utils/helpers";
 import type { Game, GameMode, GameState, PlayerId } from "./game.model";
 
 export const initializeGame = (mode: GameMode): Game => {
@@ -87,7 +91,6 @@ export const checkWinner = (currentGame: Game): PlayerId | undefined => {
   }
 
   const { currentBoard } = lastGameState;
-  const boardSize = 3;
   const symbolToPlayerId = (symbol: CellSymbol): PlayerId =>
     symbol === "circle" ? "circle" : "cross";
   const isFilled = (cells: BoardCell[]): boolean =>
@@ -98,7 +101,7 @@ export const checkWinner = (currentGame: Game): PlayerId | undefined => {
     );
 
   // check vertical cells
-  for (let x = 0; x < boardSize; x++) {
+  for (let x = 0; x < BOARD_SIZE; x++) {
     const column = currentBoard.cells.filter((cell) => cell.cell.x === x);
     if (isFilled(column)) {
       return symbolToPlayerId(column[0].state.symbol);
@@ -106,7 +109,7 @@ export const checkWinner = (currentGame: Game): PlayerId | undefined => {
   }
 
   // check horizontal cells
-  for (let y = 0; y < boardSize; y++) {
+  for (let y = 0; y < BOARD_SIZE; y++) {
     const row = currentBoard.cells.filter((cell) => cell.cell.y === y);
     if (isFilled(row)) {
       return symbolToPlayerId(row[0].state.symbol);
@@ -123,7 +126,7 @@ export const checkWinner = (currentGame: Game): PlayerId | undefined => {
   }
   // right-top to left-bottom
   const diagonal2 = currentBoard.cells.filter(
-    (cell) => cell.cell.x === boardSize - 1 - cell.cell.y,
+    (cell) => cell.cell.x === BOARD_SIZE - 1 - cell.cell.y,
   );
   if (isFilled(diagonal2)) {
     return symbolToPlayerId(diagonal2[0].state.symbol);
