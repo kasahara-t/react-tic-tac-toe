@@ -1,6 +1,6 @@
 import { useGame } from "@/game/hooks/useGame";
 import type { GameResult } from "@/game/types/result";
-import { NeonText } from "@/shared/ui/NeonText";
+import { NeonText } from "@/shared/ui";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 

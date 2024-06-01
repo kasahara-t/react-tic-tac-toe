@@ -1,7 +1,7 @@
 import { useScene } from "@/features/scene/scene.hook";
 import { useUpdatePlayers } from "@/game/hooks/useUpdatePlayers";
-import { analytics } from "@/shared/libs/firebase";
-import { Button } from "@/shared/ui/Button";
+import { analytics } from "@/shared/libs";
+import { Button } from "@/shared/ui";
 import { logEvent } from "firebase/analytics";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";

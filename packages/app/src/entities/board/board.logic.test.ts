@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { initializeBoard, updateBoard } from "./board.logic";
+import { initializeBoard } from "./board.logic";
 
 describe(initializeBoard.name, () => {
   test("The initialized board has 9 tiles", () => {
@@ -27,19 +27,5 @@ describe(initializeBoard.name, () => {
       board.cells.map((cell) => `${cell.cell.x},${cell.cell.y}`),
     );
     expect(uniqueCells.size).toBe(9);
-  });
-});
-
-describe(updateBoard.name, () => {
-  test("If the selected cell is empty, it is set to the player's symbol", () => {
-    const currentBoard = initializeBoard();
-    const selectedCell = currentBoard.cells[0].cell;
-    const currentPlayer = "circle";
-    const updatedBoard = updateBoard(currentBoard, selectedCell, currentPlayer);
-    const selectedCellState = updatedBoard.cells.find(
-      (cell) =>
-        cell.cell.x === selectedCell.x && cell.cell.y === selectedCell.y,
-    )?.state;
-    expect(selectedCellState?.symbol).toBe(currentPlayer);
   });
 });

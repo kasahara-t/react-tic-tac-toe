@@ -2,14 +2,11 @@ import {
   BOARD_SIZE,
   type Board,
   type BoardCell,
-  type Cell,
-  type CellSymbol,
-  createCPUPlayer,
-  createHumanPlayer,
   initializeBoard,
-  updateBoard,
-} from "@/entities";
-import { getRandomElement } from "@/shared/utils/helpers";
+} from "@/entities/board";
+import { type Cell, type CellSymbol, getNextCellState } from "@/entities/cell";
+import { createCPUPlayer, createHumanPlayer } from "@/entities/player";
+import { getRandomElement } from "@/shared/utils";
 import type { Game, GameMode, GameState, PlayerId } from "./game.model";
 
 export const initializeGame = (mode: GameMode): Game => {
@@ -54,6 +51,37 @@ export const incrementTurn = (
     currentBoard: nextBoard,
     currentTurn: state.currentTurn + 1,
     currentPlayer: state.currentPlayer === "circle" ? "cross" : "circle",
+  };
+};
+
+/**
+ * Update the board state with the selected cell
+ */
+export const updateBoard = (
+  currentBoard: Board,
+  selectedCell: Cell,
+  currentPlayer: PlayerId,
+): Board => {
+  return {
+    cells: currentBoard.cells.map((boardCell) => {
+      if (
+        boardCell.cell.x === selectedCell.x &&
+        boardCell.cell.y === selectedCell.y &&
+        boardCell.state.symbol === "empty"
+      ) {
+        return {
+          cell: boardCell.cell,
+          state: {
+            symbol: currentPlayer === "circle" ? "circle" : "cross",
+            remainingTime: 5,
+          },
+        };
+      }
+      return {
+        cell: boardCell.cell,
+        state: getNextCellState(boardCell.state),
+      };
+    }),
   };
 };
 

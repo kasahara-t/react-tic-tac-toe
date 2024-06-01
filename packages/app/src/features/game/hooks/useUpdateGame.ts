@@ -1,4 +1,4 @@
-import type { Cell } from "@/entities";
+import type { Cell } from "@/entities/cell";
 import { useAtom } from "jotai";
 import { getBestMove, initializeGame, updateGame } from "../game.logic";
 import type { GameMode } from "../game.model";

@@ -1,4 +1,5 @@
-import type { Board, Player } from "@/entities";
+import type { Board } from "@/entities/board";
+import type { Player } from "@/entities/player";
 
 export type PlayerId = "circle" | "cross";
 

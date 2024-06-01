@@ -1,5 +1,4 @@
-import { type Cell, getNextCellState } from "@/entities/cell";
-import type { PlayerId } from "@/features/game/game.model";
+import type { Cell } from "@/entities/cell";
 import { BOARD_SIZE, type Board, type BoardCell } from "./board.model";
 
 export const initializeBoard = (): Board => {
@@ -26,36 +25,5 @@ export const initializeBoard = (): Board => {
           },
         }) as BoardCell,
     ),
-  };
-};
-
-/**
- * Update the board state with the selected cell
- */
-export const updateBoard = (
-  currentBoard: Board,
-  selectedCell: Cell,
-  currentPlayer: PlayerId,
-): Board => {
-  return {
-    cells: currentBoard.cells.map((boardCell) => {
-      if (
-        boardCell.cell.x === selectedCell.x &&
-        boardCell.cell.y === selectedCell.y &&
-        boardCell.state.symbol === "empty"
-      ) {
-        return {
-          cell: boardCell.cell,
-          state: {
-            symbol: currentPlayer === "circle" ? "circle" : "cross",
-            remainingTime: 5,
-          },
-        };
-      }
-      return {
-        cell: boardCell.cell,
-        state: getNextCellState(boardCell.state),
-      };
-    }),
   };
 };

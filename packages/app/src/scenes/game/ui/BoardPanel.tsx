@@ -1,8 +1,7 @@
 import { useGame } from "@/game/hooks/useGame";
 import { useUpdateGame } from "@/game/hooks/useUpdateGame";
-import { NeonText } from "@/shared/ui/NeonText";
-import { Panel } from "@/shared/ui/Panel";
-import { cn } from "@/shared/utils/helpers";
+import { NeonText, Panel } from "@/shared/ui";
+import { cn } from "@/shared/utils";
 import { type FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { BoardCell } from "./BoradCell";

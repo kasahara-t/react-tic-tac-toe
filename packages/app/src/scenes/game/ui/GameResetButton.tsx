@@ -1,16 +1,16 @@
 import resetButtonImageUrl from "@/assets/reset.png";
 import { useScene } from "@/features/scene/scene.hook";
 import { useResetGame } from "@/game/hooks/useResetGame";
-import { HelpOverlay } from "@/shared/ui/HelpOverlay";
-import { ImageButton } from "@/shared/ui/ImageButton";
-import { NeonText } from "@/shared/ui/NeonText";
 import {
+  HelpOverlay,
+  ImageButton,
+  NeonText,
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/shared/ui/Tooltip";
-import { preloadImages } from "@/shared/utils/helpers";
+} from "@/shared/ui";
+import { preloadImages } from "@/shared/utils";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 

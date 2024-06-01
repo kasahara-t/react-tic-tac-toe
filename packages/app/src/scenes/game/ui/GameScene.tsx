@@ -1,6 +1,6 @@
 import { useGame } from "@/game/hooks/useGame";
-import { AppBackground } from "@/shared/ui/AppBackground";
-import { cn } from "@/shared/utils/helpers";
+import { AppBackground } from "@/shared/ui";
+import { cn } from "@/shared/utils";
 import type { FC } from "react";
 import { BoardPanel } from "./BoardPanel";
 import { CurrentTurn } from "./CurrentTurn";

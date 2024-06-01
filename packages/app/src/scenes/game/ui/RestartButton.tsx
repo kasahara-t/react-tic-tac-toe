@@ -1,7 +1,5 @@
 import { useResetGame } from "@/game/hooks/useResetGame";
-import { Button } from "@/shared/ui/Button";
-import { HelpOverlay } from "@/shared/ui/HelpOverlay";
-import { NeonText } from "@/shared/ui/NeonText";
+import { Button, HelpOverlay, NeonText } from "@/shared/ui";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 

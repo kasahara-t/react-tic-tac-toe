@@ -1,8 +1,7 @@
-import { cn } from "@/shared/utils/helpers";
+import { cn } from "@/shared/utils";
 import type { FC } from "react";
 import { ResetGame } from "./GameResetButton";
 import { ShowHelp } from "./ShowHelp";
-// import { SettingButton } from "./SettingButton";
 
 export const ToolBar: FC = () => {
   return (
@@ -15,9 +14,6 @@ export const ToolBar: FC = () => {
       <li>
         <ResetGame />
       </li>
-      {/* <li>
-        <SettingButton />
-      </li> */}
       <li>
         <ShowHelp />
       </li>

@@ -1,4 +1,4 @@
-import { Button } from "@/shared/ui/Button";
+import { Button } from "@/shared/ui";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 

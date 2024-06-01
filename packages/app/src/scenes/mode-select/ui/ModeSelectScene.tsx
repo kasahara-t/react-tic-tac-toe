@@ -1,5 +1,5 @@
-import { AppBackground } from "@/shared/ui/AppBackground";
-import { cn } from "@/shared/utils/helpers";
+import { AppBackground } from "@/shared/ui";
+import { cn } from "@/shared/utils";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { MultiPlay } from "./MultiPlay";

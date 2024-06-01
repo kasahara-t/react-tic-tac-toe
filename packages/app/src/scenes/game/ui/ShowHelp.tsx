@@ -1,12 +1,12 @@
 import helpImgUrl from "@/assets/help.png";
 import { useHelp } from "@/features/help/help.hook";
-import { ImageButton } from "@/shared/ui/ImageButton";
 import {
+  ImageButton,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/shared/ui/Tooltip";
-import { preloadImages } from "@/shared/utils/helpers";
+} from "@/shared/ui";
+import { preloadImages } from "@/shared/utils";
 import { Tooltip } from "@radix-ui/react-tooltip";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
