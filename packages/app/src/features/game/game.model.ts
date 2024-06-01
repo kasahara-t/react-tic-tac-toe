@@ -1,6 +1,7 @@
+import type { Board } from "@/entities/board/board.model";
 import type { Player } from "@/entities/player/player.model";
-import type { Board } from "@/features/board/board.model";
-import type { PlayerId } from "../player/player.model";
+
+export type PlayerId = "circle" | "cross";
 
 export type GameMode = "single" | "multi";
 

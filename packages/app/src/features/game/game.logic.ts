@@ -1,6 +1,9 @@
-import { initializeBoard } from "../board/board.logic";
-import type { Board } from "../board/board.model";
-import { createCPUPlayer, createHumanPlayer } from "../player/player.logic";
+import { initializeBoard } from "../../entities/board/board.logic";
+import type { Board } from "../../entities/board/board.model";
+import {
+  createCPUPlayer,
+  createHumanPlayer,
+} from "../../entities/player/player.logic";
 import type { Game, GameMode, GameState } from "./game.model";
 
 export const initializeGame = (mode: GameMode): Game => {
