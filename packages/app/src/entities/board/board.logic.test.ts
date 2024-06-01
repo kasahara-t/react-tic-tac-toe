@@ -2,26 +2,26 @@ import { describe, expect, test } from "bun:test";
 import { initializeBoard, updateBoard } from "./board.logic";
 
 describe(initializeBoard.name, () => {
-  test("初期化されたボードには9個のタイルが生成される", () => {
+  test("The initialized board has 9 tiles", () => {
     const board = initializeBoard();
     expect(board.cells).toHaveLength(9);
   });
 
-  test("初期化されたボードのタイルは全て空である", () => {
+  test("All tiles on the initialized board are empty", () => {
     const board = initializeBoard();
     expect(board.cells.every((cell) => cell.state.symbol === "empty")).toBe(
       true,
     );
   });
 
-  test("初期化されたボードのタイルは全て残り時間が0である", () => {
+  test("All tiles on the initialized board have a remaining time of 0", () => {
     const board = initializeBoard();
     expect(board.cells.every((cell) => cell.state.remainingTime === 0)).toBe(
       true,
     );
   });
 
-  test("初期化されたボードのタイルは全て異なる座標を持つ", () => {
+  test("All tiles on the initialized board have unique coordinates", () => {
     const board = initializeBoard();
     const uniqueCells = new Set(
       board.cells.map((cell) => `${cell.cell.x},${cell.cell.y}`),
@@ -31,7 +31,7 @@ describe(initializeBoard.name, () => {
 });
 
 describe(updateBoard.name, () => {
-  test("選択されたセルが空の場合、そのセルにプレイヤーのシンボルが設定される", () => {
+  test("If the selected cell is empty, it is set to the player's symbol", () => {
     const currentBoard = initializeBoard();
     const selectedCell = currentBoard.cells[0].cell;
     const currentPlayer = "circle";

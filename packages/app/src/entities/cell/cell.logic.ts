@@ -1,8 +1,5 @@
 import type { CellState } from "./cell.model";
 
-/**
- * 次のセルの状態を取得する
- */
 export const getNextCellState = (currentCellState: CellState): CellState => {
   if (currentCellState.symbol !== "empty") {
     const isExpired = currentCellState.remainingTime <= 1;

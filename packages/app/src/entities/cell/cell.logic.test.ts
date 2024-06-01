@@ -3,7 +3,7 @@ import { getNextCellState } from "./cell.logic";
 import type { CellState } from "./cell.model";
 
 describe(getNextCellState.name, () => {
-  test("セルの状態が空の場合、そのまま返す", () => {
+  test("If the cell state is empty, return it as is", () => {
     const currentCellState: CellState = {
       symbol: "empty",
       remainingTime: 0,
@@ -12,7 +12,7 @@ describe(getNextCellState.name, () => {
     expect(nextCellState).toEqual(currentCellState);
   });
 
-  test("セルの状態が空でない場合、残り時間が1減る", () => {
+  test("If the cell state is not empty, decrease the remaining time by 1", () => {
     const currentCellState: CellState = {
       symbol: "circle",
       remainingTime: 3,
@@ -24,7 +24,7 @@ describe(getNextCellState.name, () => {
     });
   });
 
-  test("セルの状態が空でない場合、残り時間が0になると空になる", () => {
+  test("If the cell state is not empty and the remaining time reaches 0, it becomes empty", () => {
     const currentCellState: CellState = {
       symbol: "cross",
       remainingTime: 1,

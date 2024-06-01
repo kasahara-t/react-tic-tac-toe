@@ -7,7 +7,7 @@ import {
 } from "./player.logic";
 
 describe(createCPUPlayer.name, () => {
-  test("人間プレイヤーが生成される", () => {
+  test("A human player is created", () => {
     const player = createHumanPlayer("You");
     expect(player).toEqual({
       type: "human",
@@ -15,13 +15,13 @@ describe(createCPUPlayer.name, () => {
     });
   });
 
-  test("型ガード関数で人間プレイヤーを判定できる", () => {
+  test("Type guard function can identify a human player", () => {
     const player = createHumanPlayer("You");
     expect(isHumanPlayer(player)).toBe(true);
     expect(isCPUPlayer(player)).toBe(false);
   });
 
-  test("CPUプレイヤーが生成される", () => {
+  test("A CPU player is created", () => {
     const player = createCPUPlayer();
     expect(player).toEqual({
       type: "cpu",
@@ -29,7 +29,7 @@ describe(createCPUPlayer.name, () => {
     });
   });
 
-  test("型ガード関数でCPUプレイヤーを判定できる", () => {
+  test("Type guard function can identify a CPU player", () => {
     const player = createCPUPlayer();
     expect(isHumanPlayer(player)).toBe(false);
     expect(isCPUPlayer(player)).toBe(true);

@@ -3,9 +3,6 @@ import type { PlayerId } from "@/features/game/game.model";
 import { getNextCellState } from "../cell/cell.logic";
 import { BOARD_SIZE, type Board, type BoardCell } from "./board.model";
 
-/**
- * ボードを初期化する
- */
 export const initializeBoard = (): Board => {
   const cells: Cell[] = Array.from(
     { length: BOARD_SIZE * BOARD_SIZE },
@@ -33,6 +30,9 @@ export const initializeBoard = (): Board => {
   };
 };
 
+/**
+ * Update the board state with the selected cell
+ */
 export const updateBoard = (
   currentBoard: Board,
   selectedCell: Cell,
