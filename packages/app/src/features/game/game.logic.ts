@@ -7,15 +7,11 @@ import {
 import type { Game, GameMode, GameState } from "./game.model";
 
 export const initializeGame = (mode: GameMode): Game => {
-  const initialGameState: GameState = {
-    currentBoard: initializeBoard(),
-    currentTurn: 1,
-    currentPlayer: "circle",
-  };
   const players = initializePlayers(mode);
+  const history = initializeHistory();
   return {
     players,
-    history: [initialGameState],
+    history,
   };
 };
 
@@ -32,6 +28,16 @@ export const initializePlayers = (mode: GameMode) => {
         cross: createHumanPlayer("Player 2"),
       };
   }
+};
+
+export const initializeHistory = (): GameState[] => {
+  return [
+    {
+      currentBoard: initializeBoard(),
+      currentTurn: 1,
+      currentPlayer: "circle",
+    },
+  ];
 };
 
 export const incrementTurn = (
