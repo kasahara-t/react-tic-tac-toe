@@ -34,7 +34,8 @@ export const useUpdateGame = () => {
         return prevGame;
       }
 
-      updateGame(prevGame, selectedCell);
+      const newGame = updateGame(prevGame, selectedCell);
+      return newGame;
     });
   };
 
@@ -45,7 +46,8 @@ export const useUpdateGame = () => {
       }
 
       const bestMove = getBestMove(prevGame);
-      updateGame(prevGame, bestMove);
+      const newGame = updateGame(prevGame, bestMove);
+      return newGame;
     });
   };
 

@@ -1,5 +1,5 @@
-import { useGame } from "@/game/hooks/useGame";
-import type { GameResult } from "@/game/types/result";
+import { useGame } from "@/features/game";
+import type { GameResult } from "@/features/resultLog";
 import { NeonText } from "@/shared/ui";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ export const ResultLog: FC<ResultLogTextProps> = ({ result }) => {
   return (
     <NeonText>
       {t("ResultLog", {
-        winner: players[result.winner]?.name ?? "",
+        winner: players?.[result.winner].name ?? "",
         count: result.winCount,
       })}
     </NeonText>

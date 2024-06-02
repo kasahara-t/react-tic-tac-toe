@@ -1,5 +1,5 @@
+import { useUpdateGame } from "@/features/game";
 import { useScene } from "@/features/scene";
-import { useUpdatePlayers } from "@/game/hooks/useUpdatePlayers";
 import { analytics } from "@/shared/libs";
 import { Button } from "@/shared/ui";
 import { logEvent } from "firebase/analytics";
@@ -8,11 +8,11 @@ import { useTranslation } from "react-i18next";
 
 export const MultiPlay: FC = () => {
   const { goToGame } = useScene();
-  const { setMultiPlayer } = useUpdatePlayers();
+  const { startGame } = useUpdateGame();
   const { t } = useTranslation();
 
   const handleClick = () => {
-    setMultiPlayer();
+    startGame("multi");
     goToGame();
     logEvent(analytics, "multi_play_button_click");
   };

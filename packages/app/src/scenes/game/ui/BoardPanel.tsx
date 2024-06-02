@@ -1,5 +1,6 @@
-import { useGame } from "@/game/hooks/useGame";
-import { useUpdateGame } from "@/game/hooks/useUpdateGame";
+import { BOARD_SIZE } from "@/entities/board";
+import { isCPUPlayer } from "@/entities/player";
+import { useGame, useUpdateGame } from "@/features/game";
 import { NeonText, Panel } from "@/shared/ui";
 import { cn } from "@/shared/utils";
 import { type FC, useEffect } from "react";
@@ -7,40 +8,46 @@ import { useTranslation } from "react-i18next";
 import { BoardCell } from "./BoradCell";
 
 export const BoardPanel: FC = () => {
-  const { board, currentTurn, players } = useGame();
-  const { updateBoardByCPU } = useUpdateGame();
+  const { history, players } = useGame();
+  const { updateByCPU } = useUpdateGame();
   const { t } = useTranslation();
 
+  const lastHistory = history?.at(-1);
+  if (!lastHistory) return null;
+
+  const currentPlayer = players?.[lastHistory.currentPlayer];
+  if (!currentPlayer) return null;
+
   useEffect(() => {
-    if (players[currentTurn.player]?.isCPU) {
+    if (isCPUPlayer(currentPlayer)) {
       setTimeout(() => {
-        updateBoardByCPU();
+        updateByCPU();
       }, 500);
     }
-  }, [currentTurn, players, updateBoardByCPU]);
+  }, [currentPlayer, updateByCPU]);
 
   return (
     <Panel
       className={cn(
         "grid h-full aspect-square",
-        `grid-cols-${board.size} grid-rows-${board.size}`, // not working???
+        `grid-cols-${BOARD_SIZE} grid-rows-${BOARD_SIZE}`, // not working???
         "p-6",
       )}
       style={{
-        gridTemplateColumns: `repeat(${board.size}, 1fr)`,
-        gridTemplateRows: `repeat(${board.size}, 1fr)`,
+        gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
+        gridTemplateRows: `repeat(${BOARD_SIZE}, 1fr)`,
       }}
       helpText={<NeonText>{t("BoardPanel.Help")}</NeonText>}
     >
-      {board.tiles.map((tile) => (
+      {lastHistory.currentBoard.cells.map((tile) => (
         <div
-          key={`${tile.x}-${tile.y}`}
+          key={`${tile.cell.x}-${tile.cell.y}`}
           className={cn(
             "flex justify-center items-center",
-            `col-[${tile.x + 1}] row-[${tile.y + 1}]`,
+            `col-[${tile.cell.x + 1}] row-[${tile.cell.y + 1}]`,
             {
-              "border-l-4 border-white border-opacity-10": tile.x > 0,
-              "border-t-4 border-white border-opacity-10": tile.y > 0,
+              "border-l-4 border-white border-opacity-10": tile.cell.x > 0,
+              "border-t-4 border-white border-opacity-10": tile.cell.y > 0,
             },
           )}
         >

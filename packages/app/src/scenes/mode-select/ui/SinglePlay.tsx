@@ -1,5 +1,5 @@
+import { useUpdateGame } from "@/features/game";
 import { useScene } from "@/features/scene";
-import { useUpdatePlayers } from "@/game/hooks/useUpdatePlayers";
 import { analytics } from "@/shared/libs";
 import { Button } from "@/shared/ui";
 import { logEvent } from "firebase/analytics";
@@ -8,12 +8,11 @@ import { useTranslation } from "react-i18next";
 
 export const SinglePlay: FC = () => {
   const { goToGame } = useScene();
+  const { startGame } = useUpdateGame();
   const { t } = useTranslation();
-  const { setSinglePlayer } = useUpdatePlayers();
 
   const handleClick = () => {
-    const isPlayerOneCPU = Math.random() < 0.5;
-    setSinglePlayer(isPlayerOneCPU);
+    startGame("single");
     goToGame();
     logEvent(analytics, "single_play_button_click");
   };

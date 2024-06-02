@@ -1,4 +1,4 @@
-import { useGame } from "@/game/hooks/useGame";
+import { useGame } from "@/features/game";
 import { AppBackground } from "@/shared/ui";
 import { cn } from "@/shared/utils";
 import type { FC } from "react";
@@ -10,7 +10,9 @@ import { RestartGame } from "./RestartButton";
 import { ToolBar } from "./ToolBar";
 
 export const GameScene: FC = () => {
-  const { gameOver } = useGame();
+  const { winner } = useGame();
+  const gameOver = Boolean(winner);
+
   return (
     <AppBackground>
       <div

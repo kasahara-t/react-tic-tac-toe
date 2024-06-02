@@ -1,10 +1,10 @@
-import { useResetGame } from "@/game/hooks/useResetGame";
+import { useUpdateGame } from "@/features/game";
 import { Button, HelpOverlay, NeonText } from "@/shared/ui";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 export const RestartGame: FC = () => {
-  const { restartGame } = useResetGame();
+  const { restartGame } = useUpdateGame();
   const { t } = useTranslation();
 
   const handleClick = () => {

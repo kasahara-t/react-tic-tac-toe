@@ -1,4 +1,4 @@
-import { useGame } from "@/game/hooks/useGame";
+import { useResultLog } from "@/features/resultLog";
 import { NeonText, Panel } from "@/shared/ui";
 import { cn } from "@/shared/utils";
 import type { FC } from "react";
@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ResultLog } from "./ResultLog";
 
 export const LogPanel: FC = () => {
-  const { results } = useGame();
+  const { resultLog } = useResultLog();
   const { t } = useTranslation();
 
   return (
@@ -19,14 +19,14 @@ export const LogPanel: FC = () => {
           {t("LogPanel.Title")}
         </h3>
       </NeonText>
-      {results.map((result, i) => (
+      {resultLog.map((log, i) => (
         <div
-          key={`${result.winner}-${result.winCount}`}
+          key={`${log.winner}-${log.winCount}`}
           className={cn("py-2", {
             "border-t-2 border-white border-opacity-10": i > 0,
           })}
         >
-          <ResultLog result={result} />
+          <ResultLog result={log} />
         </div>
       ))}
     </Panel>

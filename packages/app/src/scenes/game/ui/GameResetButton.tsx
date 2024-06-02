@@ -1,6 +1,6 @@
 import resetButtonImageUrl from "@/assets/reset.png";
+import { useResetGame } from "@/features/game";
 import { useScene } from "@/features/scene";
-import { useResetGame } from "@/game/hooks/useResetGame";
 import {
   HelpOverlay,
   ImageButton,
