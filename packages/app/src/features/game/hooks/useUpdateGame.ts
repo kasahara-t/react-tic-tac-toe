@@ -1,54 +1,68 @@
 import type { Cell } from "@/entities/cell";
+import { createResultLog } from "@/features/resultLog/resultLog.logic";
+import { resultLogAtom } from "@/features/resultLog/resultLog.store";
 import { useAtom } from "jotai";
-import { getBestMove, initializeGame, updateGame } from "../game.logic";
-import type { GameMode } from "../game.model";
+import { set } from "zod";
+import {
+  checkWinner,
+  getBestMove,
+  initializeGame,
+  updateGame,
+} from "../game.logic";
+import type { Game, GameMode } from "../game.model";
 import { gameAtom } from "../game.store";
 
 export const useUpdateGame = () => {
-  const [_game, setGame] = useAtom(gameAtom);
+  const [game, setGame] = useAtom(gameAtom);
+  const [resultLog, setResultLog] = useAtom(resultLogAtom);
 
   const startGame = (mode: GameMode) => {
     setGame(initializeGame(mode));
   };
 
   const restartGame = () => {
-    setGame((prevGame) => {
-      if (!prevGame) {
-        return prevGame;
-      }
-      const firstState = prevGame.history.at(0);
-      if (!firstState) {
-        return prevGame;
-      }
+    if (!game) {
+      return;
+    }
 
-      return {
-        ...prevGame,
-        history: [firstState],
-      };
-    });
+    const firstState = game.history.at(0);
+    if (!firstState) {
+      return;
+    }
+
+    const initialGame: Game = {
+      ...game,
+      history: [firstState],
+    };
+    setGame(initialGame);
   };
 
   const updateByPlayer = (selectedCell: Cell) => {
-    setGame((prevGame) => {
-      if (!prevGame) {
-        return prevGame;
-      }
+    if (!game) {
+      return;
+    }
 
-      const newGame = updateGame(prevGame, selectedCell);
-      return newGame;
-    });
+    const newGame = updateGame(game, selectedCell);
+    setGame(newGame);
+
+    const winner = checkWinner(newGame);
+    if (winner) {
+      setResultLog([...resultLog, createResultLog(resultLog, winner)]);
+    }
   };
 
   const updateByCPU = () => {
-    setGame((prevGame) => {
-      if (!prevGame) {
-        return prevGame;
-      }
+    if (!game) {
+      return;
+    }
 
-      const bestMove = getBestMove(prevGame);
-      const newGame = updateGame(prevGame, bestMove);
-      return newGame;
-    });
+    const newGame = updateGame(game, getBestMove(game));
+    setGame(newGame);
+
+    const winner = checkWinner(newGame);
+    if (winner) {
+      setResultLog([...resultLog, createResultLog(resultLog, winner)]);
+    }
   };
 
   return {
