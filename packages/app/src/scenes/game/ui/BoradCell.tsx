@@ -40,7 +40,7 @@ export const BoardCell: FC<TileButtonProps> = ({ tile }) => {
       })}
       onClick={handleClick}
     >
-      {tile.state.symbol && (
+      {tile.state.symbol !== "empty" && (
         <img
           src={tile.state.symbol === "circle" ? circleImageUrl : crossImageUrl}
           alt={t("TileButton.Alt", { x: tile.cell.x, y: tile.cell.y })}
