@@ -1,7 +1,8 @@
 
 pre-commit:
-  parallel: true
   commands:
+    setup:
+      run: make setup
     lint-and-format:
       glob: "*.{js,ts,jsx,tsx}"
       run: |
@@ -12,9 +13,12 @@ pre-commit:
         fi
 
 pre-push:
-  parallel: true
   commands:
-    build:
-      run: make build
+    setup:
+      run: make setup
     test:
       run: make test
+    lint:
+      run: make lint
+    build:
+      run: make build
