@@ -13,11 +13,16 @@ export const initializeGame = (mode: GameMode): Game => {
 
 const initializePlayers = (mode: GameMode) => {
   switch (mode) {
-    case "single":
+    case "single": {
+      // 50% chance to be circle or cross
+      const random = Math.random() < 0.5;
+      const humanPlayer = createHumanPlayer("You");
+      const cpuPlayer = createCPUPlayer();
       return {
-        circle: createHumanPlayer("You"),
-        cross: createCPUPlayer(),
+        circle: random ? humanPlayer : cpuPlayer,
+        cross: random ? cpuPlayer : humanPlayer,
       };
+    }
     case "multi":
       return {
         circle: createHumanPlayer("Player 1"),
