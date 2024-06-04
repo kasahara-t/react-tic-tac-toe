@@ -9,7 +9,7 @@ import { BoardCell } from "./BoradCell";
 
 export const BoardPanel: FC = () => {
   const { history, players, winner } = useGame();
-  const { updateByCPU } = useUpdateGame();
+  const { updateByCPU, updateByPlayer } = useUpdateGame();
   const { t } = useTranslation();
 
   const lastHistory = history?.at(-1);
@@ -39,19 +39,23 @@ export const BoardPanel: FC = () => {
       }}
       helpText={<NeonText>{t("BoardPanel.Help")}</NeonText>}
     >
-      {lastHistory.currentBoard.cells.map((tile) => (
+      {lastHistory.currentBoard.cells.map((cellData) => (
         <div
-          key={`${tile.cell.x}-${tile.cell.y}`}
+          key={`${cellData.cell.x}-${cellData.cell.y}`}
           className={cn(
             "flex justify-center items-center",
-            `col-[${tile.cell.x + 1}] row-[${tile.cell.y + 1}]`,
+            `col-[${cellData.cell.x + 1}] row-[${cellData.cell.y + 1}]`,
             {
-              "border-l-4 border-white border-opacity-10": tile.cell.x > 0,
-              "border-t-4 border-white border-opacity-10": tile.cell.y > 0,
+              "border-l-4 border-white border-opacity-10": cellData.cell.x > 0,
+              "border-t-4 border-white border-opacity-10": cellData.cell.y > 0,
             },
           )}
         >
-          <BoardCell tile={tile} />
+          <BoardCell
+            cellData={cellData}
+            canClick={cellData.state.symbol === "empty" && !winner}
+            onClick={() => updateByPlayer(cellData.cell)}
+          />
         </div>
       ))}
     </Panel>
