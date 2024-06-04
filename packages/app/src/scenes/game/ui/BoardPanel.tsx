@@ -22,9 +22,11 @@ export const BoardPanel: FC = () => {
 
   useEffect(() => {
     if (!winner && isCPUTurn) {
+      // delay CPU turn (500 ~ 1000ms)
+      const timeout: number = Math.random() * 500 + 500;
       setTimeout(() => {
         updateByCPU();
-      }, 500);
+      }, timeout);
     }
   }, [winner, isCPUTurn, updateByCPU]);
 
