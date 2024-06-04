@@ -173,26 +173,16 @@ export const getBestMove = (currentGame: Game): Cell => {
   }
 
   const { currentBoard, currentPlayer } = lastGameState;
-  const enemyPlayer = currentPlayer === "circle" ? "cross" : "circle";
+  const opponentPlayer = currentPlayer === "circle" ? "cross" : "circle";
 
-  // find the winning move
-  const winningMoves = currentBoard.cells.filter((cell) => {
-    if (cell.state.symbol !== "empty") {
-      return false;
-    }
+  // Function to check if a move results in a win
+  const isWinningMove = (cell: BoardCell) => {
     const nextGame = updateGame(currentGame, cell.cell);
     return checkWinner(nextGame) === currentPlayer;
-  });
-  const winningMove = getRandomElement(winningMoves);
-  if (winningMove) {
-    return winningMove.cell;
-  }
+  };
 
-  // find the blocking move
-  const blockingMoves = currentBoard.cells.filter((cell) => {
-    if (cell.state.symbol !== "empty") {
-      return false;
-    }
+  // Function to check if a move blocks the opponent's win
+  const isBlockingMove = (cell: BoardCell) => {
     const randomCell = getRandomElement(
       currentBoard.cells.filter((c) => c !== cell),
     );
@@ -200,24 +190,40 @@ export const getBestMove = (currentGame: Game): Cell => {
       return false;
     }
     const nextGame = updateGame(currentGame, randomCell.cell);
-    const nextnextGame = updateGame(nextGame, cell.cell);
-    return checkWinner(nextnextGame) === enemyPlayer;
-  });
-  const blockingMove = getRandomElement(blockingMoves);
+    const opponentGame = updateGame(nextGame, cell.cell);
+    return checkWinner(opponentGame) === opponentPlayer;
+  };
+
+  // Find a winning move for the CPU player
+  const winningMove = getRandomElement(
+    currentBoard.cells.filter(
+      (cell) => cell.state.symbol === "empty" && isWinningMove(cell),
+    ),
+  );
+  if (winningMove) {
+    return winningMove.cell;
+  }
+
+  // Find a blocking move to prevent the opponent from winning
+  const blockingMove = getRandomElement(
+    currentBoard.cells.filter(
+      (cell) => cell.state.symbol === "empty" && isBlockingMove(cell),
+    ),
+  );
   if (blockingMove) {
     return blockingMove.cell;
   }
 
-  // find the center move
-  const centerMove = currentBoard.cells.find(
+  // Choose the center move if available
+  const centerCell = currentBoard.cells.find(
     (cell) =>
       cell.cell.x === 1 && cell.cell.y === 1 && cell.state.symbol === "empty",
   );
-  if (centerMove) {
-    return centerMove.cell;
+  if (centerCell) {
+    return centerCell.cell;
   }
 
-  // find the random move
+  // Choose a random move from available cells
   const emptyCells = currentBoard.cells.filter(
     (cell) => cell.state.symbol === "empty",
   );
