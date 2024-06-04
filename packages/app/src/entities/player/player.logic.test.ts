@@ -22,7 +22,7 @@ describe(createCPUPlayer.name, () => {
   });
 
   test("A CPU player is created", () => {
-    const player = createCPUPlayer();
+    const player = createCPUPlayer("Computer");
     expect(player).toEqual({
       type: "cpu",
       name: "Computer",
@@ -30,7 +30,7 @@ describe(createCPUPlayer.name, () => {
   });
 
   test("Type guard function can identify a CPU player", () => {
-    const player = createCPUPlayer();
+    const player = createCPUPlayer("Computer");
     expect(isHumanPlayer(player)).toBe(false);
     expect(isCPUPlayer(player)).toBe(true);
   });
