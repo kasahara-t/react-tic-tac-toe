@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 import { atomWithReset } from "jotai/utils";
-import { checkWinner } from "./game.logic";
 import type { Game } from "./game.model";
+import { checkWinner } from "./logics/checkWinner";
 
 export const gameAtom = atomWithReset<Game | undefined>(undefined);
 

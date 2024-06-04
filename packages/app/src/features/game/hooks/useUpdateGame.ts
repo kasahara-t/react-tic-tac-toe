@@ -2,14 +2,12 @@ import type { Cell } from "@/entities/cell";
 import { createResultLog } from "@/features/resultLog/resultLog.logic";
 import { resultLogAtom } from "@/features/resultLog/resultLog.store";
 import { useAtom } from "jotai";
-import {
-  checkWinner,
-  getBestMove,
-  initializeGame,
-  updateGame,
-} from "../game.logic";
 import type { Game, GameMode } from "../game.model";
 import { gameAtom } from "../game.store";
+import { checkWinner } from "../logics/checkWinner";
+import { getBestMove } from "../logics/getBestMove";
+import { initializeGame } from "../logics/initializeGame";
+import { updateGame } from "../logics/updateGame";
 
 export const useUpdateGame = () => {
   const [game, setGame] = useAtom(gameAtom);
