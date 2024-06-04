@@ -18,13 +18,15 @@ export const BoardPanel: FC = () => {
   const currentPlayer = players?.[lastHistory.currentPlayer];
   if (!currentPlayer) return null;
 
+  const isCPUTurn = isCPUPlayer(currentPlayer);
+
   useEffect(() => {
-    if (!winner && isCPUPlayer(currentPlayer)) {
+    if (!winner && isCPUTurn) {
       setTimeout(() => {
         updateByCPU();
       }, 500);
     }
-  }, [winner, currentPlayer, updateByCPU]);
+  }, [winner, isCPUTurn, updateByCPU]);
 
   return (
     <Panel
@@ -53,7 +55,9 @@ export const BoardPanel: FC = () => {
         >
           <BoardCell
             cellData={cellData}
-            canClick={cellData.state.symbol === "empty" && !winner}
+            canClick={
+              cellData.state.symbol === "empty" && !winner && !isCPUTurn
+            }
             onClick={() => updateByPlayer(cellData.cell)}
           />
         </div>

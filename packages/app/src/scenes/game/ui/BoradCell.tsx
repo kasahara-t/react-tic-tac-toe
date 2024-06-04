@@ -19,6 +19,12 @@ export const BoardCell: FC<BoardCellProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const handleClick = () => {
+    if (canClick) {
+      onClick?.();
+    }
+  };
+
   return (
     <button
       type="button"
@@ -26,7 +32,7 @@ export const BoardCell: FC<BoardCellProps> = ({
         "opacity-50": cellData.state.remainingTime === 1,
         "cursor-default": !canClick,
       })}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {cellData.state.symbol !== "empty" && (
         <img
