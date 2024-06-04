@@ -173,18 +173,15 @@ export const getBestMove = (currentGame: Game): Cell => {
   }
 
   const { currentBoard, currentPlayer } = lastGameState;
+  const enemyPlayer = currentPlayer === "circle" ? "cross" : "circle";
+
   // find the winning move
   const winningMoves = currentBoard.cells.filter((cell) => {
     if (cell.state.symbol !== "empty") {
       return false;
     }
-    const nextBoard = updateBoard(currentBoard, cell.cell, currentPlayer);
-    return (
-      checkWinner({
-        ...currentGame,
-        history: [{ ...lastGameState, currentBoard: nextBoard }],
-      }) === currentPlayer
-    );
+    const nextGame = updateGame(currentGame, cell.cell);
+    return checkWinner(nextGame) === currentPlayer;
   });
   const winningMove = getRandomElement(winningMoves);
   if (winningMove) {
@@ -196,17 +193,15 @@ export const getBestMove = (currentGame: Game): Cell => {
     if (cell.state.symbol !== "empty") {
       return false;
     }
-    const nextBoard = updateBoard(
-      currentBoard,
-      cell.cell,
-      currentPlayer === "circle" ? "cross" : "circle",
+    const randomCell = getRandomElement(
+      currentBoard.cells.filter((c) => c !== cell),
     );
-    return (
-      checkWinner({
-        ...currentGame,
-        history: [{ ...lastGameState, currentBoard: nextBoard }],
-      }) === currentPlayer
-    );
+    if (!randomCell) {
+      return false;
+    }
+    const nextGame = updateGame(currentGame, randomCell.cell);
+    const nextnextGame = updateGame(nextGame, cell.cell);
+    return checkWinner(nextnextGame) === enemyPlayer;
   });
   const blockingMove = getRandomElement(blockingMoves);
   if (blockingMove) {
