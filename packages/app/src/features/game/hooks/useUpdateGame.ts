@@ -2,7 +2,6 @@ import type { Cell } from "@/entities/cell";
 import { createResultLog } from "@/features/resultLog/resultLog.logic";
 import { resultLogAtom } from "@/features/resultLog/resultLog.store";
 import { useAtom } from "jotai";
-import { set } from "zod";
 import {
   checkWinner,
   getBestMove,

@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { BoardCell } from "./BoradCell";
 
 export const BoardPanel: FC = () => {
-  const { history, players } = useGame();
+  const { history, players, winner } = useGame();
   const { updateByCPU } = useUpdateGame();
   const { t } = useTranslation();
 
@@ -19,12 +19,12 @@ export const BoardPanel: FC = () => {
   if (!currentPlayer) return null;
 
   useEffect(() => {
-    if (isCPUPlayer(currentPlayer)) {
+    if (!winner && isCPUPlayer(currentPlayer)) {
       setTimeout(() => {
         updateByCPU();
       }, 500);
     }
-  }, [currentPlayer, updateByCPU]);
+  }, [winner, currentPlayer, updateByCPU]);
 
   return (
     <Panel
