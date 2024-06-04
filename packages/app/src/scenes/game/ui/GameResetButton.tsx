@@ -1,5 +1,6 @@
 import resetButtonImageUrl from "@/assets/reset.png";
 import { useResetGame } from "@/features/game";
+import { useResultLog } from "@/features/resultLog";
 import { useScene } from "@/features/scene";
 import {
   HelpOverlay,
@@ -18,11 +19,13 @@ preloadImages(resetButtonImageUrl);
 
 export const ResetGame: FC = () => {
   const { resetGame } = useResetGame();
+  const { resetResultLog } = useResultLog();
   const { goToModeSelect } = useScene();
   const { t } = useTranslation();
 
   const handleClick = () => {
     resetGame();
+    resetResultLog();
     goToModeSelect();
   };
 
