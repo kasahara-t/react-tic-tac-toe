@@ -1,4 +1,4 @@
-import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import type { Scene } from "./scene.model";
 
-export const sceneAtom = atom<Scene>("mode-select");
+export const sceneAtom = atomWithStorage<Scene>("scene", "mode-select");

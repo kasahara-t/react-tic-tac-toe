@@ -1,4 +1,4 @@
-import { atomWithReset } from "jotai/utils";
+import { atomWithStorage } from "jotai/utils";
 import type { GameResult } from "./resultLog.model";
 
-export const resultLogAtom = atomWithReset<GameResult[]>([]);
+export const resultLogAtom = atomWithStorage<GameResult[]>("result-log", []);
